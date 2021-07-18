@@ -12,20 +12,32 @@ body {
   margin: 0;
 }
 
+section {
+  width: 100%;
+  height: auto;
+  position: relative;
+  .section__heading {
+    margin: 25px 0 25px 0;
+  }
+}
+
 .container--flex {
-  width: 1400px;
+  width: 1350px;
   height: auto;
   display: flex;
   margin: auto;
   flex-direction: column;
   position: relative;
-  @include screen(desktop) {
+  @media screen and (max-width: 1400px) {
     width: 95%;
   }
 }
 
 .navbar--offset {
   margin-top: 80px;
+  @include screen(tablet-wide) {
+    margin-top: 0;
+  }
 }
 
 .mt-1 {

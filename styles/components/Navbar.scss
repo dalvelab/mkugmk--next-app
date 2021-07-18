@@ -4,7 +4,12 @@
   position: fixed;
   top: 0;
   left: 0;
-  border: 1px solid $gray;
+  background-color: $white;
+  box-shadow: 0px 1px 3px $gray;
+  z-index: 10;
+  @include screen(tablet-wide) {
+    display: none;
+  }
   .navigation__wrapper {
     height: 100%;
     display: flex;

@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 
 // TYPES
@@ -10,7 +9,7 @@ import Button from "@components/Button";
 
 const Navbar: FC = () => {
   return (
-    <div className="navigation__top">
+    <nav className="navigation__top">
       <Container type="container--flex" styles={{ height: "80px" }}>
         <div className="navigation__wrapper">
           <div className="links__wrapper">
@@ -41,7 +40,7 @@ const Navbar: FC = () => {
           </div>
         </div>
       </Container>
-    </div>
+    </nav>
   );
 };
 

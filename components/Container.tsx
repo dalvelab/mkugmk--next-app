@@ -1,5 +1,3 @@
-import React from "react";
-
 // TYPES
 import { FC, CSSProperties, ReactElement } from "react";
 

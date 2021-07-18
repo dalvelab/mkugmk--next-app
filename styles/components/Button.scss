@@ -8,11 +8,26 @@ button {
   font-family: "Rubik", sans-serif;
 }
 
+// SIZE
 .btn--x1 {
   padding: 12px 30px;
 }
 
+.btn--x2 {
+  padding: 10px 25px;
+}
+
+.btn--x3 {
+  padding: 8px 20px;
+}
+
+// COLORS
 .btn--green {
   color: $white;
   background-color: $green;
+}
+
+.btn--black {
+  color: $white;
+  background-color: $black;
 }

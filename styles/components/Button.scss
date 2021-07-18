@@ -1,0 +1,18 @@
+button {
+  background-color: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-family: "Rubik", sans-serif;
+}
+
+.btn--x1 {
+  padding: 12px 30px;
+}
+
+.btn--green {
+  color: $white;
+  background-color: $green;
+}

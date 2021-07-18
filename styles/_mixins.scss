@@ -1,0 +1,20 @@
+// MEDIA QUERIES: @include screen(phone)
+$breakpoints: (
+  "phone-small": 370px,
+  "phone": 480px,
+  "tablet": 768px,
+  "tablet-wide": 980px,
+  "desktop": 1290px,
+  "desktop-wide": 1640px,
+);
+@mixin screen($width, $type: max) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+    @if $type == max {
+      $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}

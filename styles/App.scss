@@ -1,0 +1,11 @@
+@import "./_colors";
+@import "./_mixins";
+@import "./_fonts";
+@import "./_global";
+
+// COMPONENTS
+@import "./components/Navbar";
+@import "./components/Button";
+
+// PAGES
+@import "./pages/Welcome";

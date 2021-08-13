@@ -19,18 +19,20 @@ const CardMuseum: FC<CardProps> = ({ data }: CardProps) => {
   return (
     <div className="card__museum">
       <div className="card__image">
-        <Image src={data.image} width={380} height={250} layout="responsive" />
+        <Image src={data.image} width="700" height="450" />
       </div>
-      <h3 className="card__title">{data.title}</h3>
-      <span className="card__description">{data.shortDescription}</span>
-      <Link href={`/museums/${data.slug}`}>
-        <a>
-          <Button
-            type="btn--x2 btn--black font--medium"
-            text="Подробнее"
-          ></Button>
-        </a>
-      </Link>
+      <div className="card__content">
+        <h3 className="card__title">{data.title}</h3>
+        <span className="card__description">{data.shortDescription}</span>
+        <Link href={`/museums/${data.slug}`}>
+          <a>
+            <Button
+              type="btn--x2 btn--black font--medium"
+              text="Подробнее"
+            ></Button>
+          </a>
+        </Link>
+      </div>
     </div>
   );
 };

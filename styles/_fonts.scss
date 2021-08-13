@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
 
 h1,
 h2,
@@ -68,4 +68,12 @@ li {
 
 .font--bold {
   font-weight: 700;
+}
+
+.font--big {
+  font-size: 20px;
+}
+
+.font--small {
+  font-size: 12px;
 }

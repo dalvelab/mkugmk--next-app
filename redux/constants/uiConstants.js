@@ -1,0 +1,2 @@
+// UI LANGUAGE
+export const UI_LANGUAGE_SET = "UI_LANGUAGE_SET";

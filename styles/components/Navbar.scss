@@ -23,8 +23,16 @@
     .link {
       margin-right: 20px;
       cursor: pointer;
+      transition: 0.2s ease-in;
       span {
         font-size: 18px;
+        i {
+          margin-left: 2px;
+          font-size: 12px;
+        }
+      }
+      &:hover {
+        color: $green;
       }
     }
   }
@@ -37,6 +45,11 @@
       cursor: pointer;
       span {
         font-size: 16px;
+        text-transform: capitalize;
+      }
+      i {
+        margin-left: 5px;
+        font-size: 12px;
       }
     }
   }

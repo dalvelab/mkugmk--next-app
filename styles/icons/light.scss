@@ -1,0 +1,14 @@
+@import "variables";
+
+@font-face {
+  font-family: "Font Awesome 5 Pro";
+  font-style: normal;
+  font-weight: 300;
+  font-display: $fa-font-display;
+  src: url("../../public/fonts/fa-light-300.woff2") format("woff2");
+}
+
+.fal {
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 300;
+}

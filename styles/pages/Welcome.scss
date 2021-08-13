@@ -1,118 +1,109 @@
-.welcome__page--header {
-  height: calc(100vh - 80px);
-  background-color: $gray;
-  display: flex;
-  @include screen(tablet-wide) {
-    height: 100vh;
-  }
-  .content__wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    h1 {
-      text-transform: uppercase;
-      margin-bottom: 25px;
-    }
-    .open__status {
-      display: flex;
-      align-items: center;
-      margin-bottom: 25px;
-      .status__icon {
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background-color: $green;
-        margin: 0 15px 0 5px;
-        position: relative;
-        &::before {
-          content: "";
-          width: 10px;
-          height: 10px;
-          background-color: rgba($color: $green, $alpha: 0.2);
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          border-radius: 50%;
-          transform: translateX(-50%) translateY(-50%);
-          animation: bubbleAnimation 2s infinite;
-        }
-      }
-      @keyframes bubbleAnimation {
-        50% {
-          width: 30px;
-          height: 30px;
-        }
-
-        100% {
-          width: 10px;
-          height: 10px;
-        }
-      }
-      .status__text {
-        font-size: 16px;
-      }
-    }
-  }
-}
-
 .welcome__page--museums {
   .cards__wrapper {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     justify-self: flex-start;
     gap: 25px;
     margin-top: 15px;
     @include screen(desktop) {
-      grid-template-columns: 1fr 1fr;
-    }
-    @media screen and (max-width: 830px) {
       grid-template-columns: 1fr;
     }
   }
 }
 
 .welcome__page--events {
-  .scroll__wrapper {
-    width: 100%;
-    margin-top: 15px;
-    display: flex;
-    overflow-x: scroll;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    &::-webkit-scrollbar-thumb {
-      display: none;
-    }
-  }
-  .btn__swipe {
-    position: absolute;
-    right: 10px;
-    bottom: 195px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: $white;
-    border: 1px solid $gray;
-    color: $black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-  }
   .cards__wrapper {
-    width: auto;
-    flex-wrap: nowrap;
     .card__event {
-      min-width: 335px;
-      margin-right: 35px;
+      min-width: 340px;
+      margin-right: 25px;
+      @include screen(phone) {
+        min-width: 320px;
+        margin-right: 20px;
+      }
     }
     .card__button-more {
-      min-width: 300px;
+      min-width: 310px;
       height: 390px;
       display: flex;
       align-items: center;
       justify-content: center;
       background-color: $white;
       position: relative;
+    }
+  }
+}
+
+.welcome__page--news {
+  .cards__wrapper {
+    grid-template-columns: minmax(450px, auto) 380px 300px;
+    grid-template-rows: 170px 170px 170px;
+    gap: 30px;
+    .card__news--big {
+      grid-row: 1 / 4;
+    }
+    .card__news--medium {
+      grid-column: 3;
+      grid-row: 1 / 3;
+    }
+    .card__news--more {
+      align-items: center;
+      justify-content: center;
+      cursor: default;
+    }
+    @include screen(desktop) {
+      grid-template-columns: auto 380px;
+      grid-template-rows: minmax(170px, 1fr) minmax(170px, 1fr) minmax(
+          170px,
+          1fr
+        ) minmax(170px, 1fr);
+      .card__news--big {
+        grid-column: 1;
+      }
+      .card__news--medium {
+        grid-column: 1;
+        grid-row: auto;
+      }
+      .card__news--small,
+      .card__news--more {
+        grid-column: 2;
+      }
+    }
+    @media screen and (max-width: 900px) {
+      grid-template-columns: 1fr 1fr;
+      .card__news--big {
+        grid-column: span 2;
+      }
+      .card__news--medium {
+        grid-column: 2;
+      }
+      .card__news--small {
+        grid-column: auto;
+      }
+      .card__news--more {
+        grid-column: span 2;
+        height: 50px;
+        box-shadow: none;
+      }
+    }
+    @media screen and (max-width: 550px) {
+      grid-template-columns: 1fr;
+      gap: 20px 0;
+      .card__news--big,
+      .card__news--medium,
+      .card__news--small {
+        grid-column: 1;
+      }
+    }
+  }
+}
+
+.welcome__page--gallery {
+  .cards__wrapper {
+    .gallery__image {
+      min-width: 500px;
+      background-color: $gray;
+      img {
+        object-fit: cover;
+      }
     }
   }
 }

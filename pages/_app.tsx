@@ -14,7 +14,7 @@ import MenuButton from "@components/MenuButton";
 import Footer from "@components/Footer";
 
 // LANG DETECTOR
-import LangDetector from "../locales/LangDetector";
+import LangDetector from "@components/LangDetector";
 
 function App({ Component, pageProps }: AppProps) {
   return (

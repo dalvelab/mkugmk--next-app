@@ -2,10 +2,13 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
+// TYPES
+import { FC } from "react";
+
 // ACTIONS
 import { handleUILanguage } from "../redux/actions/uiActions";
 
-function LangDetector() {
+const LangDetector: FC = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { locale } = router;
@@ -18,7 +21,7 @@ function LangDetector() {
     }
   }, []);
 
-  return <div></div>;
-}
+  return null;
+};
 
 export default LangDetector;

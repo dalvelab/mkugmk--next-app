@@ -9,10 +9,16 @@ import Container from "@components/Container";
 interface GallerySwipeProps {
   title: string;
   type: string;
+  length: number;
   children: ReactNode;
 }
 
-const GallerySwipe: FC<GallerySwipeProps> = ({ title, type, children }) => {
+const GallerySwipe: FC<GallerySwipeProps> = ({
+  title,
+  type,
+  length,
+  children,
+}) => {
   const elementRef: LegacyRef<HTMLDivElement> = useRef(null);
 
   const handleSwipe = (directrion: string) => {
@@ -38,26 +44,29 @@ const GallerySwipe: FC<GallerySwipeProps> = ({ title, type, children }) => {
   };
 
   return (
-    // ADD DATA ARRAY LENGTH CHECK, IF IT IS 0 DO NOT SHOW ANYTHING
     <section className={`${type} section__cards--swipe`}>
       <Container type="container--flex">
         <h2 className="section__heading">{title}</h2>
         <div className="content__wrapper">
-          <button
-            onClick={() => handleSwipe("left")}
-            className="button__swipe--left"
-          >
-            <i className="far fa-chevron-left"></i>
-          </button>
+          {length > 2 ? (
+            <>
+              <button
+                onClick={() => handleSwipe("left")}
+                className="button__swipe--left"
+              >
+                <i className="far fa-chevron-left"></i>
+              </button>
+              <button
+                onClick={() => handleSwipe("right")}
+                className="button__swipe--right"
+              >
+                <i className="far fa-chevron-right"></i>
+              </button>
+            </>
+          ) : null}
           <div ref={elementRef} className="cards__wrapper wrapper--flex">
             {children}
           </div>
-          <button
-            onClick={() => handleSwipe("right")}
-            className="button__swipe--right"
-          >
-            <i className="far fa-chevron-right"></i>
-          </button>
         </div>
       </Container>
     </section>

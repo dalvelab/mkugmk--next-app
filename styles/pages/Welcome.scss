@@ -35,7 +35,6 @@
 .welcome__page--news {
   .cards__wrapper {
     grid-template-columns: minmax(450px, auto) 380px 300px;
-    grid-template-rows: 170px 170px 170px;
     gap: 30px;
     .card__news--big {
       grid-row: 1 / 4;
@@ -51,10 +50,6 @@
     }
     @include screen(desktop) {
       grid-template-columns: auto 380px;
-      grid-template-rows: minmax(170px, 1fr) minmax(170px, 1fr) minmax(
-          170px,
-          1fr
-        ) minmax(170px, 1fr);
       .card__news--big {
         grid-column: 1;
       }
@@ -101,7 +96,12 @@
     .gallery__image {
       min-width: 500px;
       background-color: $gray;
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0;
+      }
       img {
+        border-radius: 12px;
         object-fit: cover;
       }
     }

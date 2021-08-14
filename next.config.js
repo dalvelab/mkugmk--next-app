@@ -6,10 +6,13 @@ module.exports = {
     includePaths: [path.join(__dirname, "styles")],
   },
   images: {
-    domains: ["images.unsplash.com"],
+    domains: ["images.unsplash.com", "localhost"],
   },
   i18n: {
     locales: ["ru", "en"],
     defaultLocale: "ru",
+  },
+  env: {
+    api: "http://localhost:8081",
   },
 };

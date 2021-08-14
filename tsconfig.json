@@ -17,14 +17,11 @@
     "paths": {
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"],
-      "@styles/*": ["styles/*"]
+      "@styles/*": ["styles/*"],
+      "@lib/*": ["lib/*"],
+      "@helpers/*": ["helpers/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "locales/LangDetector.js"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/api.js"],
   "exclude": ["node_modules"]
 }

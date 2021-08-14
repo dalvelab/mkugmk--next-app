@@ -1,38 +1,36 @@
 // TYPES
 import { FC } from "react";
+import { CardEventProps } from "../types/main";
 
 // COMPONENETS
 import Link from "next/link";
 import Image from "next/image";
 
-interface CardProps {
-  data: {
-    slug: string;
-    image: string;
-    title: string;
-    time: string;
-    shortDescription: string;
-  };
-}
+// HELPERS
+import { getRusMonthDative } from "@helpers/dateHelper";
 
-const CardEvent: FC<CardProps> = ({ data }) => {
+const CardEvent: FC<CardEventProps> = ({
+  title,
+  slug,
+  image,
+  date,
+  shortDescription,
+}) => {
   return (
-    <Link href={`/events/${data.slug}`}>
+    <Link href={`/events/${slug}`}>
       <div className="card__event">
         <div className="card__image">
-          <Image src={data.image} layout="fill" />
+          <Image src={`${process.env.api}${image.url}`} layout="fill" />
         </div>
         <div className="card__time">
-          <span className="font--big font--medium">
-            {data.time.slice(0, 2)}
-          </span>
+          <span className="font--big font--medium">{date.slice(8, 10)}</span>
           <span className="font--small font--uppercase">
-            {data.time.slice(3, 7)}
+            {getRusMonthDative(Number(date.slice(5, 7)))}
           </span>
         </div>
         <div className="card__content">
-          <h3 className="card__title">{data.title}</h3>
-          <span className="card__description">{data.shortDescription}</span>
+          <h3 className="card__title">{title}</h3>
+          <span className="card__description">{shortDescription}</span>
         </div>
       </div>
     </Link>

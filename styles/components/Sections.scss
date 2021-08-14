@@ -166,8 +166,8 @@
   }
   .button__swipe--left,
   .button__swipe--right {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background-color: $white;
     color: $black;
@@ -197,4 +197,7 @@
     right: auto;
     z-index: 2;
   }
+}
+
+.section__news {
 }

@@ -60,31 +60,6 @@ const Navbar: FC = () => {
                 </Link>
               ) : null
             )}
-            {/* <div className="link">
-              <span>
-                О комплексе <i className="far fa-chevron-down"></i>
-              </span>
-            </div>
-            <Link href="/events">
-              <div className="link">
-                <span>Мероприятия</span>
-              </div>
-            </Link>
-            <Link href="/news">
-              <div className="link">
-                <span>Новости</span>
-              </div>
-            </Link>
-            <Link href="/gallery">
-              <div className="link">
-                <span>Галерея</span>
-              </div>
-            </Link>
-            <Link href="contacts">
-              <div className="link">
-                <span>Контакты</span>
-              </div>
-            </Link> */}
           </div>
           <div className="actions__wrapper">
             <Button

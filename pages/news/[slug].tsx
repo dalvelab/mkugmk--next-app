@@ -9,16 +9,16 @@ import Image from "next/image";
 import Container from "@components/Container";
 
 // LIB
-import { getAllEventsWithSlug, getSingleEvent } from "@lib/api";
+import { getAllNewsWithSlug, getSingleNews } from "@lib/api";
 
 // HELPERS
 import { getRusMonthDative } from "../../helpers/dateHelper";
 
 interface EventSingleProps {
-  event: any;
+  news: any;
 }
 
-const EventSingle: NextPage<EventSingleProps> = ({ event }) => {
+const NewsSingle: NextPage<EventSingleProps> = ({ news }) => {
   const router = useRouter();
 
   return (
@@ -30,33 +30,35 @@ const EventSingle: NextPage<EventSingleProps> = ({ event }) => {
           content="Музей автомобильной и гражданской техники"
         />
       </Head>
-      <section className="section__event--single">
+      <section className="section__news--single">
         <Container type="container--flex">
           {router.isFallback ? (
             <h2>Загрузка...</h2>
           ) : (
-            <div className="event__content--wrapper">
-              <div className="event__image">
+            <div className="news__content--wrapper">
+              <div className="news__image">
                 <Image
                   src={
-                    event.image.url
-                      ? `${process.env.api}${event.image.url}`
-                      : event.image
+                    news.image.url
+                      ? `${process.env.api}${news.image.url}`
+                      : news.image
                   }
                   width="600"
                   height="400"
                 />
               </div>
-              <div className="event__text--content">
-                <h2 className="event__title">{event.title}</h2>
-                <div className="event__date">
+              <div className="news__text--content">
+                <h2 className="news__title">{news.title}</h2>
+                <div className="news__date">
                   <span>
-                    {event.date.slice(8, 10)}{" "}
-                    {getRusMonthDative(Number(event.date.slice(5, 7)))} в{" "}
-                    {event.date.slice(11, 16)}
+                    {news.createdAt.slice(8, 10)}{" "}
+                    {getRusMonthDative(Number(news.createdAt.slice(5, 7)))}
+                    {", "}
+                    {news.createdAt.slice(0, 4)} {" / "}
+                    {news.createdAt.slice(11, 16)}
                   </span>
                 </div>
-                <div className="event__description">{event.description}</div>
+                <div className="news__description">{news.description}</div>
               </div>
             </div>
           )}
@@ -66,23 +68,23 @@ const EventSingle: NextPage<EventSingleProps> = ({ event }) => {
   );
 };
 
-export default EventSingle;
+export default NewsSingle;
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const data = (await getSingleEvent(params!.slug, locale)) || null;
+  const data = (await getSingleNews(params!.slug, locale)) || null;
   return {
     props: {
-      event: {
-        ...data.events[0],
+      news: {
+        ...data.posts[0],
       },
     },
   };
 };
 
 export async function getStaticPaths() {
-  const allEvents = await getAllEventsWithSlug();
+  const allPosts = await getAllNewsWithSlug();
   return {
-    paths: allEvents?.map((event: any) => `/events/${event.slug}`) || [],
+    paths: allPosts?.map((post: any) => `/news/${post.slug}`) || [],
     fallback: true,
   };
 }

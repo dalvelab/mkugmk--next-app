@@ -3,11 +3,12 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 // UI
-import { UILanguageReducer } from "./reducers/uiReducer";
+import { UILanguageReducer, UISidebarReducer } from "./reducers/uiReducer";
 
 const reducer = combineReducers({
   UI: combineReducers({
     language: UILanguageReducer,
+    sidebar: UISidebarReducer,
   }),
 });
 

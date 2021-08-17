@@ -5,6 +5,7 @@
 
 // COMPONENTS
 @import "./components/Navbar";
+@import "./components/Sidebar";
 @import "./components/Footer";
 @import "./components/Button";
 @import "./components/Cards";
@@ -12,3 +13,7 @@
 
 // PAGES
 @import "./pages/Welcome";
+@import "./pages/Events";
+@import "./pages/News";
+@import "./pages/Gallery";
+@import "./pages/Contacts";

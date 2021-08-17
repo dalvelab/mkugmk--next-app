@@ -14,7 +14,7 @@ const CardNews: FC<CardNewsProps> = ({
   title,
   slug,
   image,
-  date,
+  createdAt,
   shortDescription,
   tag,
 }) => {
@@ -33,13 +33,13 @@ const CardNews: FC<CardNewsProps> = ({
           <span className="card__description">{shortDescription}</span>
         </div>
         <div className="card__bottom">
-          <span className="card__date">{`${date.slice(
+          <span className="card__date">{`${createdAt.slice(
             8,
             10
-          )} ${getRusMonthDative(Number(date.slice(5, 7))).toLowerCase()},
-           ${date.slice(0, 4)}
+          )} ${getRusMonthDative(Number(createdAt.slice(5, 7))).toLowerCase()},
+           ${createdAt.slice(0, 4)}
            `}</span>
-          <div className="card__tag">{tag.title}</div>
+          {tag ? <div className="card__tag">{tag.title}</div> : null}
         </div>
       </div>
     </Link>

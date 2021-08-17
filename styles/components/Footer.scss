@@ -41,6 +41,7 @@
       .footer__contacts {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 10px;
         .footer__contacts--text {
           margin-top: 20px;
           div {

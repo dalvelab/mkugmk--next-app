@@ -1,0 +1,18 @@
+.section__gallery--all {
+  .cards__wrapper {
+    .gallery__image {
+      width: 400px;
+      background-color: $gray;
+      margin: 10px 10px 0 0;
+      &:last-child {
+        margin-right: 0;
+      }
+      img {
+        max-width: 500px;
+        height: 300px;
+        border-radius: 12px;
+        object-fit: cover;
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 // TYPES
@@ -8,10 +8,14 @@ import { FC } from "react";
 import en from "../locales/en";
 import ru from "../locales/ru";
 
+// ACTIONS
+import { handleUILanguage } from "../redux/actions/uiActions";
+
 // COMPONENTS
 import Link from "next/link";
 import Container from "@components/Container";
 import Button from "@components/Button";
+import NavbarDropdown from "@components/NavbarDropdown";
 
 interface RootState {
   UI: {
@@ -19,8 +23,13 @@ interface RootState {
   };
 }
 
-const Navbar: FC = () => {
+interface NavbarProps {
+  data: any;
+}
+
+const Navbar: FC<NavbarProps> = ({ data }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const language = useSelector((state: RootState) => state.UI.language);
 
   const translate = language === "ru" ? ru : en;
@@ -44,11 +53,12 @@ const Navbar: FC = () => {
             {translate.navbar.links
               .filter((link) => link.isDropdown)
               .map((link, index) => (
-                <div className="link" key={index}>
+                <div className="link link--dropdown" key={index}>
                   <span>
                     {link.title}{" "}
                     {link.icon ? <i className="far fa-chevron-down"></i> : null}
                   </span>
+                  <NavbarDropdown data={data} />
                 </div>
               ))}
             {translate.navbar.links.map((link, index) =>
@@ -64,11 +74,29 @@ const Navbar: FC = () => {
           <div className="actions__wrapper">
             <Button
               type="btn--x1 btn--green font--medium"
-              text="Купить билет"
+              text={translate.buyTicket}
             />
             <div className="language__selector">
               <span>{language}</span>
               <i className="far fa-chevron-down"></i>
+              <div className="language__selector--dropdown">
+                <button
+                  onClick={() => {
+                    router.push("/", "/", { locale: "ru" });
+                    dispatch(handleUILanguage("ru"));
+                  }}
+                >
+                  Ru
+                </button>
+                <button
+                  onClick={() => {
+                    router.push("/", "/", { locale: "en" });
+                    dispatch(handleUILanguage("en"));
+                  }}
+                >
+                  En
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -24,7 +24,7 @@ export interface CardNewsProps {
   image: {
     url: string;
   };
-  date: string;
+  createdAt: string;
   shortDescription: string;
   tag: {
     title: string;

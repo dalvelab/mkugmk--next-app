@@ -1,25 +1,41 @@
+import { useSelector } from "react-redux";
+
+// LOCALES
+import en from "../locales/en";
+import ru from "../locales/ru";
+
 // TYPES
 import { FC } from "react";
 
 // COMPONENTS
 import Container from "@components/Container";
 
+interface RootState {
+  UI: {
+    language: string;
+  };
+}
+
 const Footer: FC = () => {
+  const language = useSelector((state: RootState) => state.UI.language);
+
+  const translate = language === "ru" ? ru : en;
+
   return (
     <footer className="footer__default">
       <Container type="container--flex">
         <div className="footer__top">
           <div className="footer__top--left">
             <div className="footer__text--address">
-              Верхняя Пышма
+              {translate.footer.address.city}
               <a
-                href=""
+                href={`https://yandex.ru/maps/?um=constructor%3A4a18c5739a078ec65fab77ebc20a509248f21534ca59e3defa8a17620f82a2de&source=constructorLink`}
                 rel="noopener noreferrer"
                 target="_blank"
                 className="footer__address--link"
                 aria-label="Адрес магазина"
               >
-                <span>ул. Александра Козицына, 2</span>
+                <span>{translate.footer.address.street}</span>
               </a>
             </div>
             <div className="footer__contacts">
@@ -32,22 +48,24 @@ const Footer: FC = () => {
                   >
                     +79222149178{" "}
                   </a>
-                  - телефон музея
+                  - {translate.footer.contacts.phone}
                 </div>
               </div>
               <div className="footer__contacts--text">
                 <div>
-                  <a href="">support@mkugmk.ru</a> - подддержка
+                  <a href="">support@mkugmk.ru</a> -{" "}
+                  {translate.footer.contacts.emailSupport}
                 </div>
                 <div>
-                  <a href="">tickets@mkugmk.ru</a> - билеты
+                  <a href="">tickets@mkugmk.ru</a> -{" "}
+                  {translate.footer.contacts.emailTickets}
                 </div>
               </div>
             </div>
           </div>
           <div className="footer__top--right">
             <div className="footer__social--wrapper">
-              <span>Музей автомобильной техники</span>
+              <span>{translate.footer.socials.mat}</span>
               <div className="social__links">
                 <a
                   href="https://www.instagram.com/auto_ugmk/"
@@ -60,7 +78,7 @@ const Footer: FC = () => {
               </div>
             </div>
             <div className="footer__social--wrapper">
-              <span>Музей военной техники</span>
+              <span>{translate.footer.socials.mvt}</span>
               <div className="social__links">
                 <a
                   href="https://www.instagram.com/mvt_ugmk/"

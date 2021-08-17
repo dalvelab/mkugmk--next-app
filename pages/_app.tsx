@@ -1,32 +1,39 @@
 import { Provider } from "react-redux";
 
+// STORE
+import store from "../redux/store";
+
 // TYPES
 import type { AppProps } from "next/app";
-
-import store from "../redux/store";
+import { NextPage } from "next";
+import { ReactElement, ReactNode } from "react";
 
 // STYLES
 import "@styles/index.scss";
 
-// COMPONENTS
-import Navbar from "@components/Navbar";
-import MenuButton from "@components/MenuButton";
-import Footer from "@components/Footer";
-
 // LANG DETECTOR
 import LangDetector from "@components/LangDetector";
+import Layout from "@components/Layout";
 
-function App({ Component, pageProps }: AppProps) {
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode[];
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   return (
     <Provider store={store}>
       <LangDetector />
-      <Navbar />
-      <MenuButton />
-      <main className="navbar--offset">
-        <Component {...pageProps} />
-      </main>
-      <Footer />
+      <Layout>
+        <main className="navbar--offset">
+          <Component {...pageProps} />
+        </main>
+      </Layout>
     </Provider>
   );
-}
+};
+
 export default App;

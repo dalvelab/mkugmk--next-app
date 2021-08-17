@@ -1,0 +1,49 @@
+.section__contacts {
+  .cards__wrapper {
+    .card__contact {
+      margin: 20px 20px 0 0;
+    }
+  }
+}
+
+.section__contacts--yandex-map {
+  margin: 20px 0 20px 0;
+  max-height: 650px;
+  .map__overlay {
+    width: 100%;
+    height: 650px;
+    background-color: #000;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: visible;
+    .overlay__text {
+      font-size: 30px;
+      color: $white;
+      text-align: center;
+      z-index: 4;
+    }
+  }
+  .overlay--active {
+    opacity: 0.4;
+  }
+  .overlay--disabled {
+    visibility: hidden;
+  }
+  iframe {
+    position: relative;
+    border-radius: 12px;
+    height: 650px;
+  }
+  @include screen(tablet) {
+    .container--flex {
+      width: 100%;
+    }
+  }
+}

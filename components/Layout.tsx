@@ -29,7 +29,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `http://localhost:8081/museums?_locale=${language}`
+        `${process.env.api}/museums?_locale=${language}`
       );
       setMuseums(await response.json());
     };

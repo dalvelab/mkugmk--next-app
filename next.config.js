@@ -6,7 +6,7 @@ module.exports = {
     includePaths: [path.join(__dirname, "styles")],
   },
   images: {
-    domains: ["images.unsplash.com", "localhost"],
+    domains: ["images.unsplash.com", "localhost", "mkugmk-admin.vmff.ru"],
   },
   i18n: {
     locales: ["ru", "en"],

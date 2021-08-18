@@ -20,12 +20,13 @@ const CardMuseum: FC<CardMuseumProps> = ({
           src={`${process.env.api}${image.url}`}
           width="700"
           height="450"
+          alt="Museum Image"
         />
       </div>
       <div className="card__content">
         <h3 className="card__title">{title}</h3>
         <span className="card__description">{shortDescription}</span>
-        <Link href={`/museums/${slug}`}>
+        <Link href={`/museums/${slug}`} passHref>
           <a>
             <Button
               type="btn--x2 btn--black font--medium"

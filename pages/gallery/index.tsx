@@ -50,6 +50,7 @@ const GalleryAll: NextPage<GalleryAllProps> = ({ gallery }) => {
                         src={`${process.env.api}${image.url}`}
                         width="960"
                         height="350"
+                        alt="Gallery Image"
                       />
                     </div>
                   ))

@@ -43,7 +43,7 @@ const Navbar: FC<NavbarProps> = ({ data }) => {
               .filter((link) => link.endpoint === "/")
               .map((link, index) =>
                 router.route !== "/" ? (
-                  <Link href={`${link.endpoint}`} key={index}>
+                  <Link href={`${link.endpoint}`} key={index} passHref>
                     <div className="link">
                       <span>{link.title}</span>
                     </div>
@@ -63,7 +63,7 @@ const Navbar: FC<NavbarProps> = ({ data }) => {
               ))}
             {translate.navbar.links.map((link, index) =>
               link.endpoint && link.endpoint !== "/" ? (
-                <Link href={link.endpoint} key={index}>
+                <Link href={link.endpoint} key={index} passHref>
                   <div className="link">
                     <span>{link.title}</span>
                   </div>

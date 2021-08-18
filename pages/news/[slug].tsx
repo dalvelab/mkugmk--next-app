@@ -45,6 +45,7 @@ const NewsSingle: NextPage<EventSingleProps> = ({ news }) => {
                   }
                   width="600"
                   height="400"
+                  alt="News Image"
                 />
               </div>
               <div className="news__text--content">

@@ -17,10 +17,14 @@ const CardEvent: FC<CardEventProps> = ({
   shortDescription,
 }) => {
   return (
-    <Link href={`/events/${slug}`}>
+    <Link href={`/events/${slug}`} passHref>
       <div className="card__event">
         <div className="card__image">
-          <Image src={`${process.env.api}${image.url}`} layout="fill" />
+          <Image
+            src={`${process.env.api}${image.url}`}
+            layout="fill"
+            alt="Event Image"
+          />
         </div>
         <div className="card__time">
           <span className="font--big font--medium">{date.slice(8, 10)}</span>

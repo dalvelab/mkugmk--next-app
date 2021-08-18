@@ -143,6 +143,7 @@ const WelcomePage: NextPage<WelcomePageProps> = ({
                 src={`${process.env.api}${museum.gallery[0].url}`}
                 width="960"
                 height="350"
+                alt="Gallery image"
               />
             </div>
           ))}

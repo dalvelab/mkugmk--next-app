@@ -26,6 +26,7 @@ const CardNews: FC<CardNewsProps> = ({
             src={`${process.env.api}${image.url}`}
             width="500"
             height="450"
+            alt="News Page"
           />
         </div>
         <div className="card__content">

@@ -61,6 +61,7 @@ const WelcomePage: NextPage<HeadingSectionProps> = ({
           src={image.url ? `${process.env.api}${image.url}` : image}
           width="1920"
           height="1080"
+          alt="Heading Museum Image"
         />
       </div>
       <Container type="container--flex">

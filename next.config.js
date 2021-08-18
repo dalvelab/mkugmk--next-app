@@ -13,6 +13,6 @@ module.exports = {
     defaultLocale: "ru",
   },
   env: {
-    api: "http://localhost:8081",
+    api: "http://mkugmk-admin.vmff.ru",
   },
 };

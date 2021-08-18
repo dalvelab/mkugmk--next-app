@@ -45,6 +45,7 @@ const EventSingle: NextPage<EventSingleProps> = ({ event }) => {
                   }
                   width="600"
                   height="400"
+                  alt="Event Image"
                 />
               </div>
               <div className="event__text--content">

@@ -90,7 +90,7 @@ const NavbarDropdown: FC<NavbarDropdownProps> = ({ data }) => {
         >
           {data
             ? data.museums.map((link: dropDownLink, index: number) => (
-                <Link key={index} href={`/museums/${link.slug}`}>
+                <Link key={index} href={`/museums/${link.slug}`} passHref>
                   <span className="dropdown__secondary-item">{link.title}</span>
                 </Link>
               ))
@@ -103,10 +103,10 @@ const NavbarDropdown: FC<NavbarDropdownProps> = ({ data }) => {
               : "links__wrapper"
           }
         >
-          <Link href={`/tickets`}>
+          <Link href={`/tickets`} passHref>
             <span className="dropdown__secondary-item">Билеты</span>
           </Link>
-          <Link href={`/excursions`}>
+          <Link href={`/excursions`} passHref>
             <span className="dropdown__secondary-item">Экскурсии</span>
           </Link>
         </div>
@@ -117,10 +117,10 @@ const NavbarDropdown: FC<NavbarDropdownProps> = ({ data }) => {
               : "links__wrapper"
           }
         >
-          <Link href={`/tickets`}>
+          <Link href={`/tickets`} passHref>
             <span className="dropdown__secondary-item">Ссылка 1</span>
           </Link>
-          <Link href={`/excursions`}>
+          <Link href={`/excursions`} passHref>
             <span className="dropdown__secondary-item">Ссылка 2</span>
           </Link>
         </div>

@@ -19,7 +19,7 @@ const LangDetector: FC = () => {
     } else {
       dispatch(handleUILanguage("en"));
     }
-  }, []);
+  }, [dispatch, locale]);
 
   return null;
 };

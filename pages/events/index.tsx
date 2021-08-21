@@ -69,5 +69,6 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const events = (await getAllEvents(locale)) || null;
   return {
     props: { events },
+    revalidate: 1,
   };
 };

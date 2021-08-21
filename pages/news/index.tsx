@@ -71,5 +71,6 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const news = (await getAllNews(locale)) || null;
   return {
     props: { news },
+    revalidate: 1,
   };
 };

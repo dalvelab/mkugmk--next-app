@@ -40,7 +40,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Navbar data={{ museums }} />
-      <Sidebar />
+      <Sidebar data={{ museums }} />
       <MenuButton />
       {children}
       <Footer />

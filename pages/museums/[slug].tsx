@@ -1,13 +1,7 @@
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
-
-// LOCALES
-import en from "../../locales/en";
-import ru from "../../locales/ru";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
-import { CardEventProps } from "../../types/main";
 
 // LIB
 import {
@@ -21,13 +15,10 @@ import {
 
 // COMPONENTS
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/dist/client/link";
 import HeadingSection from "@components/HeadingSection";
+import EventsSection from "@components/EventsSection";
 import NewsSection from "@components/NewsSection";
-import SwipeSection from "@components/SwipeSection";
-import CardEvent from "@components/CardEvent";
-import Button from "@components/Button";
+import GallerySection from "@components/GallerySection";
 
 // IMAGE
 import Container from "@components/Container";
@@ -40,12 +31,6 @@ interface MuseumSinglePageProps {
   events: any;
 }
 
-interface RootState {
-  UI: {
-    language: string;
-  };
-}
-
 const MuseumSingle: NextPage<MuseumSinglePageProps> = ({
   museum,
   hours,
@@ -53,9 +38,6 @@ const MuseumSingle: NextPage<MuseumSinglePageProps> = ({
   news,
   events,
 }) => {
-  const language = useSelector((state: RootState) => state.UI.language);
-
-  const translate = language === "ru" ? ru : en;
   const router = useRouter();
 
   return (
@@ -76,55 +58,9 @@ const MuseumSingle: NextPage<MuseumSinglePageProps> = ({
             hours={hours}
             description={museum.description}
           />
-          {events && events.length > 0 ? (
-            <SwipeSection
-              title={translate.welcomePage.events}
-              type="welcome__page--events"
-              length={events.length}
-            >
-              {events.map((event: CardEventProps, index: number) => (
-                <CardEvent
-                  key={index}
-                  title={event.title}
-                  slug={event.slug}
-                  image={event.image}
-                  date={event.date}
-                  shortDescription={event.shortDescription}
-                />
-              ))}
-              {events.length > 3 ? (
-                <div className="card__button-more">
-                  <Link href="/events">
-                    <a>
-                      <Button
-                        type="btn--x2 btn--black font--medium"
-                        text="Все мероприятия"
-                      />
-                    </a>
-                  </Link>
-                </div>
-              ) : null}
-            </SwipeSection>
-          ) : null}
+          <EventsSection type="museum__page--events" events={events} />
           <NewsSection type="museum__page--news" title="Новости" news={news} />
-          {gallery && gallery.length > 0 ? (
-            <SwipeSection
-              title={translate.welcomePage.gallery}
-              type="welcome__page--gallery"
-              length={gallery.length}
-            >
-              {gallery.map((image: any, index: number) => (
-                <div className="gallery__image" key={index}>
-                  <Image
-                    src={`${process.env.api}${image.url}`}
-                    width="960"
-                    height="350"
-                    alt="Gallery Image"
-                  />
-                </div>
-              ))}
-            </SwipeSection>
-          ) : null}
+          <GallerySection gallery={gallery} type="museum__page--gallery" />
         </>
       )}
     </>

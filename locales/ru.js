@@ -4,29 +4,29 @@ export default {
   buyTicket: "Купить билет",
   navbar: {
     links: [
-      { title: "Главная", isDropdown: false, endpoint: "/", icon: false },
-      { title: "О комплексе", isDropdown: true, icon: true },
+      { title: "Главная", isParentLink: false, endpoint: "/", icon: false },
+      { title: "О комплексе", isParentLink: true, icon: true },
       {
         title: "Мероприятия",
-        isDropdown: false,
+        isParentLink: false,
         endpoint: "/events",
         icon: false,
       },
       {
         title: "Новости",
-        isDropdown: false,
+        isParentLink: false,
         endpoint: "/news",
         icon: false,
       },
       {
         title: "Галерея",
-        isDropdown: false,
+        isParentLink: false,
         endpoint: "/gallery",
         icon: false,
       },
       {
         title: "Контакты",
-        isDropdown: false,
+        isParentLink: false,
         endpoint: "/contacts",
         icon: false,
       },
@@ -58,6 +58,11 @@ export default {
     openFrom: "Сегодня открыто с",
     openTo: "до",
     todayIsWeekend: "Сегодня у музея выходной",
+  },
+  titles: {
+    events: "События",
+    news: "Новости",
+    gallery: "Галерея",
   },
   welcomePage: {
     events: "События",

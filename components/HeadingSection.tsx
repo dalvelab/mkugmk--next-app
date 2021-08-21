@@ -29,7 +29,7 @@ interface RootState {
   };
 }
 
-const WelcomePage: NextPage<HeadingSectionProps> = ({
+const HeadingSection: NextPage<HeadingSectionProps> = ({
   title,
   museumType,
   image,
@@ -108,4 +108,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default WelcomePage;
+export default HeadingSection;

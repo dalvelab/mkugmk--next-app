@@ -15,7 +15,7 @@ interface NavbarDropdownProps {
   data: any;
 }
 
-interface dropDownLink {
+interface DropDownLink {
   title: string;
   slug: string;
 }
@@ -89,7 +89,7 @@ const NavbarDropdown: FC<NavbarDropdownProps> = ({ data }) => {
           }
         >
           {data
-            ? data.museums.map((link: dropDownLink, index: number) => (
+            ? data.museums.map((link: DropDownLink, index: number) => (
                 <Link key={index} href={`/museums/${link.slug}`} passHref>
                   <span className="dropdown__secondary-item">{link.title}</span>
                 </Link>

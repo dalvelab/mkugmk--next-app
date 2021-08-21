@@ -19,15 +19,12 @@ import {
 
 // COMPONENTS
 import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
 import Container from "@components/Container";
-import Button from "@components/Button";
 import HeadingSection from "@components/HeadingSection";
-import SwipeSection from "@components/SwipeSection";
-import NewsSection from "@components/NewsSection";
 import CardMuseum from "@components/CardMuseum";
-import CardEvent from "@components/CardEvent";
+import EventsSection from "@components/EventsSection";
+import NewsSection from "@components/NewsSection";
+import GallerySection from "@components/GallerySection";
 
 // IMAGE
 import HeaderImage from "../public/images/header_welcome.jpg";
@@ -96,59 +93,13 @@ const WelcomePage: NextPage<WelcomePageProps> = ({
           </div>
         </Container>
       </section>
-      {events && events.length > 0 ? (
-        <SwipeSection
-          title={translate.welcomePage.events}
-          type="welcome__page--events"
-          length={events.length}
-        >
-          {events.map((event: CardEventProps, index: number) => (
-            <CardEvent
-              key={index}
-              title={event.title}
-              slug={event.slug}
-              image={event.image}
-              date={event.date}
-              shortDescription={event.shortDescription}
-            />
-          ))}
-          {events.length > 3 ? (
-            <div className="card__button-more">
-              <Link href="/events">
-                <a>
-                  <Button
-                    type="btn--x2 btn--black font--medium"
-                    text="Все мероприятия"
-                  />
-                </a>
-              </Link>
-            </div>
-          ) : null}
-        </SwipeSection>
-      ) : null}
+      <EventsSection type="welcome__page--events" events={events} />
       <NewsSection
         type="welcome__page--news"
-        title={translate.welcomePage.news}
+        title={translate.titles.news}
         news={news}
       />
-      {gallery && gallery.length > 0 ? (
-        <SwipeSection
-          title={translate.welcomePage.gallery}
-          type="welcome__page--gallery"
-          length={gallery.length}
-        >
-          {gallery.map((museum: any, index: number) => (
-            <div className="gallery__image" key={index}>
-              <Image
-                src={`${process.env.api}${museum.gallery[0].url}`}
-                width="960"
-                height="350"
-                alt="Gallery image"
-              />
-            </div>
-          ))}
-        </SwipeSection>
-      ) : null}
+      <GallerySection gallery={gallery} type="welcome__page--gallery" />
     </>
   );
 };
@@ -157,10 +108,21 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const museums = (await getAllMuseumsForHome(locale)) || null;
   const events = (await getEventsForHome(locale)) || null;
   const news = (await getNewsForHome(locale)) || null;
-  const gallery = (await getGalleryForHome()) || null;
+  const museumGalleries = (await getGalleryForHome()) || null;
   const hours = (await getHoursForHeading()) || null;
   return {
-    props: { museums, events, news, gallery, hours },
+    props: {
+      museums,
+      events,
+      news,
+      gallery: [
+        ...museumGalleries.map(
+          (museumGallery: any) => museumGallery.gallery[0]
+        ),
+      ],
+      hours,
+    },
+    revalidate: 1,
   };
 };
 

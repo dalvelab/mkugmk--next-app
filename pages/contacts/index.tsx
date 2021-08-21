@@ -93,6 +93,7 @@ const GalleryAll: NextPage = () => {
             }`}
             onClick={handleMapActive}
             onMouseOver={handleMapBlur}
+            onMouseLeave={handleMapUnblur}
             onTouchStart={handleMapBlur}
           >
             <div className="overlay__text">Нажмите на карту для работы</div>
@@ -103,7 +104,6 @@ const GalleryAll: NextPage = () => {
             height="650px"
             frameBorder="0"
             ref={map}
-            onMouseLeave={handleMapUnblur}
           ></iframe>
         </Container>
       </section>

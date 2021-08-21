@@ -72,5 +72,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const data = (await getAllGallery()) || null;
   return {
     props: { gallery: data },
+    revalidate: 1,
   };
 };

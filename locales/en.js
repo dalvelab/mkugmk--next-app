@@ -4,19 +4,24 @@ export default {
   buyTicket: "Buy ticket",
   navbar: {
     links: [
-      { title: "Home", isDropdown: false, endpoint: "/", icon: false },
-      { title: "About", isDropdown: true, icon: true },
-      { title: "Events", isDropdown: false, endpoint: "/events", icon: false },
-      { title: "News", isDropdown: false, endpoint: "/news", icon: false },
+      { title: "Home", isParentLink: false, endpoint: "/", icon: false },
+      { title: "About", isParentLink: true, icon: true },
+      {
+        title: "Events",
+        isParentLink: false,
+        endpoint: "/events",
+        icon: false,
+      },
+      { title: "News", isParentLink: false, endpoint: "/news", icon: false },
       {
         title: "Gallery",
-        isDropdown: false,
+        isParentLink: false,
         endpoint: "/gallery",
         icon: false,
       },
       {
         title: "Contacts",
-        isDropdown: false,
+        isParentLink: false,
         endpoint: "/contacts",
         icon: false,
       },
@@ -48,6 +53,11 @@ export default {
     openFrom: "Today is opened from",
     openTo: "to",
     todayIsWeekend: "Today museum is closed",
+  },
+  titles: {
+    events: "Events",
+    news: "News",
+    gallery: "Gallery",
   },
   welcomePage: {
     events: "Events",

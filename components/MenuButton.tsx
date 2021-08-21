@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // TYPES
 import { FC } from "react";
@@ -8,19 +8,30 @@ import { UISidebarHandle } from "../redux/actions/uiActions";
 
 interface RootState {
   UI: {
-    sidebar: string;
+    sidebar: {
+      isOpen: boolean;
+    };
   };
 }
 
 const Navbar: FC = () => {
   const dispatch = useDispatch();
 
+  const sidebar = useSelector((state: RootState) => state.UI.sidebar);
+
   const handleSidebar = () => {
-    dispatch(UISidebarHandle(true));
+    dispatch(UISidebarHandle(sidebar.isOpen ? false : true));
   };
 
   return (
-    <button className="button__sidebar--open" onClick={handleSidebar}>
+    <button
+      className={
+        sidebar.isOpen
+          ? "button__sidebar--open button-sidebar--active"
+          : "button__sidebar--open"
+      }
+      onClick={handleSidebar}
+    >
       <div className="bar"></div>
       <div className="bar"></div>
     </button>

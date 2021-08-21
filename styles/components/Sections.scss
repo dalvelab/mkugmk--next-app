@@ -159,7 +159,7 @@
   }
 }
 
-.section__cards--swipe {
+.section__swiper-cards {
   .content__wrapper {
     position: relative;
   }
@@ -206,6 +206,28 @@
     left: 5px;
     right: auto;
     z-index: 2;
+  }
+}
+
+.section__events {
+  .cards__wrapper {
+    .card__event {
+      min-width: 340px;
+      margin-right: 25px;
+      @include screen(phone) {
+        min-width: 320px;
+        margin-right: 20px;
+      }
+    }
+    .card__button-more {
+      min-width: 310px;
+      height: 390px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $white;
+      position: relative;
+    }
   }
 }
 
@@ -289,6 +311,26 @@
       }
       .card__news--medium {
         margin-top: 20px;
+      }
+    }
+  }
+}
+
+.section__gallery {
+  .cards__wrapper {
+    .gallery__image {
+      background-color: $gray;
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0;
+      }
+      img {
+        width: 500px;
+        height: 350px;
+        min-width: 500px;
+        max-width: 500px;
+        border-radius: 12px;
+        object-fit: cover;
       }
     }
   }

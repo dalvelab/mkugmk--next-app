@@ -51,7 +51,7 @@ const Navbar: FC<NavbarProps> = ({ data }) => {
                 ) : null
               )}
             {translate.navbar.links
-              .filter((link) => link.isDropdown)
+              .filter((link) => link.isParentLink)
               .map((link, index) => (
                 <div className="link link--dropdown" key={index}>
                   <span>

@@ -46,4 +46,12 @@
       width: 100%;
     }
   }
+  @include screen(phone-small) {
+    iframe {
+      height: 500px;
+    }
+    .map__overlay {
+      height: 500px;
+    }
+  }
 }

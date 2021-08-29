@@ -5,11 +5,15 @@ import { composeWithDevTools } from "redux-devtools-extension";
 // UI
 import { UILanguageReducer, UISidebarReducer } from "./reducers/uiReducer";
 
+// CART
+import { cartReducer } from "./reducers/cartReducer";
+
 const reducer = combineReducers({
   UI: combineReducers({
     language: UILanguageReducer,
     sidebar: UISidebarReducer,
   }),
+  cart: cartReducer,
 });
 
 const initialState = {

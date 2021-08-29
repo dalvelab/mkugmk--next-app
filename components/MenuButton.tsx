@@ -14,7 +14,7 @@ interface RootState {
   };
 }
 
-const Navbar: FC = () => {
+const MenuButton: FC = () => {
   const dispatch = useDispatch();
 
   const sidebar = useSelector((state: RootState) => state.UI.sidebar);
@@ -38,4 +38,4 @@ const Navbar: FC = () => {
   );
 };
 
-export default Navbar;
+export default MenuButton;

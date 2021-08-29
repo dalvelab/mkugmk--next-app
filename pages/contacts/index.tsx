@@ -19,7 +19,7 @@ interface RootState {
   };
 }
 
-const GalleryAll: NextPage = () => {
+const Contacts: NextPage = () => {
   const language = useSelector((state: RootState) => state.UI.language);
 
   const translate = language === "ru" ? ru : en;
@@ -111,4 +111,4 @@ const GalleryAll: NextPage = () => {
   );
 };
 
-export default GalleryAll;
+export default Contacts;

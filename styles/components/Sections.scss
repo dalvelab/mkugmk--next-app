@@ -335,3 +335,193 @@
     }
   }
 }
+
+.section__tickets {
+  min-height: 100vh;
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  .tickets__wrapper {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: minmax(500px, auto) minmax(300px, 400px);
+    gap: 30px;
+    @include screen(desktop) {
+      grid-template-columns: 1fr;
+    }
+  }
+  .tickets__form {
+    padding: 20px 0 20px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 100px;
+    gap: 20px;
+    @include screen(desktop) {
+      gap: 30px;
+      grid-auto-rows: auto;
+    }
+    @include screen(tablet) {
+      padding: 0;
+      grid-template-columns: 1fr;
+    }
+    .input__wrapper {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      .label__tickets {
+        font-size: 15px;
+        font-weight: 500;
+        color: $dimgray;
+      }
+      .input__tickets {
+        width: 350px;
+        height: 50px;
+        margin-top: 15px;
+        padding: 10px 20px 10px 20px;
+        border-radius: 7.5px;
+        font-size: 16px;
+        background-color: transparent;
+        background-color: $white;
+        @include screen(desktop) {
+          width: 100%;
+        }
+        @include screen(tablet) {
+          height: 45px;
+        }
+      }
+      .tickets__amount--control {
+        margin-top: 15px;
+        display: flex;
+        .tickets__amount--button,
+        .tickets__amount--status {
+          width: 50px;
+          height: 50px;
+          background-color: $black;
+          color: $white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 22px;
+          border-radius: 7.5px;
+          @include screen(tablet) {
+            width: 45px;
+            height: 45px;
+          }
+        }
+        .tickets__amount--status {
+          margin: 0 10px 0 10px;
+        }
+      }
+      .tickets__form--btn {
+        width: 200px;
+        height: 50px;
+        @include screen(tablet) {
+          height: 45px;
+        }
+      }
+      .input__dropdown {
+        cursor: pointer;
+      }
+      .dropdown {
+        width: 350px;
+        height: 150px;
+        overflow-y: scroll;
+        border-radius: 7.5px;
+        box-shadow: 0 5px 10px rgb(0 0 0 / 15%);
+        z-index: 5;
+        padding: 10px 10px;
+        position: absolute;
+        top: 100%;
+        display: none;
+        flex-direction: column;
+        background-color: $white;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        &::-webkit-scrollbar-thumb {
+          display: none;
+        }
+        .dropdown__element {
+          font-size: 14px;
+          color: $dimgray;
+          padding: 15px 0 15px 15px;
+          border-radius: 7.5px;
+          cursor: pointer;
+          background-color: $white;
+          margin-top: 5px;
+          &:first-child {
+            margin-top: 0;
+          }
+          &:hover {
+            background-color: #f2f2f2;
+          }
+        }
+      }
+      .dropdown--active {
+        display: flex;
+      }
+    }
+  }
+  .cart__wrapper {
+    height: auto;
+    min-height: 200px;
+    padding: 20px;
+    background-color: $white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    .cart__title {
+      font-size: 25px;
+      font-weight: 500;
+    }
+    .cart__divider {
+      margin: 15px 0 15px 0;
+      border-top: 2px solid #f2f2f2;
+    }
+    .cart__order {
+      width: 100%;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      .cart__order--icon {
+        width: 55px;
+        height: 65px;
+        border-radius: 12px;
+        background-color: $black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        i {
+          color: $white;
+          font-size: 28px;
+        }
+      }
+      .cart__order--description {
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+        .cart__order--title {
+          font-size: 16px;
+          font-weight: 500;
+        }
+        .cart__order--amount {
+          margin-top: 5px;
+          font-size: 14px;
+          color: $dimgray;
+        }
+      }
+      .cart__order--button-remove {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        margin-left: auto;
+        color: $black;
+        font-size: 25px;
+      }
+    }
+    .cart__button {
+      height: 50px;
+      margin-top: auto;
+    }
+  }
+}

@@ -10,6 +10,7 @@ import Navbar from "@components/Navbar";
 import Sidebar from "@components/Sidebar";
 import Footer from "@components/Footer";
 import MenuButton from "@components/MenuButton";
+import CartButton from "@components/CartButton";
 
 interface RootState {
   UI: {
@@ -42,6 +43,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       <Navbar data={{ museums }} />
       <Sidebar data={{ museums }} />
       <MenuButton />
+      <CartButton />
       {children}
       <Footer />
     </>

@@ -25,6 +25,12 @@ section {
   }
 }
 
+input {
+  outline: none;
+  border: none;
+  font-family: "Rubik", sans-serif;
+}
+
 .container--flex {
   width: 1350px;
   height: auto;
@@ -55,7 +61,7 @@ main {
   color: $white;
   border-radius: 10px;
   position: fixed;
-  top: 10px;
+  top: 20px;
   right: 10px;
   flex-direction: column;
   justify-content: center;
@@ -88,6 +94,40 @@ main {
     &:last-child {
       transform: rotate(-45deg);
     }
+  }
+}
+
+.button__cart--status {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 20px;
+  right: 50px;
+  border-radius: 50%;
+  background-color: $black;
+  color: $white;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include screen(tablet-wide) {
+    right: 10px;
+  }
+  i {
+    font-size: 23px;
+  }
+  .badge--amount {
+    position: absolute;
+    right: 0;
+    top: -10px;
+    width: 20px;
+    height: 20px;
+    background-color: $green;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
   }
 }
 

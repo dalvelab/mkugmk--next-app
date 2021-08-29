@@ -72,10 +72,14 @@ const Navbar: FC<NavbarProps> = ({ data }) => {
             )}
           </div>
           <div className="actions__wrapper">
-            <Button
-              type="btn--x1 btn--green font--medium"
-              text={translate.buyTicket}
-            />
+            <Link href="/cart">
+              <a>
+                <Button
+                  type="tickets__form--btn btn--x1 btn--green font--medium"
+                  text="Купить билет"
+                />
+              </a>
+            </Link>
             <div className="language__selector">
               <span>{language}</span>
               <i className="far fa-chevron-down"></i>

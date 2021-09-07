@@ -1,11 +1,25 @@
+import { useSelector } from "react-redux";
 // TYPES
 import { FC } from "react";
 import { CardMuseumProps } from "../types/main";
+
+// LOCALES
+import en from "../locales/en";
+import ru from "../locales/ru";
 
 // COMPONENETS
 import Link from "next/link";
 import Image from "next/image";
 import Button from "@components/Button";
+
+interface RootState {
+  UI: {
+    language: string;
+  };
+  cart: {
+    tickets: any;
+  };
+}
 
 const CardMuseum: FC<CardMuseumProps> = ({
   title,
@@ -13,6 +27,9 @@ const CardMuseum: FC<CardMuseumProps> = ({
   image,
   shortDescription,
 }) => {
+  const language = useSelector((state: RootState) => state.UI.language);
+
+  const translate = language === "ru" ? ru : en;
   return (
     <div className="card__museum">
       <div className="card__image">
@@ -30,7 +47,7 @@ const CardMuseum: FC<CardMuseumProps> = ({
           <a>
             <Button
               type="btn--x2 btn--black font--medium"
-              text="Подробнее"
+              text={translate.buttons.buttonLearnMore}
             ></Button>
           </a>
         </Link>

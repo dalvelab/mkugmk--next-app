@@ -87,7 +87,7 @@ const HeadingSection: NextPage<HeadingSectionProps> = ({
           </div>
           <Button
             type="btn--x1 btn--black font--medium"
-            text={translate.buyTicket}
+            text={translate.buttons.buttonBuyTicket}
           />
         </div>
         <div className="description__wrapper">

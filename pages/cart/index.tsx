@@ -9,15 +9,15 @@ import ru from "../../locales/ru";
 import { NextPage } from "next";
 
 // ACTIONS
-import {
-  cartAddTicket,
-  cartRemoveTicket,
-} from "../../redux/actions/cartActions";
+import { cartAddTicket } from "../../redux/actions/cartActions";
 
 //  COMPONENTS
 import Head from "next/head";
 import Container from "@components/Container";
 import Button from "@components/Button";
+import Input from "@components/Input";
+import CardTicket from "@components/CardTicket";
+import Dropdown from "@components/Dropdown";
 
 interface RootState {
   UI: {
@@ -46,6 +46,7 @@ const Cart: NextPage<TicketsSectionProps> = () => {
   const [activeText, setActiveText] = useState("");
   const [activePrice, setActivePrice] = useState(0);
   const [activeId, setActiveId] = useState(0);
+  const [isTableOpened, setIsTableOpened] = useState(true);
 
   const handleTicketAdd = () => {
     dispatch(
@@ -63,10 +64,6 @@ const Cart: NextPage<TicketsSectionProps> = () => {
     setActivePrice(0);
   };
 
-  const handleTicketDelete = (id: number) => {
-    dispatch(cartRemoveTicket(id));
-  };
-
   const handleTicketsAmount = (type: string) => {
     if (type === "increase" && amount < 10) {
       setAmount(amount + 1);
@@ -77,154 +74,150 @@ const Cart: NextPage<TicketsSectionProps> = () => {
     }
   };
 
-  const handleDropdown = () => {
-    if (isActive) {
-      setIsActive(false);
-    } else {
-      setIsActive(true);
-    }
-  };
-
-  const handleDropdownSelect = (id: number, text: string, price: number) => {
-    setActiveText(text);
-    setActivePrice(price);
-    setActiveId(id);
-    setIsActive(false);
+  const openTicketTable = () => {
+    setIsTableOpened(!isTableOpened);
   };
 
   return (
     <>
       <Head>
-        <title>Корзина | Музейный комплекс УГМК</title>
+        <title>Купить билет | Музейный комплекс УГМК</title>
       </Head>
       <section className="section__tickets">
         <Container type="container--flex">
-          <h2 className="section__heading">Купить билет</h2>
-          <div className="tickets__wrapper">
-            <div className="tickets__form">
-              <div className="input__wrapper">
-                <label className="label__tickets" htmlFor="text">
-                  Введите Ваш Email
-                </label>
-                <input
-                  className="input__tickets"
-                  type="email"
-                  placeholder="Ваш Email"
-                />
-              </div>
-              <div className="input__wrapper">
-                <label className="label__tickets" htmlFor="text">
-                  Введите Ваш Email повторно
-                </label>
-                <input
-                  className="input__tickets"
-                  type="email"
-                  placeholder="Ваш Email"
-                />
-              </div>
-              <div className="input__wrapper">
-                <label className="label__tickets" htmlFor="text">
-                  Выберите тип билета
-                </label>
-                <input
-                  className="input__tickets input__dropdown"
-                  type="text"
-                  placeholder="Нажмите чтобы выбрать"
-                  value={activeText}
-                  readOnly
-                  onClick={handleDropdown}
-                />
+          <h2 className="section__heading">{translate.cart.title}</h2>
+          <div className="tickets__flex--wrapper">
+            <div className="wrapper">
+              <div className="tickets__column tickets__table--prices">
+                <span className="column__title">
+                  {translate.cart.tableTitle}
+                </span>
+                <div className="tickets__divider"></div>
+                <button
+                  className="column__icon--dropdown"
+                  onClick={openTicketTable}
+                >
+                  {isTableOpened ? (
+                    <i className="far fa-chevron-down icon__reversed"></i>
+                  ) : (
+                    <i className="far fa-chevron-down "></i>
+                  )}
+                </button>
                 <div
                   className={
-                    isActive ? "dropdown dropdown--active" : "dropdown"
+                    isTableOpened
+                      ? "table__content table__content--active"
+                      : "table__content"
                   }
                 >
-                  <div
-                    className="dropdown__element"
-                    onClick={() =>
-                      handleDropdownSelect(1, "Билет в 1ВЦ (250 Р)", 250)
-                    }
-                  >
-                    Билет в 1ВЦ (250 Р)
+                  <div className="table__row">
+                    <div>Выставочный центр (ВЦ)</div>
+                    <div>Стандарт</div>
+                    <div>Льготный / Детский</div>
                   </div>
-                  <div
-                    className="dropdown__element"
-                    onClick={() =>
-                      handleDropdownSelect(
-                        2,
-                        "Билет в 1ВЦ (льготный) (200 Р)",
-                        200
-                      )
-                    }
-                  >
-                    Билет в 1ВЦ (льготный) (200 Р)
+                  <div className="table__row">
+                    <div>1 ВЦ</div>
+                    <div>300₽</div>
+                    <div>100₽</div>
                   </div>
-                  <div
-                    className="dropdown__element"
-                    onClick={() =>
-                      handleDropdownSelect(3, "Билет в 2ВЦ (500 Р)", 500)
-                    }
-                  >
-                    Билет в 2ВЦ (500 Р)
+                  <div className="table__row">
+                    <div>2 ВЦ</div>
+                    <div>550₽</div>
+                    <div>180₽</div>
+                  </div>
+                  <div className="table__row">
+                    <div>3 ВЦ</div>
+                    <div>800₽</div>
+                    <div>250₽</div>
+                  </div>
+                  <div className="table__row">
+                    <div>4 ВЦ</div>
+                    <div>1000₽</div>
+                    <div>300₽</div>
                   </div>
                 </div>
               </div>
-              <div className="input__wrapper">
-                <label className="label__tickets" htmlFor="text">
-                  Выберите кол-во посетителей
-                </label>
-                <div className="tickets__amount--control">
-                  <button
-                    className="tickets__amount--button"
-                    onClick={() => handleTicketsAmount("decrease")}
-                  >
-                    <i className="fal fa-minus"></i>
-                  </button>
-                  <div className="tickets__amount--status">{amount}</div>
-                  <button
-                    className="tickets__amount--button"
-                    onClick={() => handleTicketsAmount("increase")}
-                  >
-                    <i className="fal fa-plus"></i>
-                  </button>
+              <div className="tickets__column tickets__checkout mt-2">
+                <span className="column__title">
+                  {translate.cart.formTitle}
+                </span>
+                <div className="tickets__divider"></div>
+                <div className="tickets__checkout--form">
+                  <Input
+                    label={translate.cart.form.name}
+                    type="text"
+                    placeholder={translate.cart.form.namePlaceholder}
+                  />
+                  <Input
+                    label={translate.cart.form.surname}
+                    type="text"
+                    placeholder={translate.cart.form.surnamePlaceholder}
+                  />
+                  <Input
+                    label={translate.cart.form.email}
+                    type="email"
+                    placeholder={translate.cart.form.emailPlaceholder}
+                  />
+                  <Input
+                    label={translate.cart.form.emailRepeat}
+                    type="email"
+                    placeholder={translate.cart.form.emailPlaceholder}
+                  />
+                  <Dropdown
+                    isActive={isActive}
+                    setActive={setIsActive}
+                    label={translate.cart.form.ticketType}
+                    placeholder={translate.cart.form.ticketTypePlaceholder}
+                    text={activeText}
+                    setText={setActiveText}
+                    setPrice={setActivePrice}
+                    setID={setActiveId}
+                  />
+                  <div className="input__wrapper">
+                    <label className="label__tickets" htmlFor="text">
+                      {translate.cart.form.visitorsAmount}
+                    </label>
+                    <div className="tickets__amount--control">
+                      <button
+                        className="tickets__amount--button"
+                        onClick={() => handleTicketsAmount("decrease")}
+                      >
+                        <i className="fal fa-minus"></i>
+                      </button>
+                      <div className="tickets__amount--status">{amount}</div>
+                      <button
+                        className="tickets__amount--button"
+                        onClick={() => handleTicketsAmount("increase")}
+                      >
+                        <i className="fal fa-plus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="input__wrapper">
+                    <Button
+                      type="tickets__button btn--x1 btn--black font--medium"
+                      text={translate.cart.addTicketButton}
+                      action={handleTicketAdd}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="input__wrapper">
-                <Button
-                  type="tickets__form--btn btn--x1 btn--black font--medium"
-                  text="Добавить"
-                  action={handleTicketAdd}
-                />
               </div>
             </div>
-            <div className="cart__wrapper">
-              <span className="cart__title">Корзина</span>
-              <div className="cart__divider"></div>
+            <div className="tickets__column tickets__cart">
+              <span className="column__title">{translate.cart.cartTitle}</span>
+              <div className="tickets__divider"></div>
               {cart.map((ticket: any, index: number) => (
-                <div key={index}>
-                  <div className="cart__order">
-                    <div className="cart__order--icon">
-                      <i className="fal fa-ticket-alt"></i>
-                    </div>
-                    <div className="cart__order--description">
-                      <span className="cart__order--title">{ticket.title}</span>
-                      <span className="cart__order--amount">
-                        {ticket.price} ₽ x {ticket.quantity} шт
-                      </span>
-                    </div>
-                    <button
-                      className="cart__order--button-remove"
-                      onClick={() => handleTicketDelete(ticket.id)}
-                    >
-                      <i className="fal fa-times"></i>
-                    </button>
-                  </div>
-                  <div className="cart__divider"></div>
-                </div>
+                <CardTicket
+                  key={index}
+                  id={ticket.id}
+                  title={ticket.title}
+                  price={ticket.price}
+                  quantity={ticket.quantity}
+                />
               ))}
               <Button
-                type="cart__button btn--x1 btn--green font--medium"
-                text="Перейти к оплате"
+                type="tickets__button btn--x1 btn--green font--medium"
+                text={translate.cart.checkoutButton}
               />
             </div>
           </div>

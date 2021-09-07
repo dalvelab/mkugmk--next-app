@@ -1,7 +1,31 @@
 export default {
   language: "en",
   title: "Museum complex of military and civilian equipment",
-  buyTicket: "Buy ticket",
+  cart: {
+    title: "Purchase tickets",
+    tableTitle: `Ticket's price`,
+    formTitle: "Order Form",
+    cartTitle: "Cart",
+    buyTicketButton: "Buy ticket",
+    checkoutButton: "Proceed to checkout",
+    addTicketButton: "Add to cart",
+    form: {
+      name: "Your Name",
+      surname: "Your Surname",
+      email: "Your Email",
+      emailRepeat: "Email (repeat)",
+      ticketType: "Select ticket category",
+      visitorsAmount: "Pick visitors amount ",
+      namePlaceholder: "Name",
+      surnamePlaceholder: "Surname",
+      emailPlaceholder: "Your Email",
+      ticketTypePlaceholder: "Click to select",
+    },
+  },
+  buttons: {
+    buttonBuyTicket: "Buy Ticket",
+    buttonLearnMore: "Learn More",
+  },
   navbar: {
     links: [
       { title: "Home", isParentLink: false, endpoint: "/", icon: false },

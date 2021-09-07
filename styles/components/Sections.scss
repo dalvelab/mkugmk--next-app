@@ -339,144 +339,104 @@
 .section__tickets {
   min-height: 100vh;
   background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-  .tickets__wrapper {
+  .tickets__flex--wrapper {
     width: 100%;
-    height: auto;
-    display: grid;
-    grid-template-columns: minmax(500px, auto) minmax(300px, 400px);
-    gap: 30px;
-    @include screen(desktop) {
-      grid-template-columns: 1fr;
-    }
+    display: flex;
   }
-  .tickets__form {
-    padding: 20px 0 20px 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 100px;
-    gap: 20px;
-    @include screen(desktop) {
-      gap: 30px;
-      grid-auto-rows: auto;
-    }
-    @include screen(tablet) {
-      padding: 0;
-      grid-template-columns: 1fr;
-    }
-    .input__wrapper {
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      .label__tickets {
-        font-size: 15px;
-        font-weight: 500;
-        color: $dimgray;
-      }
-      .input__tickets {
-        width: 350px;
-        height: 50px;
-        margin-top: 15px;
-        padding: 10px 20px 10px 20px;
-        border-radius: 7.5px;
-        font-size: 16px;
-        background-color: transparent;
-        background-color: $white;
-        @include screen(desktop) {
-          width: 100%;
-        }
-        @include screen(tablet) {
-          height: 45px;
-        }
-      }
-      .tickets__amount--control {
-        margin-top: 15px;
-        display: flex;
-        .tickets__amount--button,
-        .tickets__amount--status {
-          width: 50px;
-          height: 50px;
-          background-color: $black;
-          color: $white;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 22px;
-          border-radius: 7.5px;
-          @include screen(tablet) {
-            width: 45px;
-            height: 45px;
-          }
-        }
-        .tickets__amount--status {
-          margin: 0 10px 0 10px;
-        }
-      }
-      .tickets__form--btn {
-        width: 200px;
-        height: 50px;
-        @include screen(tablet) {
-          height: 45px;
-        }
-      }
-      .input__dropdown {
-        cursor: pointer;
-      }
-      .dropdown {
-        width: 350px;
-        height: 150px;
-        overflow-y: scroll;
-        border-radius: 7.5px;
-        box-shadow: 0 5px 10px rgb(0 0 0 / 15%);
-        z-index: 5;
-        padding: 10px 10px;
-        position: absolute;
-        top: 100%;
-        display: none;
-        flex-direction: column;
-        background-color: $white;
-        &::-webkit-scrollbar {
-          display: none;
-        }
-        &::-webkit-scrollbar-thumb {
-          display: none;
-        }
-        .dropdown__element {
-          font-size: 14px;
-          color: $dimgray;
-          padding: 15px 0 15px 15px;
-          border-radius: 7.5px;
-          cursor: pointer;
-          background-color: $white;
-          margin-top: 5px;
-          &:first-child {
-            margin-top: 0;
-          }
-          &:hover {
-            background-color: #f2f2f2;
-          }
-        }
-      }
-      .dropdown--active {
-        display: flex;
-      }
-    }
+  .wrapper {
+    width: 65%;
+    margin-right: 20px;
   }
-  .cart__wrapper {
-    height: auto;
-    min-height: 200px;
+  .tickets__column {
+    position: relative;
     padding: 20px;
     background-color: $white;
     border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    .cart__title {
+    .column__title {
       font-size: 25px;
       font-weight: 500;
     }
-    .cart__divider {
+    .tickets__divider {
       margin: 15px 0 15px 0;
       border-top: 2px solid #f2f2f2;
     }
+    .tickets__button {
+      height: 50px;
+    }
+    @include screen(tablet) {
+      .tickets__button {
+        height: 45px;
+      }
+    }
+  }
+
+  .tickets__table--prices {
+    height: auto;
+    .tickets__divider {
+      margin-bottom: 0;
+    }
+    .column__icon--dropdown {
+      width: 100%;
+      height: 65px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      cursor: pointer;
+      i {
+        font-size: 20px;
+        margin-right: 20px;
+        transition: 0.2s ease-in;
+      }
+    }
+    .icon__reversed {
+      transition: 0.2s ease-in;
+      transform: rotate(180deg);
+    }
+    .table__content {
+      width: 100%;
+      height: 0;
+      visibility: hidden;
+      transition: 0.25s ease-in-out;
+      .table__row {
+        width: 100%;
+        height: 50px;
+        border-bottom: 2px solid #f2f2f2;
+        border-left: 2px solid #f2f2f2;
+        border-right: 2px solid #f2f2f2;
+        display: none;
+        grid-template-columns: 1fr 1fr 1fr;
+        font-size: 16px;
+        text-align: center;
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-right: 2px solid #f2f2f2;
+          &:last-child {
+            border-right: none;
+          }
+        }
+      }
+    }
+    .table__content--active {
+      height: 250px;
+      visibility: visible;
+      transition: 0.25s ease-in-out;
+      .table__row {
+        display: grid;
+      }
+    }
+  }
+
+  .tickets__cart {
+    width: calc(100% - 65% - 20px);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    align-self: flex-start;
     .cart__order {
       width: 100%;
       height: 65px;
@@ -519,9 +479,77 @@
         font-size: 25px;
       }
     }
-    .cart__button {
-      height: 50px;
-      margin-top: auto;
+  }
+
+  .tickets__checkout {
+    margin-bottom: 30px;
+    .tickets__checkout--form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 100px;
+      gap: 20px;
+      .tickets__button {
+        width: 200px;
+      }
+    }
+    .tickets__amount--control {
+      margin-top: 15px;
+      display: flex;
+      .tickets__amount--button,
+      .tickets__amount--status {
+        width: 45px;
+        height: 45px;
+        background-color: $black;
+        color: $white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 22px;
+        border-radius: 7.5px;
+      }
+      .tickets__amount--status {
+        margin: 0 10px 0 10px;
+      }
+    }
+    @include screen(desktop) {
+      .tickets__checkout--form {
+        gap: 30px;
+        grid-auto-rows: auto;
+      }
+    }
+    @include screen(tablet) {
+      .tickets__checkout--form {
+        padding: 0;
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+  @include screen(desktop) {
+    .tickets__flex--wrapper {
+      flex-direction: column;
+    }
+    .wrapper {
+      width: 100%;
+      margin-right: 0;
+    }
+    .tickets__cart {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+  }
+  @include screen(phone) {
+    .tickets__column {
+      padding: 20px 10px 20px 10px;
+    }
+    .table__content {
+      .table__row {
+        div {
+          font-size: 14px;
+        }
+      }
+    }
+    .input__wrapper {
+      width: 100%;
     }
   }
 }

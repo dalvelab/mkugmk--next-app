@@ -1,7 +1,31 @@
 export default {
   language: "ru",
   title: "Музейный комплекс военной и гражданской техники",
-  buyTicket: "Купить билет",
+  cart: {
+    title: "Купить билет",
+    tableTitle: "Стоимость билетов",
+    formTitle: "Оформление заказа",
+    cartTitle: "Корзина",
+    buyTicketButton: "Купить билет",
+    checkoutButton: "Перейти к опллате",
+    addTicketButton: "Добавить",
+    form: {
+      name: "Ваше Имя",
+      surname: "Ваша Фамилия",
+      email: "Ваш Email",
+      emailRepeat: "Email повторно",
+      ticketType: "Выберите тип билета",
+      visitorsAmount: "Выберите кол-во посетителей",
+      namePlaceholder: "Имя",
+      surnamePlaceholder: "Фамилия",
+      emailPlaceholder: "Ваш Email",
+      ticketTypePlaceholder: "Нажмите чтобы выбрать",
+    },
+  },
+  buttons: {
+    buttonBuyTicket: "Купить билет",
+    buttonLearnMore: "Подробнее",
+  },
   navbar: {
     links: [
       { title: "Главная", isParentLink: false, endpoint: "/", icon: false },

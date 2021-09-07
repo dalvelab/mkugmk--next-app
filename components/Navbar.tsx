@@ -76,7 +76,7 @@ const Navbar: FC<NavbarProps> = ({ data }) => {
               <a>
                 <Button
                   type="tickets__form--btn btn--x1 btn--green font--medium"
-                  text="Купить билет"
+                  text={translate.buttons.buttonBuyTicket}
                 />
               </a>
             </Link>

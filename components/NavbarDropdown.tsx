@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 // TYPES
-import { FC, MouseEvent } from "react";
+import { MouseEvent } from "react";
+import { RootState } from "@models/state";
 
 // LOCALES
 import en from "../locales/en";
@@ -20,13 +21,7 @@ interface DropDownLink {
   slug: string;
 }
 
-interface RootState {
-  UI: {
-    language: string;
-  };
-}
-
-const NavbarDropdown: FC<NavbarDropdownProps> = ({ data }) => {
+const NavbarDropdown: React.FC<NavbarDropdownProps> = ({ data }) => {
   const language = useSelector((state: RootState) => state.UI.language);
   const translate = language === "ru" ? ru : en;
 

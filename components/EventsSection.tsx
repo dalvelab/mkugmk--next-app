@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 
 // TYPES
-import { FC } from "react";
-import { CardEventProps } from "../types/main";
+import { EventProps, EventsSectionProps } from "@models/main";
+import { RootState } from "@models/state";
 
 // LOCALES
 import en from "../locales/en";
@@ -15,18 +15,7 @@ import SwipeSection from "@components/SwipeSection";
 import CardEvent from "@components/CardEvent";
 import Button from "@components/Button";
 
-interface GallerySectionProps {
-  events: any;
-  type: string;
-}
-
-interface RootState {
-  UI: {
-    language: string;
-  };
-}
-
-const GallerySection: FC<GallerySectionProps> = ({ events, type }) => {
+const GallerySection: React.FC<EventsSectionProps> = ({ events, type }) => {
   const language = useSelector((state: RootState) => state.UI.language);
 
   const translate = language === "ru" ? ru : en;
@@ -38,7 +27,7 @@ const GallerySection: FC<GallerySectionProps> = ({ events, type }) => {
           <Container type="container--flex">
             <h2 className="section__heading">{translate.titles.events}</h2>
             <SwipeSection length={events.length}>
-              {events.map((event: CardEventProps, index: number) => (
+              {events.map((event: EventProps, index: number) => (
                 <CardEvent
                   key={index}
                   title={event.title}

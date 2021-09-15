@@ -19,7 +19,8 @@
       "@pages/*": ["pages/*"],
       "@styles/*": ["styles/*"],
       "@lib/*": ["lib/*"],
-      "@helpers/*": ["helpers/*"]
+      "@helpers/*": ["helpers/*"],
+      "@models/*": ["models/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/api.js"],

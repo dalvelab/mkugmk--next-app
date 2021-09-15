@@ -9,7 +9,7 @@ import { getAllNews } from "@lib/api";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
-import { CardNewsProps } from "../../types/main";
+import { CardNewsProps } from "../../models/main";
 
 //  COMPONENTS
 import Head from "next/head";

@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 // TYPES
-
-import { FC, ReactNode } from "react";
+import { RootState } from "@models/state";
 
 // COMPONENTS
 import Navbar from "@components/Navbar";
@@ -12,17 +11,11 @@ import Footer from "@components/Footer";
 import MenuButton from "@components/MenuButton";
 import CartButton from "@components/CartButton";
 
-interface RootState {
-  UI: {
-    language: string;
-  };
-}
-
 interface LayoutProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
-const Layout: FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [museums, setMuseums] = useState([]);
 
   const language = useSelector((state: RootState) => state.UI.language);

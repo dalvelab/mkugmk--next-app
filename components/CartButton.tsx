@@ -2,18 +2,12 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 // TYPES
-import { FC } from "react";
+import { RootState } from "@models/state";
 
 // COMPONENTS
 import Link from "next/link";
 
-interface RootState {
-  cart: {
-    tickets: any;
-  };
-}
-
-const CartButton: FC = () => {
+const CartButton: React.FC = () => {
   const router = useRouter();
 
   // REDUX STATE

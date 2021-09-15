@@ -1,15 +1,12 @@
 import { useRef } from "react";
 
-// TYPES
-import { FC, LegacyRef, ReactNode } from "react";
-
 interface GallerySwipeProps {
   length: number;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
-const GallerySwipe: FC<GallerySwipeProps> = ({ length, children }) => {
-  const elementRef: LegacyRef<HTMLDivElement> = useRef(null);
+const GallerySwipe: React.FC<GallerySwipeProps> = ({ length, children }) => {
+  const elementRef: React.LegacyRef<HTMLDivElement> = useRef(null);
 
   const handleSwipe = (directrion: string) => {
     const swipeElement = elementRef.current!;

@@ -1,13 +1,7 @@
 // TYPES
-import { FC } from "react";
+import { InputProps } from "@models/main";
 
-interface InputProps {
-  label: string;
-  type: string;
-  placeholder: string;
-}
-
-const Input: FC<InputProps> = ({ label, type, placeholder }) => {
+const Input: React.FC<InputProps> = ({ label, type, placeholder }) => {
   return (
     <div className="input__wrapper">
       <label htmlFor="text">{label}</label>

@@ -1,7 +1,9 @@
 import { useSelector } from "react-redux";
 
 // TYPES
-import { NextPage, GetStaticProps } from "next";
+import { GetStaticProps } from "next";
+import { RootState } from "@models/state";
+import { HeadingSectionProps, Day } from "@models/main";
 
 // LIB
 import { getHoursForHeading } from "@lib/api";
@@ -15,21 +17,7 @@ import Image from "next/image";
 import Container from "@components/Container";
 import Button from "@components/Button";
 
-interface HeadingSectionProps {
-  title: string;
-  museumType: string;
-  image: any;
-  hours: any;
-  description: string;
-}
-
-interface RootState {
-  UI: {
-    language: string;
-  };
-}
-
-const HeadingSection: NextPage<HeadingSectionProps> = ({
+const HeadingSection: React.FC<HeadingSectionProps> = ({
   title,
   museumType,
   image,
@@ -46,11 +34,11 @@ const HeadingSection: NextPage<HeadingSectionProps> = ({
 
   if (museumType === "museum") {
     currentDay = hours[0].workingHoursMuseum.filter(
-      (day: any, index: number) => index === currentDayIndex
+      (day: Day, index: number) => index === currentDayIndex
     )[0];
   } else {
     currentDay = hours[0].workingHoursOutdoor.filter(
-      (day: any, index: number) => index === currentDayIndex
+      (day: Day, index: number) => index === currentDayIndex
     )[0];
   }
 
@@ -58,10 +46,12 @@ const HeadingSection: NextPage<HeadingSectionProps> = ({
     <section className="section__header">
       <div className="header__image">
         <Image
-          src={image.url ? `${process.env.api}${image.url}` : image}
+          src={image.src}
           width="1920"
           height="1080"
           alt="Heading Museum Image"
+          placeholder="blur"
+          blurDataURL={image.blurDataURL}
         />
       </div>
       <Container type="container--flex">

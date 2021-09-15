@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
-// TYPES
-import { FC } from "react";
-import { CardMuseumProps } from "../types/main";
+
+// MODELS
+import { MuseumProps } from "@models/main";
+import { RootState } from "@models/state";
 
 // LOCALES
 import en from "../locales/en";
@@ -12,16 +13,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Button from "@components/Button";
 
-interface RootState {
-  UI: {
-    language: string;
-  };
-  cart: {
-    tickets: any;
-  };
-}
-
-const CardMuseum: FC<CardMuseumProps> = ({
+const CardMuseum: React.FC<MuseumProps> = ({
   title,
   slug,
   image,

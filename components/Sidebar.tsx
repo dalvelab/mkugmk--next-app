@@ -3,26 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 // TYPES
-import { FC } from "react";
+import { RootState } from "@models/state";
 
 // LOCALES
 import en from "../locales/en";
 import ru from "../locales/ru";
 
 // ACTIONS
-import { handleUILanguage, UISidebarHandle } from "../redux/actions/uiActions";
+import { UISidebarHandle } from "../redux/actions/uiActions";
 
 // COMPONENTS
 import Link from "next/link";
-
-interface RootState {
-  UI: {
-    language: string;
-    sidebar: {
-      isOpen: Boolean;
-    };
-  };
-}
 
 interface SidebarProps {
   data: any;
@@ -33,7 +24,7 @@ interface DropDownLink {
   slug: string;
 }
 
-const Sidebar: FC<SidebarProps> = ({ data }) => {
+const Sidebar: React.FC<SidebarProps> = ({ data }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 

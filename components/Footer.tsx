@@ -1,22 +1,16 @@
 import { useSelector } from "react-redux";
 
+// TYPES
+import { RootState } from "@models/state";
+
 // LOCALES
 import en from "../locales/en";
 import ru from "../locales/ru";
 
-// TYPES
-import { FC } from "react";
-
 // COMPONENTS
 import Container from "@components/Container";
 
-interface RootState {
-  UI: {
-    language: string;
-  };
-}
-
-const Footer: FC = () => {
+const Footer: React.FC = () => {
   const language = useSelector((state: RootState) => state.UI.language);
 
   const translate = language === "ru" ? ru : en;

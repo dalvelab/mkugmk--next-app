@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 // TYPES
-import { FC } from "react";
+import { RootState } from "@models/state";
 
 // LOCALES
 import en from "../locales/en";
@@ -17,22 +17,18 @@ import Container from "@components/Container";
 import Button from "@components/Button";
 import NavbarDropdown from "@components/NavbarDropdown";
 
-interface RootState {
-  UI: {
-    language: string;
-  };
-}
-
 interface NavbarProps {
   data: any;
 }
 
-const Navbar: FC<NavbarProps> = ({ data }) => {
+const Navbar: React.FC<NavbarProps> = ({ data }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const language = useSelector((state: RootState) => state.UI.language);
 
   const translate = language === "ru" ? ru : en;
+
+  console.log(data);
 
   return (
     <nav className="navigation__top">

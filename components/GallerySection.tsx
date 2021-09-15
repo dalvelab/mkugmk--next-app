@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 
 // TYPES
-import { FC } from "react";
+import { GallerySectionProps, GalleryImage } from "@models/main";
+import { RootState } from "@models/state";
 
 // LOCALES
 import en from "../locales/en";
@@ -12,22 +13,10 @@ import Image from "next/image";
 import Container from "@components/Container";
 import SwipeSection from "@components/SwipeSection";
 
-interface GallerySectionProps {
-  gallery: any;
-  type: string;
-}
-
-interface RootState {
-  UI: {
-    language: string;
-  };
-}
-
-const GallerySection: FC<GallerySectionProps> = ({ gallery, type }) => {
+const GallerySection: React.FC<GallerySectionProps> = ({ gallery, type }) => {
   const language = useSelector((state: RootState) => state.UI.language);
 
   const translate = language === "ru" ? ru : en;
-
   return (
     <>
       {gallery && gallery.length > 0 ? (
@@ -35,7 +24,7 @@ const GallerySection: FC<GallerySectionProps> = ({ gallery, type }) => {
           <Container type="container--flex">
             <h2 className="section__heading">{translate.titles.gallery}</h2>
             <SwipeSection length={gallery.length}>
-              {gallery.map((image: any, index: number) => (
+              {gallery.map((image: GalleryImage, index: number) => (
                 <div className="gallery__image" key={index}>
                   <Image
                     src={`${process.env.api}${image.url}`}

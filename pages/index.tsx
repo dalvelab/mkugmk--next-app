@@ -6,7 +6,7 @@ import ru from "../locales/ru";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
-import { CardMuseumProps, CardEventProps, CardNewsProps } from "../types/main";
+import { CardMuseumProps, CardEventProps, CardNewsProps } from "../models/main";
 
 // LIB
 import {

@@ -9,7 +9,7 @@ import { getAllEvents } from "@lib/api";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
-import { CardEventProps } from "../../types/main";
+import { CardEventProps } from "../../models/main";
 
 //  COMPONENTS
 import Head from "next/head";

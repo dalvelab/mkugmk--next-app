@@ -1,19 +1,12 @@
 import { useDispatch } from "react-redux";
 
 // TYPES
-import { FC } from "react";
+import { TicketProps } from "@models/main";
 
 // ACTIONS
 import { cartRemoveTicket } from "../redux/actions/cartActions";
 
-interface CardTicketProps {
-  id: number;
-  title: string;
-  price: number;
-  quantity: number;
-}
-
-const CardTicket: FC<CardTicketProps> = ({ id, title, price, quantity }) => {
+const CardTicket: React.FC<TicketProps> = ({ id, title, price, quantity }) => {
   const dispatch = useDispatch();
 
   const handleTicketDelete = (id: number) => {

@@ -86,8 +86,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   };
 };
 
-export default MuseumSingle;
-
 export async function getStaticPaths() {
   const allMuseums = await getAllMuseumsWithSlug();
   return {
@@ -95,3 +93,5 @@ export async function getStaticPaths() {
     fallback: true,
   };
 }
+
+export default MuseumSingle;

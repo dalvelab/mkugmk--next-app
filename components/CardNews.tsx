@@ -1,6 +1,5 @@
 // TYPES
-import { FC } from "react";
-import { CardNewsProps } from "../types/main";
+import { NewsProps } from "@models/main";
 
 // COMPONENTS
 import Link from "next/dist/client/link";
@@ -9,7 +8,7 @@ import Image from "next/image";
 // HELPERS
 import { getRusMonthDative } from "@helpers/dateHelper";
 
-const CardNews: FC<CardNewsProps> = ({
+const CardNews: React.FC<NewsProps> = ({
   type,
   title,
   slug,

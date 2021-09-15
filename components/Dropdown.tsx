@@ -1,18 +1,7 @@
 // TYPES
-import { FC } from "react";
+import { DropdownProps } from "@models/main";
 
-interface DropdownProps {
-  isActive: boolean;
-  setActive: Function;
-  label: string;
-  text: string;
-  placeholder: string;
-  setText: Function;
-  setPrice: Function;
-  setID: Function;
-}
-
-const Dropdown: FC<DropdownProps> = ({
+const Dropdown: React.FC<DropdownProps> = ({
   isActive,
   setActive,
   label,

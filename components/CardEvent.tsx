@@ -1,6 +1,5 @@
 // TYPES
-import { FC } from "react";
-import { CardEventProps } from "../types/main";
+import { EventProps } from "@models/main";
 
 // COMPONENETS
 import Link from "next/link";
@@ -9,7 +8,7 @@ import Image from "next/image";
 // HELPERS
 import { getRusMonthDative } from "@helpers/dateHelper";
 
-const CardEvent: FC<CardEventProps> = ({
+const CardEvent: React.FC<EventProps> = ({
   title,
   slug,
   image,

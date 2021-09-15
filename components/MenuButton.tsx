@@ -1,20 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 
 // TYPES
-import { FC } from "react";
+import { RootState } from "@models/state";
 
 // ACTIONS
 import { UISidebarHandle } from "../redux/actions/uiActions";
 
-interface RootState {
-  UI: {
-    sidebar: {
-      isOpen: boolean;
-    };
-  };
-}
-
-const MenuButton: FC = () => {
+const MenuButton: React.FC = () => {
   const dispatch = useDispatch();
 
   const sidebar = useSelector((state: RootState) => state.UI.sidebar);

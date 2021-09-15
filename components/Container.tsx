@@ -1,13 +1,7 @@
 // TYPES
-import { FC, CSSProperties, ReactElement } from "react";
+import { ContainerProps } from "@models/main";
 
-interface ContainerProps {
-  type: string;
-  styles?: CSSProperties;
-  children: ReactElement | ReactElement[];
-}
-
-const Container: FC<ContainerProps> = ({ type, styles, children }) => {
+const Container: React.FC<ContainerProps> = ({ type, styles, children }) => {
   return (
     <div className={type} style={styles}>
       {children}

@@ -1,12 +1,5 @@
 // TYPES
-import { FC } from "react";
-import { CardNewsProps } from "../types/main";
-
-interface NewsSectionProps {
-  title: string;
-  type: string;
-  news: Array<CardNewsProps>;
-}
+import { NewsSectionProps } from "@models/main";
 
 // COMPONENTS
 import Link from "next/dist/client/link";
@@ -14,7 +7,7 @@ import Container from "@components/Container";
 import Button from "@components/Button";
 import CardNews from "@components/CardNews";
 
-const NewsSection: FC<NewsSectionProps> = ({ type, title, news }) => {
+const NewsSection: React.FC<NewsSectionProps> = ({ type, title, news }) => {
   return (
     <>
       {news && news.length > 0 ? (

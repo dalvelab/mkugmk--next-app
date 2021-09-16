@@ -13,7 +13,7 @@ import ru from "../locales/ru";
 import Link from "next/link";
 
 interface NavbarDropdownProps {
-  data: any;
+  data: DropDownLink[];
 }
 
 interface DropDownLink {
@@ -83,13 +83,11 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({ data }) => {
               : "links__wrapper"
           }
         >
-          {data
-            ? data.museums.map((link: DropDownLink, index: number) => (
-                <Link key={index} href={`/museums/${link.slug}`} passHref>
-                  <span className="dropdown__secondary-item">{link.title}</span>
-                </Link>
-              ))
-            : null}
+          {data.map((link: DropDownLink, index: number) => (
+            <Link key={index} href={`/museums/${link.slug}`} passHref>
+              <span className="dropdown__secondary-item">{link.title}</span>
+            </Link>
+          ))}
         </div>
         <div
           className={

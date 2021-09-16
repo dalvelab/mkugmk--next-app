@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 // TYPES
 import { RootState } from "@models/state";
+
+// ACTIONS
+import { UIMuseumLinksHandle } from "../redux/actions/uiActions";
 
 // COMPONENTS
 import Navbar from "@components/Navbar";
@@ -16,25 +19,18 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const [museums, setMuseums] = useState([]);
+  const dispatch = useDispatch();
 
   const language = useSelector((state: RootState) => state.UI.language);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        `${process.env.api}/museums?_locale=${language}`
-      );
-      setMuseums(await response.json());
-    };
-
-    fetchData();
+    dispatch(UIMuseumLinksHandle(language));
   }, [language]);
 
   return (
     <>
-      <Navbar data={{ museums }} />
-      <Sidebar data={{ museums }} />
+      <Navbar />
+      <Sidebar />
       <MenuButton />
       <CartButton />
       {children}

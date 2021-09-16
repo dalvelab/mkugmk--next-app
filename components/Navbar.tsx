@@ -17,18 +17,18 @@ import Container from "@components/Container";
 import Button from "@components/Button";
 import NavbarDropdown from "@components/NavbarDropdown";
 
-interface NavbarProps {
-  data: any;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ data }) => {
+const Navbar: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+
   const language = useSelector((state: RootState) => state.UI.language);
+  const linksMuseum = useSelector(
+    (state: RootState) => state.UI.links.linksMuseum
+  );
+
+  const { loading, museums } = linksMuseum;
 
   const translate = language === "ru" ? ru : en;
-
-  console.log(data);
 
   return (
     <nav className="navigation__top">
@@ -54,7 +54,7 @@ const Navbar: React.FC<NavbarProps> = ({ data }) => {
                     {link.title}{" "}
                     {link.icon ? <i className="far fa-chevron-down"></i> : null}
                   </span>
-                  <NavbarDropdown data={data} />
+                  <NavbarDropdown data={loading ? [] : museums} />
                 </div>
               ))}
             {translate.navbar.links.map((link, index) =>

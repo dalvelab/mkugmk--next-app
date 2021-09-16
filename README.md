@@ -18,15 +18,7 @@ styles - стили проекта
 
 .env.example - пример конфига
 
-fal fa-ticket-alt
-fal fa-times
-fal fa-shopping-bag
-far fa-chevron-left
-far fa-chevron-right
-far fa-chevron-down
-far fa-arrow-right
-far fa-arrow-left
-fal fa-arrow-left
-fal fa-arrow-right
-fal fa-minus
-fal fa-plus
+## Как добавить иконку
+
+В файл ./styles/icons/variables.scss добавить переменную с unicode иконки (он берется с сайта FA)
+в файл ./styles/icons/icons.scss добавить класс для нужно иконки (он берется с сайта FA)

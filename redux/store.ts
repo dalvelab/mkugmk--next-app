@@ -3,7 +3,11 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 // UI
-import { UILanguageReducer, UISidebarReducer } from "./reducers/uiReducer";
+import {
+  UILanguageReducer,
+  UISidebarReducer,
+  UIMuseumLinksReducer,
+} from "./reducers/uiReducer";
 
 // CART
 import { cartReducer } from "./reducers/cartReducer";
@@ -12,6 +16,9 @@ const reducer = combineReducers({
   UI: combineReducers({
     language: UILanguageReducer,
     sidebar: UISidebarReducer,
+    links: combineReducers({
+      linksMuseum: UIMuseumLinksReducer,
+    }),
   }),
   cart: cartReducer,
 });

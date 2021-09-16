@@ -15,20 +15,21 @@ import { UISidebarHandle } from "../redux/actions/uiActions";
 // COMPONENTS
 import Link from "next/link";
 
-interface SidebarProps {
-  data: any;
-}
-
 interface DropDownLink {
   title: string;
   slug: string;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ data }) => {
+const Sidebar: React.FC = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
   const sidebar = useSelector((state: RootState) => state.UI.sidebar);
+
+  const linksMuseum = useSelector(
+    (state: RootState) => state.UI.links.linksMuseum
+  );
+  const { loading, museums } = linksMuseum;
 
   const language = useSelector((state: RootState) => state.UI.language);
   const translate = language === "ru" ? ru : en;
@@ -178,8 +179,8 @@ const Sidebar: React.FC<SidebarProps> = ({ data }) => {
         }
         data-info="museums-sidebar-active"
       >
-        {data ? (
-          data.museums.map((link: DropDownLink, index: number) => (
+        {!loading && museums.length > 0 ? (
+          museums.map((link: DropDownLink, index: number) => (
             <Link key={index} href={`/museums/${link.slug}`} passHref>
               <li className="link" onClick={handleSidebarLink}>
                 <span className="dropdown__secondary-item">{link.title}</span>

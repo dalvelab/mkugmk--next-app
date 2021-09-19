@@ -2,21 +2,18 @@
 
 ## Файловая стуктура
 
-components - содержит все компоненты
-helpers - вспомогательные функции
-lib - содержит файл api.js, через который происходит взаимодействие с Backend (запросы GraphQL)
-locales - файлы с локациями
-models - файлы с typescript типами (для компонентов, секций, state)
-pages - файлы страниц с учётом routing
-public - шрифты, картинки, favicon
-redux - все связанное с redux (actions, reducers, store)
-styles - стили проекта
-
-- components - стили для components
-- icons - иконки fontawesome
-- pages - стили для pages
-
-.env.example - пример конфига
+- components - содержит все компоненты
+- helpers - вспомогательные функции
+- lib - содержит файл api.js, через который происходит взаимодействие с Backend (запросы GraphQL)
+- locales - файлы с локациями
+- models - файлы с typescript типами (для компонентов, секций, state)
+- pages - файлы страниц с учётом routing
+- public - шрифты, картинки, favicon
+- redux - все связанное с redux (actions, reducers, store)
+- styles - стили проекта
+  - components - стили для components
+  - icons - иконки fontawesome
+  - pages - стили для pages
 
 ## Как добавить иконку
 

@@ -1,27 +1,21 @@
-import { useSelector } from "react-redux";
+// TYPES
+import { CardMuseumProps } from "@models/main";
 
-// MODELS
-import { MuseumProps } from "@models/main";
-import { RootState } from "@models/state";
-
-// LOCALES
-import en from "../locales/en";
-import ru from "../locales/ru";
+// HOOKS
+import { useTranslate } from "hooks/useTranslate";
 
 // COMPONENETS
 import Link from "next/link";
 import Image from "next/image";
 import Button from "@components/Button";
 
-const CardMuseum: React.FC<MuseumProps> = ({
+const CardMuseum: React.FC<CardMuseumProps> = ({
   title,
   slug,
   image,
   shortDescription,
 }) => {
-  const language = useSelector((state: RootState) => state.UI.language);
-
-  const translate = language === "ru" ? ru : en;
+  const translate = useTranslate();
   return (
     <div className="card__museum">
       <div className="card__image">

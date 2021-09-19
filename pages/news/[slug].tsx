@@ -2,11 +2,13 @@ import { useRouter } from "next/router";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
+import { NewsProps } from "@models/main";
 
 // COMPONENTS
 import Head from "next/head";
 import Image from "next/image";
 import Container from "@components/Container";
+import Loader from "@components/Loader";
 
 // LIB
 import { getAllNewsWithSlug, getSingleNews } from "@lib/api";
@@ -14,11 +16,11 @@ import { getAllNewsWithSlug, getSingleNews } from "@lib/api";
 // HELPERS
 import { getRusMonthDative } from "../../helpers/dateHelper";
 
-interface EventSingleProps {
-  news: any;
+interface NewsSingleProps {
+  news: NewsProps;
 }
 
-const NewsSingle: NextPage<EventSingleProps> = ({ news }) => {
+const NewsSinglePage: NextPage<NewsSingleProps> = ({ news }) => {
   const router = useRouter();
 
   return (
@@ -31,18 +33,14 @@ const NewsSingle: NextPage<EventSingleProps> = ({ news }) => {
         />
       </Head>
       <section className="section__news--single">
-        <Container type="container--flex">
-          {router.isFallback ? (
-            <h2>Загрузка...</h2>
-          ) : (
+        {router.isFallback ? (
+          <Loader />
+        ) : (
+          <Container type="container--flex">
             <div className="news__content--wrapper">
               <div className="news__image">
                 <Image
-                  src={
-                    news.image.url
-                      ? `${process.env.api}${news.image.url}`
-                      : news.image
-                  }
+                  src={`${process.env.api}${news.image.url}`}
                   width="600"
                   height="400"
                   alt="News Image"
@@ -62,14 +60,14 @@ const NewsSingle: NextPage<EventSingleProps> = ({ news }) => {
                 <div className="news__description">{news.description}</div>
               </div>
             </div>
-          )}
-        </Container>
+          </Container>
+        )}
       </section>
     </>
   );
 };
 
-export default NewsSingle;
+export default NewsSinglePage;
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const data = (await getSingleNews(params!.slug, locale)) || null;

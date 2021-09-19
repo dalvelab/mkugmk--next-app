@@ -1,28 +1,18 @@
 import { useState, useRef } from "react";
-import { useSelector } from "react-redux";
-
-// LOCALES
-import en from "../../locales/en";
-import ru from "../../locales/ru";
 
 // TYPES
 import { NextPage } from "next";
 import { LegacyRef } from "react";
 
+// HOOKS
+import { useTranslate } from "hooks/useTranslate";
+
 //  COMPONENTS
 import Head from "next/head";
 import Container from "@components/Container";
 
-interface RootState {
-  UI: {
-    language: string;
-  };
-}
-
 const Contacts: NextPage = () => {
-  const language = useSelector((state: RootState) => state.UI.language);
-
-  const translate = language === "ru" ? ru : en;
+  const translate = useTranslate();
 
   const [isActive, setIsActive] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);

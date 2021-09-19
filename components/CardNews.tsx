@@ -1,5 +1,5 @@
 // TYPES
-import { NewsProps } from "@models/main";
+import { CardNewsProps } from "@models/main";
 
 // COMPONENTS
 import Link from "next/dist/client/link";
@@ -8,7 +8,7 @@ import Image from "next/image";
 // HELPERS
 import { getRusMonthDative } from "@helpers/dateHelper";
 
-const CardNews: React.FC<NewsProps> = ({
+const CardNews: React.FC<CardNewsProps> = ({
   type,
   title,
   slug,

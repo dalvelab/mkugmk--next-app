@@ -1,18 +1,32 @@
 export interface MuseumProps {
-  slug: string;
-  image: {
-    url: string;
-  };
   title: string;
+  slug: string;
+  museumType: string;
+  description: string;
+  image: Image;
+  shortDescription: string;
+}
+
+export interface CardMuseumProps {
+  title: string;
+  slug: string;
+  image: Image;
   shortDescription: string;
 }
 
 export interface EventProps {
   title: string;
   slug: string;
-  image: {
-    url: string;
-  };
+  image: Image;
+  date: string;
+  shortDescription: string;
+  description: string;
+}
+
+export interface CardEventProps {
+  title: string;
+  slug: string;
+  image: Image;
   date: string;
   shortDescription: string;
 }
@@ -21,9 +35,20 @@ export interface NewsProps {
   type: string;
   title: string;
   slug: string;
-  image: {
-    url: string;
+  image: Image;
+  createdAt: string;
+  shortDescription: string;
+  tag: {
+    title: string;
   };
+  description: string;
+}
+
+export interface CardNewsProps {
+  type: string;
+  title: string;
+  slug: string;
+  image: Image;
   createdAt: string;
   shortDescription: string;
   tag: {
@@ -31,7 +56,7 @@ export interface NewsProps {
   };
 }
 
-export interface TicketProps {
+export interface Ticket {
   id: number;
   title: string;
   price: number;
@@ -48,44 +73,30 @@ export interface ContainerProps {
   children: React.ReactElement | React.ReactElement[];
 }
 
-export interface DropdownProps {
-  isActive: boolean;
-  setActive: Function;
-  label: string;
-  text: string;
-  placeholder: string;
-  setText: Function;
-  setPrice: Function;
-  setID: Function;
-}
+// SECTIONS
 
 export interface HeadingSectionProps {
   title: string;
   museumType: string;
-  image: {
-    src: string;
-    width: string;
-    height: string;
-    blurDataURL: string;
-  };
-  hours: WorkingHours[];
+  image: Image;
+  hours: Array<WorkingHours>;
   description: string;
 }
 
 export interface NewsSectionProps {
   title: string;
   type: string;
-  news: Array<NewsProps>;
+  news: Array<CardNewsProps>;
 }
 
 export interface EventsSectionProps {
   type: string;
-  events: EventProps[];
+  events: Array<CardEventProps>;
 }
 
 export interface GallerySectionProps {
   type: string;
-  gallery: GalleryImage[];
+  gallery: Array<Image>;
 }
 
 export interface Day {
@@ -96,12 +107,32 @@ export interface Day {
 }
 
 export interface WorkingHours {
-  workingHoursMuseum: Day[];
-  workingHoursOutdoor: Day[];
+  workingHoursMuseum: Array<Day>;
+  workingHoursOutdoor: Array<Day>;
 }
+
+// COMPONENTS
 
 export interface InputProps {
   label: string;
   type: string;
   placeholder: string;
+}
+
+export interface Image {
+  url: string;
+  width?: string;
+  height?: string;
+  blurDataURL?: string;
+}
+
+export interface DropdownProps {
+  isActive: boolean;
+  setActive: Function;
+  label: string;
+  text: string;
+  placeholder: string;
+  setText: Function;
+  setPrice: Function;
+  setID: Function;
 }

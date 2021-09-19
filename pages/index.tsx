@@ -1,15 +1,14 @@
-import { useSelector } from "react-redux";
-
-// LOCALES
-import en from "../locales/en";
-import ru from "../locales/ru";
+// HOOKS
+import { useTranslate } from "hooks/useTranslate";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
-import { CardMuseumProps, CardEventProps, CardNewsProps } from "../models/main";
+import { CardMuseumProps } from "@models/main";
+import { WelcomePageProps } from "@models/pages";
 
 // LIB
 import {
+  getWelcomePageInfo,
   getAllMuseumsForHome,
   getEventsForHome,
   getGalleryForHome,
@@ -26,33 +25,15 @@ import EventsSection from "@components/EventsSection";
 import NewsSection from "@components/NewsSection";
 import GallerySection from "@components/GallerySection";
 
-// IMAGE
-import HeaderImage from "../public/images/header_welcome.jpg";
-
-interface WelcomePageProps {
-  museums: Array<CardMuseumProps>;
-  events: Array<CardEventProps>;
-  news: Array<CardNewsProps>;
-  gallery: any;
-  hours: any;
-}
-
-interface RootState {
-  UI: {
-    language: string;
-  };
-}
-
 const WelcomePage: NextPage<WelcomePageProps> = ({
+  pageInfo,
   museums,
   events,
   news,
   gallery,
   hours,
 }) => {
-  const language = useSelector((state: RootState) => state.UI.language);
-
-  const translate = language === "ru" ? ru : en;
+  const translate = useTranslate();
 
   return (
     <>
@@ -64,19 +45,11 @@ const WelcomePage: NextPage<WelcomePageProps> = ({
         />
       </Head>
       <HeadingSection
-        title={translate.title}
-        image={HeaderImage}
+        title={pageInfo.title}
+        image={pageInfo.image}
         museumType="museum"
         hours={hours}
-        description={`
-        Музейный комплекс военной и гражданской техники в городе Верхняя
-        Пышма Свердловской области (пригороде Екатеринбурга), основанный в
-        2006 году, на сегодня является одним из крупнейших в мире
-        военно-технических музеев.
-        В составе музейного комплекса работает открытая площадка и четыре
-        выставочных центра – музей военной техники, музей автомобильной
-        техники, Парадный расчёт, музей авиации «Крылья Победы», на которых
-        суммарно расположено более 1000 образцов техники.`}
+        description={pageInfo.description}
       />
       <section className="welcome__page--museums">
         <Container type="container--flex">
@@ -105,6 +78,7 @@ const WelcomePage: NextPage<WelcomePageProps> = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const pageInfo = (await getWelcomePageInfo(locale)) || null;
   const museums = (await getAllMuseumsForHome(locale)) || null;
   const events = (await getEventsForHome(locale)) || null;
   const news = (await getNewsForHome(locale)) || null;
@@ -112,6 +86,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const hours = (await getHoursForHeading()) || null;
   return {
     props: {
+      pageInfo,
       museums,
       events,
       news,

@@ -1,13 +1,10 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 // TYPES
 import { MouseEvent } from "react";
-import { RootState } from "@models/state";
 
-// LOCALES
-import en from "../locales/en";
-import ru from "../locales/ru";
+// HOOKS
+import { useTranslate } from "hooks/useTranslate";
 
 // COMPONENTS
 import Link from "next/link";
@@ -22,8 +19,7 @@ interface DropDownLink {
 }
 
 const NavbarDropdown: React.FC<NavbarDropdownProps> = ({ data }) => {
-  const language = useSelector((state: RootState) => state.UI.language);
-  const translate = language === "ru" ? ru : en;
+  const translate = useTranslate();
 
   const [isActiveItem, setActiveItem] = useState<string | null>("");
 

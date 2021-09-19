@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
+import { MuseumSinglePageProps } from "@models/pages";
 
 // LIB
 import {
@@ -15,23 +16,14 @@ import {
 
 // COMPONENTS
 import Head from "next/head";
+import Loader from "@components/Loader";
+import Container from "@components/Container";
 import HeadingSection from "@components/HeadingSection";
 import EventsSection from "@components/EventsSection";
 import NewsSection from "@components/NewsSection";
 import GallerySection from "@components/GallerySection";
 
-// IMAGE
-import Container from "@components/Container";
-
-interface MuseumSinglePageProps {
-  museum: any;
-  hours: any;
-  gallery: any;
-  news: any;
-  events: any;
-}
-
-const MuseumSingle: NextPage<MuseumSinglePageProps> = ({
+const MuseumSinglePage: NextPage<MuseumSinglePageProps> = ({
   museum,
   hours,
   gallery,
@@ -47,7 +39,7 @@ const MuseumSingle: NextPage<MuseumSinglePageProps> = ({
       </Head>
       {router.isFallback ? (
         <Container type="container--flex">
-          <h2>Загрузка...</h2>
+          <Loader />
         </Container>
       ) : (
         <>
@@ -94,4 +86,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default MuseumSingle;
+export default MuseumSinglePage;

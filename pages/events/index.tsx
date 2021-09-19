@@ -1,8 +1,5 @@
-import { useSelector } from "react-redux";
-
-// LOCALES
-import en from "../../locales/en";
-import ru from "../../locales/ru";
+// HOOKS
+import { useTranslate } from "hooks/useTranslate";
 
 // LIB
 import { getAllEvents } from "@lib/api";
@@ -20,16 +17,8 @@ interface EventsAllProps {
   events: Array<CardEventProps>;
 }
 
-interface RootState {
-  UI: {
-    language: string;
-  };
-}
-
-const EventsAll: NextPage<EventsAllProps> = ({ events }) => {
-  const language = useSelector((state: RootState) => state.UI.language);
-
-  const translate = language === "ru" ? ru : en;
+const EventsPage: NextPage<EventsAllProps> = ({ events }) => {
+  const translate = useTranslate();
 
   return (
     <>
@@ -63,7 +52,7 @@ const EventsAll: NextPage<EventsAllProps> = ({ events }) => {
   );
 };
 
-export default EventsAll;
+export default EventsPage;
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const events = (await getAllEvents(locale)) || null;

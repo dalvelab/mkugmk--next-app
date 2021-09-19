@@ -1,3 +1,5 @@
+import { Ticket } from "./main";
+
 export interface RootState {
   UI: {
     language: string;
@@ -11,7 +13,9 @@ export interface RootState {
       };
     };
   };
-  cart: any;
+  cart: {
+    tickets: Ticket[];
+  };
 }
 
 interface MuseumLink {

@@ -2,9 +2,11 @@ import { useRouter } from "next/router";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
+import { EventProps } from "@models/main";
 
 // COMPONENTS
 import Head from "next/head";
+import Loader from "@components/Loader";
 import Image from "next/image";
 import Container from "@components/Container";
 
@@ -15,10 +17,10 @@ import { getAllEventsWithSlug, getSingleEvent } from "@lib/api";
 import { getRusMonthDative } from "../../helpers/dateHelper";
 
 interface EventSingleProps {
-  event: any;
+  event: EventProps;
 }
 
-const EventSingle: NextPage<EventSingleProps> = ({ event }) => {
+const EventSinglePage: NextPage<EventSingleProps> = ({ event }) => {
   const router = useRouter();
 
   return (
@@ -33,16 +35,12 @@ const EventSingle: NextPage<EventSingleProps> = ({ event }) => {
       <section className="section__event--single">
         <Container type="container--flex">
           {router.isFallback ? (
-            <h2>Загрузка...</h2>
+            <Loader />
           ) : (
             <div className="event__content--wrapper">
               <div className="event__image">
                 <Image
-                  src={
-                    event.image.url
-                      ? `${process.env.api}${event.image.url}`
-                      : event.image
-                  }
+                  src={`${process.env.api}${event.image.url}`}
                   width="600"
                   height="400"
                   alt="Event Image"
@@ -67,7 +65,7 @@ const EventSingle: NextPage<EventSingleProps> = ({ event }) => {
   );
 };
 
-export default EventSingle;
+export default EventSinglePage;
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const data = (await getSingleEvent(params!.slug, locale)) || null;

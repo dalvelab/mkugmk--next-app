@@ -54,6 +54,31 @@ main {
   min-height: 100vh;
 }
 
+.loader {
+  width: 100%;
+  height: 5px;
+  position: absolute;
+  left: 0;
+  top: -2px;
+  animation-play-state: running;
+  display: flex;
+  .progress {
+    width: 100%;
+    height: 5px;
+    animation: move 1.5s linear infinite;
+    background-color: $green;
+  }
+}
+
+@keyframes move {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
 .button__sidebar--open {
   width: 45px;
   height: 45px;

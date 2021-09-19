@@ -5,9 +5,8 @@ import { useRouter } from "next/router";
 // TYPES
 import { RootState } from "@models/state";
 
-// LOCALES
-import en from "../locales/en";
-import ru from "../locales/ru";
+// HOOKS
+import { useTranslate } from "hooks/useTranslate";
 
 // ACTIONS
 import { UISidebarHandle } from "../redux/actions/uiActions";
@@ -31,8 +30,7 @@ const Sidebar: React.FC = () => {
   );
   const { loading, museums } = linksMuseum;
 
-  const language = useSelector((state: RootState) => state.UI.language);
-  const translate = language === "ru" ? ru : en;
+  const translate = useTranslate();
 
   // LOCAL STATE
   const [isActiveItem, setActiveItem] = useState<string | null>(

@@ -1,40 +1,27 @@
-import { useSelector } from "react-redux";
-
-// LOCALES
-import en from "../../locales/en";
-import ru from "../../locales/ru";
+// HOOKS
+import { useTranslate } from "hooks/useTranslate";
 
 // LIB
 import { getAllNews } from "@lib/api";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
-import { CardNewsProps } from "../../models/main";
+import { CardNewsProps } from "@models/main";
+import { RootState } from "@models/state";
+import { NewsPageProps } from "@models/pages";
 
 //  COMPONENTS
 import Head from "next/head";
 import Container from "@components/Container";
 import CardNews from "@components/CardNews";
 
-interface EventsAllProps {
-  news: Array<CardNewsProps>;
-}
-
-interface RootState {
-  UI: {
-    language: string;
-  };
-}
-
-const NewsAll: NextPage<EventsAllProps> = ({ news }) => {
-  const language = useSelector((state: RootState) => state.UI.language);
-
-  const translate = language === "ru" ? ru : en;
+const NewsPage: NextPage<NewsPageProps> = ({ news }) => {
+  const translate = useTranslate();
 
   return (
     <>
       <Head>
-        <title>События | Музейный комплекс УГМК</title>
+        <title>Новости | Музейный комплекс УГМК</title>
       </Head>
       <section className="section__news--all">
         <Container type="container--flex">
@@ -55,7 +42,7 @@ const NewsAll: NextPage<EventsAllProps> = ({ news }) => {
                   />
                 ))
               ) : (
-                <h2>Нет мероприятий</h2>
+                <h2>Нет новостей</h2>
               )}
             </div>
           </>
@@ -65,7 +52,7 @@ const NewsAll: NextPage<EventsAllProps> = ({ news }) => {
   );
 };
 
-export default NewsAll;
+export default NewsPage;
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const news = (await getAllNews(locale)) || null;

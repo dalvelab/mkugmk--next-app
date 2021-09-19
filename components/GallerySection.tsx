@@ -1,12 +1,8 @@
-import { useSelector } from "react-redux";
-
 // TYPES
 import { GallerySectionProps, GalleryImage } from "@models/main";
-import { RootState } from "@models/state";
 
-// LOCALES
-import en from "../locales/en";
-import ru from "../locales/ru";
+// HOOKS
+import { useTranslate } from "hooks/useTranslate";
 
 // COMPONENTS
 import Image from "next/image";
@@ -14,9 +10,7 @@ import Container from "@components/Container";
 import SwipeSection from "@components/SwipeSection";
 
 const GallerySection: React.FC<GallerySectionProps> = ({ gallery, type }) => {
-  const language = useSelector((state: RootState) => state.UI.language);
-
-  const translate = language === "ru" ? ru : en;
+  const translate = useTranslate();
   return (
     <>
       {gallery && gallery.length > 0 ? (

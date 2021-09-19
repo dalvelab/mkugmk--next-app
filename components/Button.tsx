@@ -1,5 +1,5 @@
 // TYPES
-import { FC, CSSProperties, MouseEventHandler } from "react";
+import { CSSProperties, MouseEventHandler } from "react";
 
 interface ButtonProps {
   type: string;
@@ -9,7 +9,13 @@ interface ButtonProps {
   action?: MouseEventHandler;
 }
 
-const Button: FC<ButtonProps> = ({ type, styles, text, icon, action }) => {
+const Button: React.FC<ButtonProps> = ({
+  type,
+  styles,
+  text,
+  icon,
+  action,
+}) => {
   return (
     <button className={type} style={styles} onClick={action}>
       {text}

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-// LOCALES
-import en from "../../locales/en";
-import ru from "../../locales/ru";
-
 // TYPES
 import { NextPage } from "next";
+import { RootState } from "@models/state";
+
+// HOOKS
+import { useTranslate } from "hooks/useTranslate";
 
 // ACTIONS
 import { cartAddTicket } from "../../redux/actions/cartActions";
@@ -19,23 +19,10 @@ import Input from "@components/Input";
 import CardTicket from "@components/CardTicket";
 import Dropdown from "@components/Dropdown";
 
-interface RootState {
-  UI: {
-    language: string;
-  };
-  cart: {
-    tickets: any;
-  };
-}
-
-interface TicketsSectionProps {}
-
-const Cart: NextPage<TicketsSectionProps> = () => {
+const CartPage: NextPage = () => {
   const dispatch = useDispatch();
 
-  const language = useSelector((state: RootState) => state.UI.language);
-
-  const translate = language === "ru" ? ru : en;
+  const translate = useTranslate();
 
   // REDUX STATE
   const cart = useSelector((state: RootState) => state.cart.tickets);
@@ -227,4 +214,4 @@ const Cart: NextPage<TicketsSectionProps> = () => {
   );
 };
 
-export default Cart;
+export default CartPage;

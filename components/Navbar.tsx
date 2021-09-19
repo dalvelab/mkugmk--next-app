@@ -4,9 +4,8 @@ import { useRouter } from "next/router";
 // TYPES
 import { RootState } from "@models/state";
 
-// LOCALES
-import en from "../locales/en";
-import ru from "../locales/ru";
+// HOOKS
+import { useTranslate } from "hooks/useTranslate";
 
 // ACTIONS
 import { handleUILanguage } from "../redux/actions/uiActions";
@@ -28,7 +27,7 @@ const Navbar: React.FC = () => {
 
   const { loading, museums } = linksMuseum;
 
-  const translate = language === "ru" ? ru : en;
+  const translate = useTranslate();
 
   return (
     <nav className="navigation__top">

@@ -46,12 +46,10 @@ const HeadingSection: React.FC<HeadingSectionProps> = ({
     <section className="section__header">
       <div className="header__image">
         <Image
-          src={image.src}
+          src={`${process.env.api}${image.url}`}
           width="1920"
           height="1080"
           alt="Heading Museum Image"
-          placeholder="blur"
-          blurDataURL={image.blurDataURL}
         />
       </div>
       <Container type="container--flex">

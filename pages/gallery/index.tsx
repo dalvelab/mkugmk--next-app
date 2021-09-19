@@ -1,11 +1,10 @@
-import { useSelector } from "react-redux";
+import { GalleryImage } from "@models/main";
 
-// LOCALES
-import en from "../../locales/en";
-import ru from "../../locales/ru";
+// HOOKS
+import { useTranslate } from "hooks/useTranslate";
 
 // LIB
-import { getAllGallery } from "@lib/api";
+import { getAllMuseumGalleries } from "@lib/api";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
@@ -16,24 +15,16 @@ import Image from "next/image";
 import Container from "@components/Container";
 
 interface GalleryAllProps {
-  gallery: any;
+  gallery: GalleryImage[];
 }
 
-interface RootState {
-  UI: {
-    language: string;
-  };
-}
-
-const GalleryAll: NextPage<GalleryAllProps> = ({ gallery }) => {
-  const language = useSelector((state: RootState) => state.UI.language);
-
-  const translate = language === "ru" ? ru : en;
+const GalleryPage: NextPage<GalleryAllProps> = ({ gallery }) => {
+  const translate = useTranslate();
 
   return (
     <>
       <Head>
-        <title>События | Музейный комплекс УГМК</title>
+        <title>Галерея | Музейный комплекс УГМК</title>
       </Head>
       <section className="section__gallery--all">
         <Container type="container--flex">
@@ -43,18 +34,16 @@ const GalleryAll: NextPage<GalleryAllProps> = ({ gallery }) => {
             </h2>
             <div className="cards__wrapper wrapper--flex">
               {gallery ? (
-                gallery.museums.map((museum: any) =>
-                  museum.gallery.map((image: any, index: number) => (
-                    <div className="gallery__image" key={index}>
-                      <Image
-                        src={`${process.env.api}${image.url}`}
-                        width="960"
-                        height="350"
-                        alt="Gallery Image"
-                      />
-                    </div>
-                  ))
-                )
+                gallery.map((image: GalleryImage, index: number) => (
+                  <div className="gallery__image" key={index}>
+                    <Image
+                      src={`${process.env.api}${image.url}`}
+                      width="960"
+                      height="350"
+                      alt="Gallery Image"
+                    />
+                  </div>
+                ))
               ) : (
                 <h2>Нет фотографий</h2>
               )}
@@ -66,10 +55,10 @@ const GalleryAll: NextPage<GalleryAllProps> = ({ gallery }) => {
   );
 };
 
-export default GalleryAll;
+export default GalleryPage;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = (await getAllGallery()) || null;
+  const data = (await getAllMuseumGalleries()) || null;
   return {
     props: { gallery: data },
     revalidate: 1,

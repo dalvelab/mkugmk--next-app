@@ -8,15 +8,15 @@ import { RootState } from "@models/state";
 import { useTranslate } from "hooks/useTranslate";
 
 // ACTIONS
-import { handleUILanguage } from "../redux/actions/uiActions";
+import { handleUILanguage } from "../../redux/actions/uiActions";
 
 // COMPONENTS
 import Link from "next/link";
-import Container from "@components/Container";
-import Button from "@components/Button";
-import NavbarDropdown from "@components/NavbarDropdown";
+import { Container } from "@components/UI";
+import { Button } from "@components/UI";
+import { NavbarDropdown } from "./NavbarDropdown";
 
-const Navbar: React.FC = () => {
+export const Navbar: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -103,5 +103,3 @@ const Navbar: React.FC = () => {
     </nav>
   );
 };
-
-export default Navbar;

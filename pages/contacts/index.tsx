@@ -9,7 +9,8 @@ import { useTranslate } from "hooks/useTranslate";
 
 //  COMPONENTS
 import Head from "next/head";
-import Container from "@components/Container";
+import { PageHeader } from "@components/Page";
+import { Container } from "@components/UI";
 
 const Contacts: NextPage = () => {
   const translate = useTranslate();
@@ -38,6 +39,7 @@ const Contacts: NextPage = () => {
       <Head>
         <title>Контакты | Музейный комплекс УГМК</title>
       </Head>
+      <PageHeader />
       <section className="section__contacts">
         <Container type="container--flex">
           <>

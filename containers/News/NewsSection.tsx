@@ -3,11 +3,15 @@ import { NewsSectionProps } from "@models/main";
 
 // COMPONENTS
 import Link from "next/dist/client/link";
-import Container from "@components/Container";
-import Button from "@components/Button";
-import CardNews from "@components/CardNews";
+import { Container } from "@components/UI";
+import { Button } from "@components/UI";
+import { CardNews } from "@components/Cards";
 
-const NewsSection: React.FC<NewsSectionProps> = ({ type, title, news }) => {
+export const NewsSection: React.FC<NewsSectionProps> = ({
+  type,
+  title,
+  news,
+}) => {
   return (
     <>
       {news && news.length > 0 ? (
@@ -72,5 +76,3 @@ const NewsSection: React.FC<NewsSectionProps> = ({ type, title, news }) => {
     </>
   );
 };
-
-export default NewsSection;

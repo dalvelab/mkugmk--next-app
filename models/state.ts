@@ -12,6 +12,9 @@ export interface RootState {
         museums: MuseumLink[];
       };
     };
+    prices: {
+      tickets: Array<Ticket>;
+    };
   };
   cart: {
     tickets: Ticket[];

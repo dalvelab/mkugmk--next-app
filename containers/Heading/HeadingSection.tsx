@@ -9,15 +9,17 @@ import { HeadingSectionProps, Day } from "@models/main";
 import { getHoursForHeading } from "@lib/api";
 
 // LOCALES
-import en from "../locales/en";
-import ru from "../locales/ru";
+import en from "../../locales/en";
+import ru from "../../locales/ru";
+
+// GLOBAL COMPONENTS
+import Image from "next/image";
 
 // COMPONENTS
-import Image from "next/image";
-import Container from "@components/Container";
-import Button from "@components/Button";
+import { Container } from "@components/UI";
+import { Button } from "@components/UI";
 
-const HeadingSection: React.FC<HeadingSectionProps> = ({
+export const HeadingSection: React.FC<HeadingSectionProps> = ({
   title,
   museumType,
   image,
@@ -95,5 +97,3 @@ export const getStaticProps: GetStaticProps = async () => {
     props: { hours },
   };
 };
-
-export default HeadingSection;

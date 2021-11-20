@@ -84,6 +84,7 @@
         background-color: #f2f2f2;
       }
     }
+
     @include screen(phone) {
       width: 100%;
       top: calc(100% + 10px);

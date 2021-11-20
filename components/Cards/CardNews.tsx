@@ -8,7 +8,7 @@ import Image from "next/image";
 // HELPERS
 import { getRusMonthDative } from "@helpers/dateHelper";
 
-const CardNews: React.FC<CardNewsProps> = ({
+export const CardNews: React.FC<CardNewsProps> = ({
   type,
   title,
   slug,
@@ -45,5 +45,3 @@ const CardNews: React.FC<CardNewsProps> = ({
     </Link>
   );
 };
-
-export default CardNews;

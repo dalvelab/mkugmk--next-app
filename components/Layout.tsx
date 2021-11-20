@@ -8,9 +8,9 @@ import { RootState } from "@models/state";
 import { UIMuseumLinksHandle } from "../redux/actions/uiActions";
 
 // COMPONENTS
-import Navbar from "@components/Navbar";
-import Sidebar from "@components/Sidebar";
-import Footer from "@components/Footer";
+import { Navbar } from "@components/Navigation";
+import { Sidebar } from "@components/Navigation";
+import { Footer } from "@components/UI";
 import MenuButton from "@components/MenuButton";
 import CartButton from "@components/CartButton";
 

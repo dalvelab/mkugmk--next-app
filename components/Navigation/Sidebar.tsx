@@ -9,7 +9,7 @@ import { RootState } from "@models/state";
 import { useTranslate } from "hooks/useTranslate";
 
 // ACTIONS
-import { UISidebarHandle } from "../redux/actions/uiActions";
+import { UISidebarHandle } from "../../redux/actions/uiActions";
 
 // COMPONENTS
 import Link from "next/link";
@@ -19,7 +19,7 @@ interface DropDownLink {
   slug: string;
 }
 
-const Sidebar: React.FC = () => {
+export const Sidebar: React.FC = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -192,5 +192,3 @@ const Sidebar: React.FC = () => {
     </div>
   );
 };
-
-export default Sidebar;

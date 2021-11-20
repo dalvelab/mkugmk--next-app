@@ -10,8 +10,8 @@ import { CardEventProps } from "../../models/main";
 
 //  COMPONENTS
 import Head from "next/head";
-import Container from "@components/Container";
-import CardEvent from "@components/CardEvent";
+import { Container } from "@components/UI";
+import { CardEvent } from "@components/Cards";
 
 interface EventsAllProps {
   events: Array<CardEventProps>;

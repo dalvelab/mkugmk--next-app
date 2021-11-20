@@ -61,6 +61,7 @@ export interface Ticket {
   title: string;
   price: number;
   quantity: number;
+  type?: string;
 }
 
 export interface GalleryImage {
@@ -135,4 +136,5 @@ export interface DropdownProps {
   setText: Function;
   setPrice: Function;
   setID: Function;
+  tickets: Array<Ticket>;
 }

@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import ReactMarkdown from "react-markdown";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
@@ -7,8 +8,9 @@ import { NewsProps } from "@models/main";
 // COMPONENTS
 import Head from "next/head";
 import Image from "next/image";
-import Container from "@components/Container";
-import Loader from "@components/Loader";
+import { Container } from "@components/UI";
+import { PageHeader } from "@components/Page";
+import { Loader } from "@components/UI";
 
 // LIB
 import { getAllNewsWithSlug, getSingleNews } from "@lib/api";
@@ -36,31 +38,36 @@ const NewsSinglePage: NextPage<NewsSingleProps> = ({ news }) => {
         {router.isFallback ? (
           <Loader />
         ) : (
-          <Container type="container--flex">
-            <div className="news__content--wrapper">
-              <div className="news__image">
-                <Image
-                  src={`${process.env.api}${news.image.url}`}
-                  width="600"
-                  height="400"
-                  alt="News Image"
-                />
-              </div>
-              <div className="news__text--content">
-                <h2 className="news__title">{news.title}</h2>
-                <div className="news__date">
-                  <span>
-                    {news.createdAt.slice(8, 10)}{" "}
-                    {getRusMonthDative(Number(news.createdAt.slice(5, 7)))}
-                    {", "}
-                    {news.createdAt.slice(0, 4)} {" / "}
-                    {news.createdAt.slice(11, 16)}
-                  </span>
+          <>
+            <PageHeader />
+            <Container type="container--flex">
+              <div className="news__content--wrapper">
+                <div className="news__image">
+                  <Image
+                    src={`${process.env.api}${news.image.url}`}
+                    width="600"
+                    height="400"
+                    alt="News Image"
+                  />
                 </div>
-                <div className="news__description">{news.description}</div>
+                <div className="news__text--content">
+                  <div className="news__date">
+                    <span>
+                      {news.createdAt.slice(8, 10)}{" "}
+                      {getRusMonthDative(Number(news.createdAt.slice(5, 7)))}
+                      {", "}
+                      {news.createdAt.slice(0, 4)} {" / "}
+                      {news.createdAt.slice(11, 16)}
+                    </span>
+                  </div>
+                  <h2 className="news__title">{news.title}</h2>
+                </div>
               </div>
-            </div>
-          </Container>
+              <div className="news__description">
+                <ReactMarkdown>{news.description}</ReactMarkdown>
+              </div>
+            </Container>
+          </>
         )}
       </section>
     </>

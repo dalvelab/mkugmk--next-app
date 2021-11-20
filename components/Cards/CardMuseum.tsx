@@ -7,9 +7,9 @@ import { useTranslate } from "hooks/useTranslate";
 // COMPONENETS
 import Link from "next/link";
 import Image from "next/image";
-import Button from "@components/Button";
+import { Button } from "@components/UI";
 
-const CardMuseum: React.FC<CardMuseumProps> = ({
+export const CardMuseum: React.FC<CardMuseumProps> = ({
   title,
   slug,
   image,
@@ -41,5 +41,3 @@ const CardMuseum: React.FC<CardMuseumProps> = ({
     </div>
   );
 };
-
-export default CardMuseum;

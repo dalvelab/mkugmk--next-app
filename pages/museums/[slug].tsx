@@ -14,14 +14,16 @@ import {
   getSingleMuseumGallery,
 } from "@lib/api";
 
+// CONTAINERS
+import { EventsSection } from "@containers/Events";
+import { NewsSection } from "@containers/News";
+import { GallerySection } from "@containers/Gallery";
+import { HeadingSection } from "@containers/Heading";
+
 // COMPONENTS
 import Head from "next/head";
-import Loader from "@components/Loader";
-import Container from "@components/Container";
-import HeadingSection from "@components/HeadingSection";
-import EventsSection from "@components/EventsSection";
-import NewsSection from "@components/NewsSection";
-import GallerySection from "@components/GallerySection";
+import { Loader } from "@components/UI";
+import { Container } from "@components/UI";
 
 const MuseumSinglePage: NextPage<MuseumSinglePageProps> = ({
   museum,

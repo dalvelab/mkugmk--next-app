@@ -12,7 +12,8 @@ import { NextPage, GetStaticProps } from "next";
 //  COMPONENTS
 import Head from "next/head";
 import Image from "next/image";
-import Container from "@components/Container";
+import { PageHeader } from "@components/Page";
+import { Container } from "@components/UI";
 
 interface GalleryAllProps {
   gallery: GalleryImage[];
@@ -26,6 +27,7 @@ const GalleryPage: NextPage<GalleryAllProps> = ({ gallery }) => {
       <Head>
         <title>Галерея | Музейный комплекс УГМК</title>
       </Head>
+      <PageHeader />
       <section className="section__gallery--all">
         <Container type="container--flex">
           <>

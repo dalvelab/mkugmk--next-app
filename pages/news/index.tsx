@@ -7,13 +7,12 @@ import { getAllNews } from "@lib/api";
 // TYPES
 import { NextPage, GetStaticProps } from "next";
 import { CardNewsProps } from "@models/main";
-import { RootState } from "@models/state";
 import { NewsPageProps } from "@models/pages";
 
 //  COMPONENTS
 import Head from "next/head";
-import Container from "@components/Container";
-import CardNews from "@components/CardNews";
+import { Container } from "@components/UI";
+import { CardNews } from "@components/Cards";
 
 const NewsPage: NextPage<NewsPageProps> = ({ news }) => {
   const translate = useTranslate();

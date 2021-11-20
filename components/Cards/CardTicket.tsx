@@ -4,9 +4,14 @@ import { useDispatch } from "react-redux";
 import { Ticket } from "@models/main";
 
 // ACTIONS
-import { cartRemoveTicket } from "../redux/actions/cartActions";
+import { cartRemoveTicket } from "../../redux/actions/cartActions";
 
-const CardTicket: React.FC<Ticket> = ({ id, title, price, quantity }) => {
+export const CardTicket: React.FC<Ticket> = ({
+  id,
+  title,
+  price,
+  quantity,
+}) => {
   const dispatch = useDispatch();
 
   const handleTicketDelete = (id: number) => {
@@ -36,5 +41,3 @@ const CardTicket: React.FC<Ticket> = ({ id, title, price, quantity }) => {
     </>
   );
 };
-
-export default CardTicket;

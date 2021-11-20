@@ -6,10 +6,13 @@ import { useTranslate } from "hooks/useTranslate";
 
 // COMPONENTS
 import Image from "next/image";
-import Container from "@components/Container";
+import { Container } from "@components/UI";
 import SwipeSection from "@components/SwipeSection";
 
-const GallerySection: React.FC<GallerySectionProps> = ({ gallery, type }) => {
+export const GallerySection: React.FC<GallerySectionProps> = ({
+  gallery,
+  type,
+}) => {
   const translate = useTranslate();
   return (
     <>
@@ -35,5 +38,3 @@ const GallerySection: React.FC<GallerySectionProps> = ({ gallery, type }) => {
     </>
   );
 };
-
-export default GallerySection;

@@ -16,14 +16,16 @@ import {
   getHoursForHeading,
 } from "@lib/api";
 
+// CONTAINERS
+import { EventsSection } from "@containers/Events";
+import { NewsSection } from "@containers/News";
+import { GallerySection } from "@containers/Gallery";
+import { HeadingSection } from "@containers/Heading";
+
 // COMPONENTS
 import Head from "next/head";
-import Container from "@components/Container";
-import HeadingSection from "@components/HeadingSection";
-import CardMuseum from "@components/CardMuseum";
-import EventsSection from "@components/EventsSection";
-import NewsSection from "@components/NewsSection";
-import GallerySection from "@components/GallerySection";
+import { Container } from "@components/UI";
+import { CardMuseum } from "@components/Cards";
 
 const WelcomePage: NextPage<WelcomePageProps> = ({
   pageInfo,

@@ -6,12 +6,15 @@ import { useTranslate } from "hooks/useTranslate";
 
 // COMPONENTS
 import Link from "next/link";
-import Container from "./Container";
+import { Container } from "@components/UI";
 import SwipeSection from "@components/SwipeSection";
-import CardEvent from "@components/CardEvent";
-import Button from "@components/Button";
+import { CardEvent } from "@components/Cards";
+import Button from "@components/UI/Button";
 
-const GallerySection: React.FC<EventsSectionProps> = ({ events, type }) => {
+export const EventsSection: React.FC<EventsSectionProps> = ({
+  events,
+  type,
+}) => {
   const translate = useTranslate();
 
   return (
@@ -50,5 +53,3 @@ const GallerySection: React.FC<EventsSectionProps> = ({ events, type }) => {
     </>
   );
 };
-
-export default GallerySection;

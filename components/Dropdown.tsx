@@ -10,6 +10,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   setText,
   setPrice,
   setID,
+  tickets,
 }) => {
   const handleDropdown = () => {
     if (isActive) {
@@ -25,49 +26,6 @@ const Dropdown: React.FC<DropdownProps> = ({
     setID(id);
     setActive(false);
   };
-
-  const hardData = [
-    {
-      id: 1,
-      title: "Билет в 1 ВЦ (стандарт)",
-      price: 300,
-    },
-    {
-      id: 2,
-      title: "Билет в 2 ВЦ (стандарт)",
-      price: 550,
-    },
-    {
-      id: 3,
-      title: "Билет в 3 ВЦ (стандарт)",
-      price: 800,
-    },
-    {
-      id: 4,
-      title: "Билет в 4 ВЦ (стандарт)",
-      price: 1000,
-    },
-    {
-      id: 5,
-      title: "Билет в 1 ВЦ (льготный)",
-      price: 100,
-    },
-    {
-      id: 6,
-      title: "Билет в 2 ВЦ (льготный)",
-      price: 180,
-    },
-    {
-      id: 7,
-      title: "Билет в 3 ВЦ (льготный)",
-      price: 250,
-    },
-    {
-      id: 8,
-      title: "Билет в 4 ВЦ (льготный)",
-      price: 300,
-    },
-  ];
 
   return (
     <div className="input__wrapper input__wrapper--dropdown">
@@ -91,15 +49,15 @@ const Dropdown: React.FC<DropdownProps> = ({
         <i className="far fa-chevron-down"></i>
       </button>
       <div className={isActive ? "dropdown dropdown--active" : "dropdown"}>
-        {hardData.map((data) => (
+        {tickets.map((price, index) => (
           <div
-            key={data.id}
+            key={index}
             className="dropdown__element"
             onClick={() =>
-              handleDropdownSelect(data.id, data.title, data.price)
+              handleDropdownSelect(price.id, price.title, price.price)
             }
           >
-            {data.title}
+            {price.title}
           </div>
         ))}
       </div>

@@ -6,9 +6,10 @@ import { EventProps } from "@models/main";
 
 // COMPONENTS
 import Head from "next/head";
-import Loader from "@components/Loader";
+import { Loader } from "@components/UI";
 import Image from "next/image";
-import Container from "@components/Container";
+import { Container } from "@components/UI";
+import { PageHeader } from "@components/Page";
 
 // LIB
 import { getAllEventsWithSlug, getSingleEvent } from "@lib/api";
@@ -33,33 +34,36 @@ const EventSinglePage: NextPage<EventSingleProps> = ({ event }) => {
         />
       </Head>
       <section className="section__event--single">
-        <Container type="container--flex">
-          {router.isFallback ? (
-            <Loader />
-          ) : (
-            <div className="event__content--wrapper">
-              <div className="event__image">
-                <Image
-                  src={`${process.env.api}${event.image.url}`}
-                  width="600"
-                  height="400"
-                  alt="Event Image"
-                />
-              </div>
-              <div className="event__text--content">
-                <h2 className="event__title">{event.title}</h2>
-                <div className="event__date">
-                  <span>
-                    {event.date.slice(8, 10)}{" "}
-                    {getRusMonthDative(Number(event.date.slice(5, 7)))} в{" "}
-                    {event.date.slice(11, 16)}
-                  </span>
+        {router.isFallback ? (
+          <Loader />
+        ) : (
+          <>
+            <PageHeader />
+            <Container type="container--flex">
+              <div className="event__content--wrapper">
+                <div className="event__image">
+                  <Image
+                    src={`${process.env.api}${event.image.url}`}
+                    width="600"
+                    height="400"
+                    alt="Event Image"
+                  />
                 </div>
-                <div className="event__description">{event.description}</div>
+                <div className="event__text--content">
+                  <h2 className="event__title">{event.title}</h2>
+                  <div className="event__date">
+                    <span>
+                      {event.date.slice(8, 10)}{" "}
+                      {getRusMonthDative(Number(event.date.slice(5, 7)))} в{" "}
+                      {event.date.slice(11, 16)}
+                    </span>
+                  </div>
+                  <div className="event__description">{event.description}</div>
+                </div>
               </div>
-            </div>
-          )}
-        </Container>
+            </Container>
+          </>
+        )}
       </section>
     </>
   );

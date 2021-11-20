@@ -5,6 +5,9 @@ import {
   UI_MUSEUM_LINKS_REQUEST,
   UI_MUSEUM_LINKS_SUCCESS,
   UI_MUSEUM_LINKS_FAIL,
+  UI_PRICES_REQUEST,
+  UI_PRICES_SUCCESS,
+  UI_PRICES_FAIL,
 } from "../constants/uiConstants";
 
 // LANGUAGE
@@ -40,6 +43,21 @@ export const UIMuseumLinksReducer = (state = { museums: [] }, action) => {
     case UI_MUSEUM_LINKS_SUCCESS:
       return { loading: false, museums: action.payload };
     case UI_MUSEUM_LINKS_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const UITicketPricesReducer = (state = { tickets: [] }, action) => {
+  switch (action.type) {
+    case UI_PRICES_REQUEST:
+      return {
+        loading: true,
+      };
+    case UI_PRICES_SUCCESS:
+      return { loading: false, tickets: action.payload };
+    case UI_PRICES_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

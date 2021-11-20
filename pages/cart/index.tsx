@@ -1,22 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // TYPES
 import { NextPage } from "next";
 import { RootState } from "@models/state";
+import { Ticket } from "@models/main";
 
 // HOOKS
 import { useTranslate } from "hooks/useTranslate";
 
 // ACTIONS
 import { cartAddTicket } from "../../redux/actions/cartActions";
+import { UITicketPricesHandle } from "../../redux/actions/uiActions";
 
-//  COMPONENTS
+// HELPERS
+import { compareArrays } from "@helpers/array";
+
+// COMPONENTS
 import Head from "next/head";
-import Container from "@components/Container";
-import Button from "@components/Button";
-import Input from "@components/Input";
-import CardTicket from "@components/CardTicket";
+import { Container } from "@components/UI";
+import { Button } from "@components/UI";
+import { Input } from "@components/Input";
+import { CardTicket } from "@components/Cards";
 import Dropdown from "@components/Dropdown";
 
 const CartPage: NextPage = () => {
@@ -26,6 +31,10 @@ const CartPage: NextPage = () => {
 
   // REDUX STATE
   const cart = useSelector((state: RootState) => state.cart.tickets);
+  const language = useSelector((state: RootState) => state.UI.language);
+
+  // TICKETS CATEGORIES FROM STATE
+  const { tickets } = useSelector((state: RootState) => state.UI.prices);
 
   // LOCAL STATE
   const [amount, setAmount] = useState(1);
@@ -34,6 +43,10 @@ const CartPage: NextPage = () => {
   const [activePrice, setActivePrice] = useState(0);
   const [activeId, setActiveId] = useState(0);
   const [isTableOpened, setIsTableOpened] = useState(true);
+
+  useEffect(() => {
+    dispatch(UITicketPricesHandle(language));
+  }, [language]);
 
   const handleTicketAdd = () => {
     dispatch(
@@ -64,6 +77,26 @@ const CartPage: NextPage = () => {
   const openTicketTable = () => {
     setIsTableOpened(!isTableOpened);
   };
+
+  const standartTickets = useMemo(
+    () =>
+      tickets
+        ? tickets
+            .filter((ticket: Ticket) => ticket.type === "standart")
+            .sort((a, b) => a.price - b.price)
+        : [],
+    [tickets]
+  );
+
+  const preferentialTickets = useMemo(
+    () =>
+      tickets
+        ? tickets
+            .filter((ticket: Ticket) => ticket.type === "preferential")
+            .sort((a, b) => a.price - b.price)
+        : [],
+    [tickets]
+  );
 
   return (
     <>
@@ -102,26 +135,15 @@ const CartPage: NextPage = () => {
                     <div>Стандарт</div>
                     <div>Льготный / Детский</div>
                   </div>
-                  <div className="table__row">
-                    <div>1 ВЦ</div>
-                    <div>300₽</div>
-                    <div>100₽</div>
-                  </div>
-                  <div className="table__row">
-                    <div>2 ВЦ</div>
-                    <div>550₽</div>
-                    <div>180₽</div>
-                  </div>
-                  <div className="table__row">
-                    <div>3 ВЦ</div>
-                    <div>800₽</div>
-                    <div>250₽</div>
-                  </div>
-                  <div className="table__row">
-                    <div>4 ВЦ</div>
-                    <div>1000₽</div>
-                    <div>300₽</div>
-                  </div>
+                  {compareArrays(standartTickets, preferentialTickets).map(
+                    (ticket: Ticket, index: number) => (
+                      <div className="table__row">
+                        <div>{index + 1} ВЦ</div>
+                        <div>{ticket.price}</div>
+                        <div>100₽</div>
+                      </div>
+                    )
+                  )}
                 </div>
               </div>
               <div className="tickets__column tickets__checkout mt-2">
@@ -159,6 +181,7 @@ const CartPage: NextPage = () => {
                     setText={setActiveText}
                     setPrice={setActivePrice}
                     setID={setActiveId}
+                    tickets={tickets ? tickets : []}
                   />
                   <div className="input__wrapper">
                     <label className="label__tickets" htmlFor="text">

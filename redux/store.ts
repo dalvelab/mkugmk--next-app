@@ -7,6 +7,7 @@ import {
   UILanguageReducer,
   UISidebarReducer,
   UIMuseumLinksReducer,
+  UITicketPricesReducer,
 } from "./reducers/uiReducer";
 
 // CART
@@ -19,6 +20,7 @@ const reducer = combineReducers({
     links: combineReducers({
       linksMuseum: UIMuseumLinksReducer,
     }),
+    prices: UITicketPricesReducer,
   }),
   cart: cartReducer,
 });

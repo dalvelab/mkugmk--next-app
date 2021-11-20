@@ -18,7 +18,7 @@ interface DropDownLink {
   slug: string;
 }
 
-const NavbarDropdown: React.FC<NavbarDropdownProps> = ({ data }) => {
+export const NavbarDropdown: React.FC<NavbarDropdownProps> = ({ data }) => {
   const translate = useTranslate();
 
   const [isActiveItem, setActiveItem] = useState<string | null>("");
@@ -117,5 +117,3 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({ data }) => {
     </div>
   );
 };
-
-export default NavbarDropdown;

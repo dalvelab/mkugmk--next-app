@@ -9,7 +9,7 @@ interface ButtonProps {
   action?: MouseEventHandler;
 }
 
-const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   type,
   styles,
   text,
@@ -23,5 +23,3 @@ const Button: React.FC<ButtonProps> = ({
     </button>
   );
 };
-
-export default Button;

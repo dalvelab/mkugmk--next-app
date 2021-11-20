@@ -2,9 +2,9 @@
 import { useTranslate } from "hooks/useTranslate";
 
 // COMPONENTS
-import Container from "@components/Container";
+import { Container } from "@components/UI";
 
-const Footer: React.FC = () => {
+export const Footer: React.FC = () => {
   const translate = useTranslate();
 
   return (
@@ -109,5 +109,3 @@ const Footer: React.FC = () => {
     </footer>
   );
 };
-
-export default Footer;

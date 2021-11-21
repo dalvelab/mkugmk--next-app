@@ -5,7 +5,10 @@ interface GallerySwipeProps {
   children: React.ReactNode;
 }
 
-const GallerySwipe: React.FC<GallerySwipeProps> = ({ length, children }) => {
+export const SwipeSection: React.FC<GallerySwipeProps> = ({
+  length,
+  children,
+}) => {
   const elementRef: React.LegacyRef<HTMLDivElement> = useRef(null);
 
   const handleSwipe = (directrion: string) => {
@@ -56,5 +59,3 @@ const GallerySwipe: React.FC<GallerySwipeProps> = ({ length, children }) => {
     </div>
   );
 };
-
-export default GallerySwipe;

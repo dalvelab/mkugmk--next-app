@@ -7,9 +7,9 @@ import { useTranslate } from "hooks/useTranslate";
 // COMPONENTS
 import Link from "next/link";
 import { Container } from "@components/UI";
-import SwipeSection from "@components/SwipeSection";
+import { SwipeSection } from "@components/SwipeSection";
 import { CardEvent } from "@components/Cards";
-import Button from "@components/UI/Button";
+import { Button } from "@components/UI";
 
 export const EventsSection: React.FC<EventsSectionProps> = ({
   events,

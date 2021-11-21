@@ -14,7 +14,7 @@ export const CardTicket: React.FC<Ticket> = ({
 }) => {
   const dispatch = useDispatch();
 
-  const handleTicketDelete = (id: number) => {
+  const handleTicketDelete = (id: string) => {
     dispatch(cartRemoveTicket(id));
   };
 

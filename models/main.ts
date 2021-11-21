@@ -57,7 +57,7 @@ export interface CardNewsProps {
 }
 
 export interface Ticket {
-  id: number;
+  id: string;
   title: string;
   price: number;
   quantity: number;
@@ -125,16 +125,4 @@ export interface Image {
   width?: string;
   height?: string;
   blurDataURL?: string;
-}
-
-export interface DropdownProps {
-  isActive: boolean;
-  setActive: Function;
-  label: string;
-  text: string;
-  placeholder: string;
-  setText: Function;
-  setPrice: Function;
-  setID: Function;
-  tickets: Array<Ticket>;
 }

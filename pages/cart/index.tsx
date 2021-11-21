@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 // TYPES
 import { NextPage } from "next";
 import { RootState } from "@models/state";
-import { Ticket } from "@models/main";
 
 // HOOKS
 import { useTranslate } from "hooks/useTranslate";
@@ -13,16 +12,12 @@ import { useTranslate } from "hooks/useTranslate";
 import { cartAddTicket } from "../../redux/actions/cartActions";
 import { UITicketPricesHandle } from "../../redux/actions/uiActions";
 
-// HELPERS
-import { compareArrays } from "@helpers/array";
-
 // COMPONENTS
 import Head from "next/head";
 import { Container } from "@components/UI";
 import { Button } from "@components/UI";
-import { Input } from "@components/Input";
 import { CardTicket } from "@components/Cards";
-import Dropdown from "@components/Dropdown";
+import { InputDropdown, Input, InputAmountSelect } from "@components/Input";
 
 const CartPage: NextPage = () => {
   const dispatch = useDispatch();
@@ -39,10 +34,8 @@ const CartPage: NextPage = () => {
   // LOCAL STATE
   const [amount, setAmount] = useState(1);
   const [isActive, setIsActive] = useState(false);
-  const [activeText, setActiveText] = useState("");
-  const [activePrice, setActivePrice] = useState(0);
-  const [activeId, setActiveId] = useState(0);
   const [isTableOpened, setIsTableOpened] = useState(true);
+  const [ticket, addTicket] = useState({ id: "", title: "", price: 0 });
 
   useEffect(() => {
     dispatch(UITicketPricesHandle(language));
@@ -52,16 +45,15 @@ const CartPage: NextPage = () => {
     dispatch(
       cartAddTicket(
         {
-          id: activeId,
-          title: activeText,
-          price: activePrice,
+          id: ticket.id,
+          title: ticket.title,
+          price: ticket.price,
         },
         amount
       )
     );
+    addTicket({ id: "", title: "", price: 0 });
     setAmount(1);
-    setActiveText("");
-    setActivePrice(0);
   };
 
   const handleTicketsAmount = (type: string) => {
@@ -78,25 +70,17 @@ const CartPage: NextPage = () => {
     setIsTableOpened(!isTableOpened);
   };
 
-  const standartTickets = useMemo(
-    () =>
-      tickets
-        ? tickets
-            .filter((ticket: Ticket) => ticket.type === "standart")
-            .sort((a, b) => a.price - b.price)
-        : [],
-    [tickets]
-  );
-
-  const preferentialTickets = useMemo(
-    () =>
-      tickets
-        ? tickets
-            .filter((ticket: Ticket) => ticket.type === "preferential")
-            .sort((a, b) => a.price - b.price)
-        : [],
-    [tickets]
-  );
+  const cartTotal = useMemo(() => {
+    if (cart.length > 0) {
+      const ticketsCount = cart
+        .map((ticket) => ticket.quantity)
+        .reduce((a, b) => a + b);
+      const priceTotal = cart
+        .map((ticket) => ticket.price * ticket.quantity)
+        .reduce((a, b) => a + b);
+      return `${ticketsCount} бил. на ${priceTotal} ₽`;
+    }
+  }, [cart]);
 
   return (
     <>
@@ -135,15 +119,6 @@ const CartPage: NextPage = () => {
                     <div>Стандарт</div>
                     <div>Льготный / Детский</div>
                   </div>
-                  {compareArrays(standartTickets, preferentialTickets).map(
-                    (ticket: Ticket, index: number) => (
-                      <div className="table__row">
-                        <div>{index + 1} ВЦ</div>
-                        <div>{ticket.price}</div>
-                        <div>100₽</div>
-                      </div>
-                    )
-                  )}
                 </div>
               </div>
               <div className="tickets__column tickets__checkout mt-2">
@@ -172,37 +147,20 @@ const CartPage: NextPage = () => {
                     type="email"
                     placeholder={translate.cart.form.emailPlaceholder}
                   />
-                  <Dropdown
-                    isActive={isActive}
-                    setActive={setIsActive}
+                  <InputDropdown
+                    isOpened={isActive}
+                    setOpened={setIsActive}
                     label={translate.cart.form.ticketType}
                     placeholder={translate.cart.form.ticketTypePlaceholder}
-                    text={activeText}
-                    setText={setActiveText}
-                    setPrice={setActivePrice}
-                    setID={setActiveId}
-                    tickets={tickets ? tickets : []}
+                    items={tickets ? tickets : []}
+                    text={ticket.title}
+                    selectItem={addTicket}
                   />
-                  <div className="input__wrapper">
-                    <label className="label__tickets" htmlFor="text">
-                      {translate.cart.form.visitorsAmount}
-                    </label>
-                    <div className="tickets__amount--control">
-                      <button
-                        className="tickets__amount--button"
-                        onClick={() => handleTicketsAmount("decrease")}
-                      >
-                        <i className="fal fa-minus"></i>
-                      </button>
-                      <div className="tickets__amount--status">{amount}</div>
-                      <button
-                        className="tickets__amount--button"
-                        onClick={() => handleTicketsAmount("increase")}
-                      >
-                        <i className="fal fa-plus"></i>
-                      </button>
-                    </div>
-                  </div>
+                  <InputAmountSelect
+                    label={translate.cart.form.visitorsAmount}
+                    changeAmount={handleTicketsAmount}
+                    amount={amount}
+                  />
                   <div className="input__wrapper">
                     <Button
                       type="tickets__button btn--x1 btn--black font--medium"
@@ -225,6 +183,9 @@ const CartPage: NextPage = () => {
                   quantity={ticket.quantity}
                 />
               ))}
+              <span className="column__title mb-2">
+                {cart.length > 0 ? `Итого: ${cartTotal}` : null}
+              </span>
               <Button
                 type="tickets__button btn--x1 btn--green font--medium"
                 text={translate.cart.checkoutButton}

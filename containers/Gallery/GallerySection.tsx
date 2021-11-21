@@ -7,7 +7,7 @@ import { useTranslate } from "hooks/useTranslate";
 // COMPONENTS
 import Image from "next/image";
 import { Container } from "@components/UI";
-import SwipeSection from "@components/SwipeSection";
+import { SwipeSection } from "@components/SwipeSection";
 
 export const GallerySection: React.FC<GallerySectionProps> = ({
   gallery,

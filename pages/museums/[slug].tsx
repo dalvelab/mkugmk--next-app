@@ -2,7 +2,13 @@ import { useRouter } from "next/router";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
-import { MuseumSinglePageProps } from "@models/pages";
+import {
+  IMuseum,
+  IOpenHours,
+  IGalleryImage,
+  INews,
+  IEvent,
+} from "@models/main";
 
 // LIB
 import {
@@ -25,7 +31,15 @@ import Head from "next/head";
 import { Loader } from "@components/UI";
 import { Container } from "@components/UI";
 
-const MuseumSinglePage: NextPage<MuseumSinglePageProps> = ({
+interface IProps {
+  museum: IMuseum;
+  hours: IOpenHours;
+  gallery: IGalleryImage[];
+  news: INews[];
+  events: IEvent[];
+}
+
+const MuseumSinglePage: NextPage<IProps> = ({
   museum,
   hours,
   gallery,

@@ -1,5 +1,5 @@
 // TYPES
-import { GallerySectionProps, GalleryImage } from "@models/main";
+import { IImage } from "@models/main";
 
 // HOOKS
 import { useTranslate } from "hooks/useTranslate";
@@ -9,10 +9,12 @@ import Image from "next/image";
 import { Container } from "@components/UI";
 import { SwipeSection } from "@components/SwipeSection";
 
-export const GallerySection: React.FC<GallerySectionProps> = ({
-  gallery,
-  type,
-}) => {
+interface IProps {
+  type: string;
+  gallery: IImage[];
+}
+
+export const GallerySection: React.FC<IProps> = ({ gallery, type }) => {
   const translate = useTranslate();
   return (
     <>
@@ -21,7 +23,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
           <Container type="container--flex">
             <h2 className="section__heading">{translate.titles.gallery}</h2>
             <SwipeSection length={gallery.length}>
-              {gallery.map((image: GalleryImage, index: number) => (
+              {gallery.map((image, index: number) => (
                 <div className="gallery__image" key={index}>
                   <Image
                     src={`${process.env.api}${image.url}`}

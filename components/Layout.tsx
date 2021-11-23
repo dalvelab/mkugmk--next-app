@@ -14,11 +14,11 @@ import { Footer } from "@components/UI";
 import MenuButton from "@components/MenuButton";
 import CartButton from "@components/CartButton";
 
-interface LayoutProps {
+interface IProps {
   children: React.ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<IProps> = ({ children }) => {
   const dispatch = useDispatch();
 
   const language = useSelector((state: RootState) => state.UI.language);

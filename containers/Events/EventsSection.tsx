@@ -1,5 +1,5 @@
 // TYPES
-import { CardEventProps, EventsSectionProps } from "@models/main";
+import { IEvent } from "@models/main";
 
 // HOOKS
 import { useTranslate } from "hooks/useTranslate";
@@ -11,10 +11,12 @@ import { SwipeSection } from "@components/SwipeSection";
 import { CardEvent } from "@components/Cards";
 import { Button } from "@components/UI";
 
-export const EventsSection: React.FC<EventsSectionProps> = ({
-  events,
-  type,
-}) => {
+interface IProps {
+  type: string;
+  events: IEvent[];
+}
+
+export const EventsSection: React.FC<IProps> = ({ events, type }) => {
   const translate = useTranslate();
 
   return (
@@ -24,7 +26,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
           <Container type="container--flex">
             <h2 className="section__heading">{translate.titles.events}</h2>
             <SwipeSection length={events.length}>
-              {events.map((event: CardEventProps, index: number) => (
+              {events.map((event, index: number) => (
                 <CardEvent
                   key={index}
                   title={event.title}

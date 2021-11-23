@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 // TYPES
 import { GetStaticProps } from "next";
 import { RootState } from "@models/state";
-import { HeadingSectionProps, Day } from "@models/main";
+import { IImage, IOpenDay, IOpenHours } from "@models/main";
 
 // LIB
 import { getHoursForHeading } from "@lib/api";
@@ -19,7 +19,15 @@ import Image from "next/image";
 import { Container } from "@components/UI";
 import { Button } from "@components/UI";
 
-export const HeadingSection: React.FC<HeadingSectionProps> = ({
+interface IProps {
+  title: string;
+  museumType: string;
+  image: IImage;
+  hours: IOpenHours;
+  description: string;
+}
+
+export const HeadingSection: React.FC<IProps> = ({
   title,
   museumType,
   image,
@@ -35,12 +43,12 @@ export const HeadingSection: React.FC<HeadingSectionProps> = ({
   let currentDay;
 
   if (museumType === "museum") {
-    currentDay = hours[0].workingHoursMuseum.filter(
-      (day: Day, index: number) => index === currentDayIndex
+    currentDay = hours.museum.filter(
+      (day: IOpenDay, index: number) => index === currentDayIndex
     )[0];
   } else {
-    currentDay = hours[0].workingHoursOutdoor.filter(
-      (day: Day, index: number) => index === currentDayIndex
+    currentDay = hours.openspace.filter(
+      (day: IOpenDay, index: number) => index === currentDayIndex
     )[0];
   }
 

@@ -1,12 +1,16 @@
 import { useDispatch } from "react-redux";
 
-// TYPES
-import { Ticket } from "@models/main";
-
 // ACTIONS
 import { cartRemoveTicket } from "../../redux/actions/cartActions";
 
-export const CardTicket: React.FC<Ticket> = ({
+interface IProps {
+  id: string;
+  title: string;
+  price: number;
+  quantity: number;
+}
+
+export const CardTicket: React.FC<IProps> = ({
   id,
   title,
   price,

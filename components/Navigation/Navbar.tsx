@@ -12,8 +12,7 @@ import { handleUILanguage } from "../../redux/actions/uiActions";
 
 // COMPONENTS
 import Link from "next/link";
-import { Container } from "@components/UI";
-import { Button } from "@components/UI";
+import { Container, Button } from "@components/UI";
 import { NavbarDropdown } from "./NavbarDropdown";
 
 export const Navbar: React.FC = () => {

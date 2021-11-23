@@ -3,8 +3,14 @@ import { useTranslate } from "hooks/useTranslate";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
-import { CardMuseumProps } from "@models/main";
-import { WelcomePageProps } from "@models/pages";
+import {
+  IImage,
+  IEvent,
+  IOpenHours,
+  INews,
+  IMuseum,
+  IGalleryImage,
+} from "@models/main";
 
 // LIB
 import {
@@ -27,7 +33,20 @@ import Head from "next/head";
 import { Container } from "@components/UI";
 import { CardMuseum } from "@components/Cards";
 
-const WelcomePage: NextPage<WelcomePageProps> = ({
+interface IProps {
+  pageInfo: {
+    title: string;
+    description: string;
+    image: IImage;
+  };
+  museums: IMuseum[];
+  events: IEvent[];
+  news: INews[];
+  gallery: IGalleryImage[];
+  hours: IOpenHours;
+}
+
+const WelcomePage: NextPage<IProps> = ({
   pageInfo,
   museums,
   events,
@@ -56,7 +75,7 @@ const WelcomePage: NextPage<WelcomePageProps> = ({
       <section className="welcome__page--museums">
         <Container type="container--flex">
           <div className="cards__wrapper wrapper--grid">
-            {museums.map((museum: CardMuseumProps, index: number) => (
+            {museums.map((museum, index: number) => (
               <CardMuseum
                 key={index}
                 title={museum.title}

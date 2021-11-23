@@ -1,7 +1,7 @@
 // TYPES
 import { CSSProperties, MouseEventHandler } from "react";
 
-interface ButtonProps {
+interface IProps {
   type: string;
   styles?: CSSProperties;
   text: string;
@@ -9,7 +9,7 @@ interface ButtonProps {
   action?: MouseEventHandler;
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<IProps> = ({
   type,
   styles,
   text,

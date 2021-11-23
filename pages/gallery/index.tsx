@@ -1,4 +1,4 @@
-import { GalleryImage } from "@models/main";
+import { IGalleryImage } from "@models/main";
 
 // HOOKS
 import { useTranslate } from "hooks/useTranslate";
@@ -15,11 +15,11 @@ import Image from "next/image";
 import { PageHeader } from "@components/Page";
 import { Container } from "@components/UI";
 
-interface GalleryAllProps {
-  gallery: GalleryImage[];
+interface IProps {
+  gallery: IGalleryImage[];
 }
 
-const GalleryPage: NextPage<GalleryAllProps> = ({ gallery }) => {
+const GalleryPage: NextPage<IProps> = ({ gallery }) => {
   const translate = useTranslate();
 
   return (
@@ -36,7 +36,7 @@ const GalleryPage: NextPage<GalleryAllProps> = ({ gallery }) => {
             </h2>
             <div className="cards__wrapper wrapper--flex">
               {gallery ? (
-                gallery.map((image: GalleryImage, index: number) => (
+                gallery.map((image, index: number) => (
                   <div className="gallery__image" key={index}>
                     <Image
                       src={`${process.env.api}${image.url}`}

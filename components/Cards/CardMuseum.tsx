@@ -1,5 +1,5 @@
 // TYPES
-import { CardMuseumProps } from "@models/main";
+import { IImage } from "@models/main";
 
 // HOOKS
 import { useTranslate } from "hooks/useTranslate";
@@ -9,7 +9,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@components/UI";
 
-export const CardMuseum: React.FC<CardMuseumProps> = ({
+interface IProps {
+  title: string;
+  slug: string;
+  image: IImage;
+  shortDescription: string;
+}
+
+export const CardMuseum: React.FC<IProps> = ({
   title,
   slug,
   image,

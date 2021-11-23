@@ -17,7 +17,7 @@ section {
   height: auto;
   position: relative;
   .section__heading {
-    margin: 25px 0 25px 0;
+    margin: 20px 0 20px 0;
     font-weight: 500;
     @include screen(phone) {
       font-size: 30px;

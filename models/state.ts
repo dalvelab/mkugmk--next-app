@@ -1,4 +1,4 @@
-import { Ticket } from "./main";
+import { ITicket } from "./main";
 
 export interface RootState {
   UI: {
@@ -9,19 +9,17 @@ export interface RootState {
     links: {
       linksMuseum: {
         loading: boolean;
-        museums: MuseumLink[];
+        museums: {
+          title: string;
+          slug: string;
+        }[];
       };
     };
     prices: {
-      tickets: Array<Ticket>;
+      tickets: ITicket[];
     };
   };
   cart: {
-    tickets: Ticket[];
+    tickets: ITicket[];
   };
-}
-
-interface MuseumLink {
-  title: string;
-  slug: string;
 }

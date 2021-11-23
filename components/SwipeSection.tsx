@@ -1,14 +1,11 @@
 import { useRef } from "react";
 
-interface GallerySwipeProps {
+interface IProps {
   length: number;
   children: React.ReactNode;
 }
 
-export const SwipeSection: React.FC<GallerySwipeProps> = ({
-  length,
-  children,
-}) => {
+export const SwipeSection: React.FC<IProps> = ({ length, children }) => {
   const elementRef: React.LegacyRef<HTMLDivElement> = useRef(null);
 
   const handleSwipe = (directrion: string) => {

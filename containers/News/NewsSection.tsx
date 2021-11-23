@@ -1,5 +1,5 @@
 // TYPES
-import { NewsSectionProps } from "@models/main";
+import { INews } from "@models/main";
 
 // COMPONENTS
 import Link from "next/dist/client/link";
@@ -7,11 +7,13 @@ import { Container } from "@components/UI";
 import { Button } from "@components/UI";
 import { CardNews } from "@components/Cards";
 
-export const NewsSection: React.FC<NewsSectionProps> = ({
-  type,
-  title,
-  news,
-}) => {
+interface IProps {
+  title: string;
+  type: string;
+  news: INews[];
+}
+
+export const NewsSection: React.FC<IProps> = ({ type, title, news }) => {
   return (
     <>
       {news && news.length > 0 ? (

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
-import { EventProps } from "@models/main";
+import { IEvent } from "@models/main";
 
 // COMPONENTS
 import Head from "next/head";
@@ -17,11 +17,11 @@ import { getAllEventsWithSlug, getSingleEvent } from "@lib/api";
 // HELPERS
 import { getRusMonthDative } from "../../helpers/dateHelper";
 
-interface EventSingleProps {
-  event: EventProps;
+interface IProps {
+  event: IEvent;
 }
 
-const EventSinglePage: NextPage<EventSingleProps> = ({ event }) => {
+const EventSinglePage: NextPage<IProps> = ({ event }) => {
   const router = useRouter();
 
   return (

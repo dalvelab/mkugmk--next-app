@@ -9,7 +9,7 @@ import { useTranslate } from "hooks/useTranslate";
 // COMPONENTS
 import Link from "next/link";
 
-interface NavbarDropdownProps {
+interface IProps {
   data: DropDownLink[];
 }
 
@@ -18,7 +18,7 @@ interface DropDownLink {
   slug: string;
 }
 
-export const NavbarDropdown: React.FC<NavbarDropdownProps> = ({ data }) => {
+export const NavbarDropdown: React.FC<IProps> = ({ data }) => {
   const translate = useTranslate();
 
   const [isActiveItem, setActiveItem] = useState<string | null>("");

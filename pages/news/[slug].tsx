@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
-import { NewsProps } from "@models/main";
+import { INews } from "@models/main";
 
 // COMPONENTS
 import Head from "next/head";
@@ -18,11 +18,11 @@ import { getAllNewsWithSlug, getSingleNews } from "@lib/api";
 // HELPERS
 import { getRusMonthDative } from "../../helpers/dateHelper";
 
-interface NewsSingleProps {
-  news: NewsProps;
+interface IProps {
+  news: INews;
 }
 
-const NewsSinglePage: NextPage<NewsSingleProps> = ({ news }) => {
+const NewsSinglePage: NextPage<IProps> = ({ news }) => {
   const router = useRouter();
 
   return (

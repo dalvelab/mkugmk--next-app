@@ -1,11 +1,10 @@
-// TYPES
-import { ContainerProps } from "@models/main";
+interface IProps {
+  type: string;
+  styles?: React.CSSProperties;
+  children: React.ReactElement | React.ReactElement[];
+}
 
-export const Container: React.FC<ContainerProps> = ({
-  type,
-  styles,
-  children,
-}) => {
+export const Container: React.FC<IProps> = ({ type, styles, children }) => {
   return (
     <div className={type} style={styles}>
       {children}

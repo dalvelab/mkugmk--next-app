@@ -1,41 +1,26 @@
-export interface MuseumProps {
+export interface IMuseum {
   title: string;
   slug: string;
   museumType: string;
   description: string;
-  image: Image;
+  image: IImage;
   shortDescription: string;
 }
 
-export interface CardMuseumProps {
+export interface IEvent {
   title: string;
   slug: string;
-  image: Image;
-  shortDescription: string;
-}
-
-export interface EventProps {
-  title: string;
-  slug: string;
-  image: Image;
+  image: IImage;
   date: string;
   shortDescription: string;
   description: string;
 }
 
-export interface CardEventProps {
-  title: string;
-  slug: string;
-  image: Image;
-  date: string;
-  shortDescription: string;
-}
-
-export interface NewsProps {
+export interface INews {
   type: string;
   title: string;
   slug: string;
-  image: Image;
+  image: IImage;
   createdAt: string;
   shortDescription: string;
   tag: {
@@ -44,19 +29,7 @@ export interface NewsProps {
   description: string;
 }
 
-export interface CardNewsProps {
-  type: string;
-  title: string;
-  slug: string;
-  image: Image;
-  createdAt: string;
-  shortDescription: string;
-  tag: {
-    title: string;
-  };
-}
-
-export interface Ticket {
+export interface ITicket {
   id: string;
   title: string;
   price: number;
@@ -64,65 +37,34 @@ export interface Ticket {
   type?: string;
 }
 
-export interface GalleryImage {
+export interface IImage {
+  url: string;
+  width?: string;
+  height?: string;
+  blurDataURL?: string;
+}
+
+export interface IGalleryImage {
   url: string;
 }
 
-export interface ContainerProps {
-  type: string;
-  styles?: React.CSSProperties;
-  children: React.ReactElement | React.ReactElement[];
-}
-
-// SECTIONS
-
-export interface HeadingSectionProps {
-  title: string;
-  museumType: string;
-  image: Image;
-  hours: Array<WorkingHours>;
-  description: string;
-}
-
-export interface NewsSectionProps {
-  title: string;
-  type: string;
-  news: Array<CardNewsProps>;
-}
-
-export interface EventsSectionProps {
-  type: string;
-  events: Array<CardEventProps>;
-}
-
-export interface GallerySectionProps {
-  type: string;
-  gallery: Array<Image>;
-}
-
-export interface Day {
+export interface IOpenDay {
   day: string;
   timeOpen: string;
   timeClose: string;
   isWeekend: boolean;
 }
 
-export interface WorkingHours {
-  workingHoursMuseum: Array<Day>;
-  workingHoursOutdoor: Array<Day>;
+export interface IOpenHours {
+  museum: Array<IOpenDay>;
+  openspace: Array<IOpenDay>;
 }
 
-// COMPONENTS
-
-export interface InputProps {
-  label: string;
+export interface IContact {
+  id: string;
+  name: string;
+  email: string;
   type: string;
-  placeholder: string;
-}
-
-export interface Image {
-  url: string;
-  width?: string;
-  height?: string;
-  blurDataURL?: string;
+  phone: string;
+  position: string;
 }

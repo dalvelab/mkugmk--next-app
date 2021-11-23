@@ -1,5 +1,5 @@
 // TYPES
-import { CardNewsProps } from "@models/main";
+import { IImage } from "@models/main";
 
 // COMPONENTS
 import Link from "next/dist/client/link";
@@ -8,7 +8,19 @@ import Image from "next/image";
 // HELPERS
 import { getRusMonthDative } from "@helpers/dateHelper";
 
-export const CardNews: React.FC<CardNewsProps> = ({
+interface IProps {
+  type: string;
+  title: string;
+  slug: string;
+  image: IImage;
+  createdAt: string;
+  shortDescription: string;
+  tag: {
+    title: string;
+  };
+}
+
+export const CardNews: React.FC<IProps> = ({
   type,
   title,
   slug,

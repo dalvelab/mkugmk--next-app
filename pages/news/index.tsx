@@ -6,15 +6,18 @@ import { getAllNews } from "@lib/api";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
-import { CardNewsProps } from "@models/main";
-import { NewsPageProps } from "@models/pages";
+import { INews } from "@models/main";
 
 //  COMPONENTS
 import Head from "next/head";
 import { Container } from "@components/UI";
 import { CardNews } from "@components/Cards";
 
-const NewsPage: NextPage<NewsPageProps> = ({ news }) => {
+interface IProps {
+  news: INews[];
+}
+
+const NewsPage: NextPage<IProps> = ({ news }) => {
   const translate = useTranslate();
 
   return (
@@ -28,9 +31,9 @@ const NewsPage: NextPage<NewsPageProps> = ({ news }) => {
             <h2 className="section__heading">{translate.welcomePage.news}</h2>
             <div className="cards__wrapper wrapper--flex">
               {news && news.length > 0 ? (
-                news.map((n: CardNewsProps, index: number) => (
+                news.map((n) => (
                   <CardNews
-                    key={index}
+                    key={n.id}
                     type="card__news--medium"
                     title={n.title}
                     slug={n.slug}

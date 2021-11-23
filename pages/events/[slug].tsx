@@ -85,7 +85,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 export async function getStaticPaths() {
   const allEvents = await getAllEventsWithSlug();
   return {
-    paths: allEvents?.map((event: any) => `/events/${event.slug}`) || [],
+    paths: allEvents?.map((event: IEvent) => `/events/${event.slug}`) || [],
     fallback: true,
   };
 }

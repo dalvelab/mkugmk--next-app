@@ -97,7 +97,8 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 export async function getStaticPaths() {
   const allMuseums = await getAllMuseumsWithSlug();
   return {
-    paths: allMuseums?.map((museum: any) => `/museums/${museum.slug}`) || [],
+    paths:
+      allMuseums?.map((museum: IMuseum) => `/museums/${museum.slug}`) || [],
     fallback: true,
   };
 }

@@ -11,6 +11,9 @@ import { getContacts } from "@lib/api";
 // HOOKS
 import { useTranslate } from "hooks/useTranslate";
 
+// CONTAINERS
+import { ContactsContainer } from "@containers/Contacts";
+
 //  COMPONENTS
 import Head from "next/head";
 import { PageHeader } from "@components/Page";
@@ -38,8 +41,8 @@ const Contacts: NextPage<IContactsProps> = ({ contacts }) => {
   };
 
   const handleMapActive = () => {
-    setIsActive(false);
     setIsDisabled(true);
+    setIsActive(false);
   };
 
   return (
@@ -51,60 +54,21 @@ const Contacts: NextPage<IContactsProps> = ({ contacts }) => {
       <section className="section__contacts">
         <Container type="container--flex">
           <h2 className="section__heading">{translate.contactsPage.title}</h2>
-          <div className="contacts__row">
-            {contacts.filter((contact) => contact.type === "management")
-              .length > 0 && <h5>Руководство</h5>}
-            <div className="cards__wrapper wrapper--flex">
-              {contacts
-                .filter((contact) => contact.type === "management")
-                .map((contact) => (
-                  <div className="card__contact" key={contact.id}>
-                    <span className="card__job">{contact.position}</span>
-                    <span className="card__name">{contact.name}</span>
-                    <div className="card__contacts--list">
-                      <div className="contact">{contact.email}</div>
-                      <div className="contact">{contact.phone}</div>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
-          <div className="contacts__row">
-            {contacts.filter((contact) => contact.type === "media").length >
-              0 && <h5>Для СМИ и медиа</h5>}
-            <div className="cards__wrapper wrapper--flex">
-              {contacts
-                .filter((contact) => contact.type === "media")
-                .map((contact) => (
-                  <div className="card__contact" key={contact.id}>
-                    <span className="card__job">{contact.position}</span>
-                    <span className="card__name">{contact.name}</span>
-                    <div className="card__contacts--list">
-                      <div className="contact">{contact.email}</div>
-                      <div className="contact">{contact.phone}</div>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
-          <div className="contacts__row">
-            {contacts.filter((contact) => contact.type === "cooperation")
-              .length > 0 && <h5>Сотрудничество</h5>}
-            <div className="cards__wrapper wrapper--flex">
-              {contacts
-                .filter((contact) => contact.type === "cooperation")
-                .map((contact) => (
-                  <div className="card__contact" key={contact.id}>
-                    <span className="card__job">{contact.position}</span>
-                    <span className="card__name">{contact.name}</span>
-                    <div className="card__contacts--list">
-                      <div className="contact">{contact.email}</div>
-                      <div className="contact">{contact.phone}</div>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
+          <ContactsContainer
+            contacts={contacts}
+            title="Руководство"
+            type="management"
+          />
+          <ContactsContainer
+            contacts={contacts}
+            title="Для СМИ и медиа"
+            type="media"
+          />
+          <ContactsContainer
+            contacts={contacts}
+            title="Сотрудничество"
+            type="cooperation"
+          />
         </Container>
       </section>
       <section className="section__contacts--working-hours">
@@ -115,28 +79,32 @@ const Contacts: NextPage<IContactsProps> = ({ contacts }) => {
       <section className="section__contacts--yandex-map">
         <Container type="container--flex">
           <h2 className="section__heading">Как добраться</h2>
-          <div
-            className={`${
-              isActive
-                ? "map__overlay overlay--active"
-                : isDisabled
-                ? "map__overlay overlay--disabled"
-                : "map__overlay"
-            }`}
-            onClick={handleMapActive}
-            onMouseOver={handleMapBlur}
-            onMouseLeave={handleMapUnblur}
-            onTouchStart={handleMapBlur}
-          >
-            <div className="overlay__text">Нажмите на карту для работы</div>
+        </Container>
+        <Container type="container--flex container--map">
+          <div className="map__wrapper">
+            <div
+              className={`${
+                isActive
+                  ? "map__overlay overlay--active"
+                  : isDisabled
+                  ? "map__overlay overlay--disabled"
+                  : "map__overlay overlay"
+              }`}
+              onClick={handleMapActive}
+              onMouseOver={handleMapBlur}
+              onTouchStart={handleMapBlur}
+            >
+              <div className="overlay__text">Нажмите на карту для работы</div>
+            </div>
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?um=constructor%3A4a18c5739a078ec65fab77ebc20a509248f21534ca59e3defa8a17620f82a2de&amp;source=constructor"
+              width="100%"
+              height="650px"
+              frameBorder="0"
+              ref={map}
+              onMouseLeave={handleMapUnblur}
+            ></iframe>
           </div>
-          <iframe
-            src="https://yandex.ru/map-widget/v1/?um=constructor%3A4a18c5739a078ec65fab77ebc20a509248f21534ca59e3defa8a17620f82a2de&amp;source=constructor"
-            width="100%"
-            height="650px"
-            frameBorder="0"
-            ref={map}
-          ></iframe>
         </Container>
       </section>
     </>

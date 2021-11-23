@@ -1,4 +1,5 @@
 export interface IMuseum {
+  id: string;
   title: string;
   slug: string;
   museumType: string;
@@ -8,6 +9,7 @@ export interface IMuseum {
 }
 
 export interface IEvent {
+  id: string;
   title: string;
   slug: string;
   image: IImage;
@@ -17,6 +19,7 @@ export interface IEvent {
 }
 
 export interface INews {
+  id: string;
   type: string;
   title: string;
   slug: string;

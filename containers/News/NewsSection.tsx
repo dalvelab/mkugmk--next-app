@@ -32,23 +32,21 @@ export const NewsSection: React.FC<IProps> = ({ type, title, news }) => {
               />
               {news.length > 1 ? (
                 <div className="card__news-small--column-wrapper">
-                  {news
-                    .slice(1, news.length > 4 ? 4 : news.length)
-                    .map((n, index) => (
-                      <CardNews
-                        key={index}
-                        type="card__news--small"
-                        title={n.title}
-                        slug={n.slug}
-                        image={n.image}
-                        createdAt={n.createdAt}
-                        tag={n.tag}
-                        shortDescription={n.shortDescription}
-                      />
-                    ))}
+                  {news.slice(1, news.length > 4 ? 4 : news.length).map((n) => (
+                    <CardNews
+                      key={n.id}
+                      type="card__news--small"
+                      title={n.title}
+                      slug={n.slug}
+                      image={n.image}
+                      createdAt={n.createdAt}
+                      tag={n.tag}
+                      shortDescription={n.shortDescription}
+                    />
+                  ))}
                 </div>
               ) : null}
-              {news.length > 4 ? (
+              {news.length > 4 && (
                 <CardNews
                   type="card__news--medium"
                   title={news[3].title}
@@ -58,7 +56,7 @@ export const NewsSection: React.FC<IProps> = ({ type, title, news }) => {
                   tag={news[3].tag}
                   shortDescription={news[3].shortDescription}
                 />
-              ) : null}
+              )}
               {news.length > 4 ? (
                 <div className="card__news card__news--more">
                   <Link href="/news">

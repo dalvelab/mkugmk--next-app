@@ -90,7 +90,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 export async function getStaticPaths() {
   const allPosts = await getAllNewsWithSlug();
   return {
-    paths: allPosts?.map((post: any) => `/news/${post.slug}`) || [],
+    paths: allPosts?.map((post: INews) => `/news/${post.slug}`) || [],
     fallback: true,
   };
 }

@@ -75,9 +75,9 @@ const WelcomePage: NextPage<IProps> = ({
       <section className="welcome__page--museums">
         <Container type="container--flex">
           <div className="cards__wrapper wrapper--grid">
-            {museums.map((museum, index: number) => (
+            {museums.map((museum) => (
               <CardMuseum
-                key={index}
+                key={museum.id}
                 title={museum.title}
                 slug={museum.slug}
                 shortDescription={museum.shortDescription}

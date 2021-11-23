@@ -26,9 +26,9 @@ export const EventsSection: React.FC<IProps> = ({ events, type }) => {
           <Container type="container--flex">
             <h2 className="section__heading">{translate.titles.events}</h2>
             <SwipeSection length={events.length}>
-              {events.map((event, index: number) => (
+              {events.map((event) => (
                 <CardEvent
-                  key={index}
+                  key={event.id}
                   title={event.title}
                   slug={event.slug}
                   image={event.image}

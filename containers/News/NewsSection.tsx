@@ -23,10 +23,12 @@ export const NewsSection: React.FC<IProps> = ({ type, title, news }) => {
             <div className="cards__wrapper wrapper--grid">
               <CardNews
                 type="card__news--big"
+                postType={news[0].postType}
                 title={news[0].title}
                 slug={news[0].slug}
                 image={news[0].image}
                 createdAt={news[0].createdAt}
+                eventDate={news[0].eventDate}
                 tag={news[0].tag}
                 shortDescription={news[0].shortDescription}
               />
@@ -36,9 +38,11 @@ export const NewsSection: React.FC<IProps> = ({ type, title, news }) => {
                     <CardNews
                       key={n.id}
                       type="card__news--small"
+                      postType={n.postType}
                       title={n.title}
                       slug={n.slug}
                       image={n.image}
+                      eventDate={n.eventDate}
                       createdAt={n.createdAt}
                       tag={n.tag}
                       shortDescription={n.shortDescription}
@@ -49,9 +53,11 @@ export const NewsSection: React.FC<IProps> = ({ type, title, news }) => {
               {news.length > 4 && (
                 <CardNews
                   type="card__news--medium"
+                  postType={news[3].postType}
                   title={news[3].title}
                   slug={news[3].slug}
                   image={news[3].image}
+                  eventDate={news[3].eventDate}
                   createdAt={news[3].createdAt}
                   tag={news[3].tag}
                   shortDescription={news[3].shortDescription}

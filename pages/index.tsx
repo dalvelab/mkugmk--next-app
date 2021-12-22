@@ -16,14 +16,12 @@ import {
 import {
   getWelcomePageInfo,
   getAllMuseumsForHome,
-  getEventsForHome,
   getGalleryForHome,
   getNewsForHome,
   getHoursForHeading,
 } from "@lib/api";
 
 // CONTAINERS
-import { EventsSection } from "@containers/Events";
 import { NewsSection } from "@containers/News";
 import { GallerySection } from "@containers/Gallery";
 import { HeadingSection } from "@containers/Heading";
@@ -49,7 +47,6 @@ interface IProps {
 const WelcomePage: NextPage<IProps> = ({
   pageInfo,
   museums,
-  events,
   news,
   gallery,
   hours,
@@ -87,7 +84,6 @@ const WelcomePage: NextPage<IProps> = ({
           </div>
         </Container>
       </section>
-      <EventsSection type="welcome__page--events" events={events} />
       <NewsSection
         type="welcome__page--news"
         title={translate.titles.news}
@@ -101,7 +97,6 @@ const WelcomePage: NextPage<IProps> = ({
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const pageInfo = (await getWelcomePageInfo(locale)) || null;
   const museums = (await getAllMuseumsForHome(locale)) || null;
-  const events = (await getEventsForHome(locale)) || null;
   const news = (await getNewsForHome(locale)) || null;
   const museumGalleries = (await getGalleryForHome()) || null;
   const hours = (await getHoursForHeading()) || null;
@@ -109,7 +104,6 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     props: {
       pageInfo,
       museums,
-      events,
       news,
       gallery: [
         ...museumGalleries.map(

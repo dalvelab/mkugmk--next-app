@@ -31,12 +31,11 @@ export default {
       { title: "Home", isParentLink: false, endpoint: "/", icon: false },
       { title: "About", isParentLink: true, icon: true },
       {
-        title: "Events",
+        title: "News and Events",
         isParentLink: false,
-        endpoint: "/events",
+        endpoint: "/news",
         icon: false,
       },
-      { title: "News", isParentLink: false, endpoint: "/news", icon: false },
       {
         title: "Gallery",
         isParentLink: false,
@@ -80,7 +79,7 @@ export default {
   },
   titles: {
     events: "Events",
-    news: "News",
+    news: "News and Events",
     gallery: "Gallery",
   },
   welcomePage: {

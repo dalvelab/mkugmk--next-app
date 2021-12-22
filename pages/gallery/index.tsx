@@ -31,9 +31,7 @@ const GalleryPage: NextPage<IProps> = ({ gallery }) => {
       <section className="section__gallery--all">
         <Container type="container--flex">
           <>
-            <h2 className="section__heading">
-              {translate.welcomePage.gallery}
-            </h2>
+            <h2 className="section__heading">{translate.titles.gallery}</h2>
             <div className="cards__wrapper wrapper--flex">
               {gallery ? (
                 gallery.map((image, index: number) => (

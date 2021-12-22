@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // TYPES
 import { FC } from "react";
 import { RootState } from "@models/state";
-import { ITicket } from "@models/main";
 
 // HOOKS
 import { useTranslate } from "hooks/useTranslate";
@@ -15,12 +14,6 @@ import { cartAddTicket } from "../../redux/actions/cartActions";
 // COMPONENTS
 import { Button } from "@components/UI";
 import { InputDropdown, Input, InputAmountSelect } from "@components/Input";
-
-interface IProps {
-  ticket: ITicket;
-  addTicket: () => void;
-  amount: number;
-}
 
 export const CheckoutFormContainer: FC = () => {
   const translate = useTranslate();

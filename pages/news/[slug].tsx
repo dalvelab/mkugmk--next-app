@@ -56,8 +56,7 @@ const NewsSinglePage: NextPage<IProps> = ({ news }) => {
                       {news.createdAt.slice(8, 10)}{" "}
                       {getRusMonthDative(Number(news.createdAt.slice(5, 7)))}
                       {", "}
-                      {news.createdAt.slice(0, 4)} {" / "}
-                      {news.createdAt.slice(11, 16)}
+                      {news.createdAt.slice(0, 4)}
                     </span>
                   </div>
                   <h2 className="news__title">{news.title}</h2>

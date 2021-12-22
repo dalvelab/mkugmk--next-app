@@ -3,6 +3,7 @@
     .gallery__image {
       width: 400px;
       background-color: $gray;
+      border-radius: 12px;
       margin: 10px 10px 0 0;
       &:last-child {
         margin-right: 0;

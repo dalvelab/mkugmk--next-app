@@ -1,15 +1,31 @@
 .section__news--all {
   .cards__wrapper {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 25px;
+    @include screen(desktop) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media screen and (max-width: 700px) {
+      grid-template-columns: 1fr;
+    }
     .card__news--medium {
       width: 360px;
-      margin: 20px 20px 0 0;
       .card__image {
         display: block;
         img {
           max-height: 250px;
+          @include screen(tablet) {
+            max-height: 200px;
+          }
+          @media screen and (max-width: 700px) {
+            max-height: 300px;
+          }
+          @include screen(phone) {
+            max-height: 220px;
+          }
         }
       }
-      @include screen(tablet) {
+      @include screen(desktop) {
         width: 100%;
       }
     }

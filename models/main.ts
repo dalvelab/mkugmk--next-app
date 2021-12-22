@@ -18,12 +18,19 @@ export interface IEvent {
   description: string;
 }
 
+export enum INewsType {
+  EVENT = "event",
+  NEWS = "news",
+}
+
 export interface INews {
   id: string;
+  postType: INewsType;
   type: string;
   title: string;
   slug: string;
   image: IImage;
+  eventDate: string;
   createdAt: string;
   shortDescription: string;
   tag: {

@@ -31,13 +31,7 @@ export default {
       { title: "Главная", isParentLink: false, endpoint: "/", icon: false },
       { title: "О комплексе", isParentLink: true, icon: true },
       {
-        title: "Мероприятия",
-        isParentLink: false,
-        endpoint: "/events",
-        icon: false,
-      },
-      {
-        title: "Новости",
+        title: "Новости и Мероприятия",
         isParentLink: false,
         endpoint: "/news",
         icon: false,
@@ -85,7 +79,7 @@ export default {
   },
   titles: {
     events: "События",
-    news: "Новости",
+    news: "Новости и События",
     gallery: "Галерея",
   },
   welcomePage: {

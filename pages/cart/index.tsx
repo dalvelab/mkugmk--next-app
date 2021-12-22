@@ -11,6 +11,9 @@ import { useTranslate } from "hooks/useTranslate";
 // ACTIONS
 import { UITicketPricesHandle } from "../../redux/actions/uiActions";
 
+// UTILS
+import { compareArrays } from "@helpers/array";
+
 // CONTAINERS
 import { CheckoutFormContainer } from "@containers/Cart";
 
@@ -55,6 +58,24 @@ const CartPage: NextPage = () => {
     }
   }, [cart]);
 
+  const standardTickets = useMemo(() => {
+    return tickets
+      ? tickets
+          .filter((ticket) => ticket.type === "standart")
+          .map((ticket) => ticket.price)
+          .sort((a, b) => a - b)
+      : [];
+  }, [tickets]);
+
+  const preferentialTickets = useMemo(() => {
+    return tickets
+      ? tickets
+          .filter((ticket) => ticket.type === "preferential")
+          .map((ticket) => ticket.price)
+          .sort((a, b) => a - b)
+      : [];
+  }, [tickets]);
+
   return (
     <>
       <Head>
@@ -92,6 +113,16 @@ const CartPage: NextPage = () => {
                     <div>Стандарт</div>
                     <div>Льготный / Детский</div>
                   </div>
+                  {tickets &&
+                    compareArrays(standardTickets, preferentialTickets).map(
+                      (ticket, index) => (
+                        <div className="table__row">
+                          <div>{index + 1} ВЦ</div>
+                          <div>{standardTickets[index]}</div>
+                          <div>{preferentialTickets[index]}</div>
+                        </div>
+                      )
+                    )}
                 </div>
               </div>
               <div className="tickets__column tickets__checkout mt-2">

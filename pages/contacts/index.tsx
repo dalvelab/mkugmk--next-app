@@ -74,6 +74,38 @@ const Contacts: NextPage<IContactsProps> = ({ contacts }) => {
       <section className="section__contacts--working-hours">
         <Container type="container--flex">
           <h2 className="section__heading">Часы работы</h2>
+          <div className="contacts__working-hours--wrapper">
+            <div className="contacts__card--working-hours">
+              <div className="card__working-hours--title">ПН</div>
+              <span className="card__working-hours--time font--red">
+                Выходной
+              </span>
+            </div>
+            <div className="contacts__card--working-hours">
+              <div className="card__working-hours--title">ВТ</div>
+              <span className="card__working-hours--time ">10:00 - 20:00</span>
+            </div>
+            <div className="contacts__card--working-hours">
+              <div className="card__working-hours--title">СР</div>
+              <span className="card__working-hours--time ">10:00 - 20:00</span>
+            </div>
+            <div className="contacts__card--working-hours">
+              <div className="card__working-hours--title">ЧТ</div>
+              <span className="card__working-hours--time ">10:00 - 20:00</span>
+            </div>
+            <div className="contacts__card--working-hours">
+              <div className="card__working-hours--title">ПТ</div>
+              <span className="card__working-hours--time ">10:00 - 20:00</span>
+            </div>
+            <div className="contacts__card--working-hours">
+              <div className="card__working-hours--title">СБ</div>
+              <span className="card__working-hours--time ">10:00 - 20:00</span>
+            </div>
+            <div className="contacts__card--working-hours">
+              <div className="card__working-hours--title">ВС</div>
+              <span className="card__working-hours--time ">10:00 - 20:00</span>
+            </div>
+          </div>
         </Container>
       </section>
       <section className="section__contacts--yandex-map">

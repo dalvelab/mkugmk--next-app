@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import ReactMarkdown from "react-markdown";
+import parse from "html-react-parser";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
@@ -62,9 +62,7 @@ const NewsSinglePage: NextPage<IProps> = ({ news }) => {
                   <h2 className="news__title">{news.title}</h2>
                 </div>
               </div>
-              <div className="news__description">
-                <ReactMarkdown>{news.description}</ReactMarkdown>
-              </div>
+              <div className="news__description">{parse(news.description)}</div>
             </Container>
           </>
         )}

@@ -72,7 +72,7 @@ export default {
     },
   },
   headingSection: {
-    about: "О музейном комплексе",
+    about: "Описание комплекса",
     openFrom: "Сегодня открыто с",
     openTo: "до",
     todayIsWeekend: "Сегодня у музея выходной",

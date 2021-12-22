@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import parse from "html-react-parser";
 
 // TYPES
 import { GetStaticProps } from "next";
@@ -90,9 +91,7 @@ export const HeadingSection: React.FC<IProps> = ({
         </div>
         <div className="description__wrapper">
           <h2>{translate.headingSection.about}</h2>
-          {description
-            .split("</>")
-            .map((p, index) => (p.length > 0 ? <p key={index}>{p}</p> : null))}
+          {parse(description)}
         </div>
       </Container>
     </section>

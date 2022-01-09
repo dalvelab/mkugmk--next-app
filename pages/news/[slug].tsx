@@ -7,10 +7,8 @@ import { INews } from "@models/main";
 
 // COMPONENTS
 import Head from "next/head";
-import Image from "next/image";
-import { Container } from "@components/UI";
+import { Container, Loader, ReactImage } from "@components/UI";
 import { PageHeader } from "@components/Page";
-import { Loader } from "@components/UI";
 
 // LIB
 import { getAllNewsWithSlug, getSingleNews } from "@lib/api";
@@ -28,7 +26,7 @@ const NewsSinglePage: NextPage<IProps> = ({ news }) => {
   return (
     <>
       <Head>
-        <title>Музейный комплекс УГМК</title>
+        <title>Новости | Музейный комплекс УГМК</title>
         <meta
           name="description"
           content="Музей автомобильной и гражданской техники"
@@ -43,8 +41,8 @@ const NewsSinglePage: NextPage<IProps> = ({ news }) => {
             <Container type="container--flex">
               <div className="news__content--wrapper">
                 <div className="news__image">
-                  <Image
-                    src={`${process.env.api}${news.image.url}`}
+                  <ReactImage
+                    src={news.image.url}
                     width="600"
                     height="400"
                     alt="News Image"

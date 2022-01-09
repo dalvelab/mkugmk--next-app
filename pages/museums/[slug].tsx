@@ -43,7 +43,7 @@ const MuseumSinglePage: NextPage<IProps> = ({ museum, hours, gallery }) => {
         <>
           <HeadingSection
             title={museum.title}
-            image={museum.image}
+            image={museum.headerImage}
             museumType={museum.museumType}
             hours={hours}
             description={museum.description}

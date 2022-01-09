@@ -5,8 +5,7 @@ import { IImage } from "@models/main";
 import { useTranslate } from "hooks/useTranslate";
 
 // COMPONENTS
-import Image from "next/image";
-import { Container } from "@components/UI";
+import { Container, ReactImage } from "@components/UI";
 import { SwipeSection } from "@components/SwipeSection";
 
 interface IProps {
@@ -18,15 +17,15 @@ export const GallerySection: React.FC<IProps> = ({ gallery, type }) => {
   const translate = useTranslate();
   return (
     <>
-      {gallery && gallery.length > 0 ? (
+      {gallery && gallery.length > 0 && (
         <section className={`${type} section__gallery`}>
           <Container type="container--flex">
             <h2 className="section__heading">{translate.titles.gallery}</h2>
             <SwipeSection length={gallery.length}>
               {gallery.map((image, index: number) => (
                 <div className="gallery__image" key={index}>
-                  <Image
-                    src={`${process.env.api}${image.url}`}
+                  <ReactImage
+                    src={image.url}
                     width="960"
                     height="350"
                     alt="Gallery Image"
@@ -36,7 +35,7 @@ export const GallerySection: React.FC<IProps> = ({ gallery, type }) => {
             </SwipeSection>
           </Container>
         </section>
-      ) : null}
+      )}
     </>
   );
 };

@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
+@font-face {
+  font-family: "Gosha Sans";
+  font-style: normal;
+  src: url("../public/fonts/GoshaSans-Bold.woff2") format("woff2");
+}
 
 h1,
 h2,
@@ -8,6 +13,15 @@ h5,
 h6,
 p {
   margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Gosha Sans";
 }
 
 h1 {

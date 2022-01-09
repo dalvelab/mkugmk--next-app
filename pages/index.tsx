@@ -30,6 +30,7 @@ import { HeadingSection } from "@containers/Heading";
 import Head from "next/head";
 import { Container } from "@components/UI";
 import { CardMuseum } from "@components/Cards";
+import { SwipeSection } from "@components/SwipeSection";
 
 interface IProps {
   pageInfo: {
@@ -69,21 +70,18 @@ const WelcomePage: NextPage<IProps> = ({
         hours={hours}
         description={pageInfo.description}
       />
-      <section className="welcome__page--museums">
-        <Container type="container--flex">
-          <div className="cards__wrapper wrapper--grid">
-            {museums.map((museum) => (
-              <CardMuseum
-                key={museum.id}
-                title={museum.title}
-                slug={museum.slug}
-                shortDescription={museum.shortDescription}
-                image={museum.image}
-              />
-            ))}
-          </div>
-        </Container>
-      </section>
+      <Container type="container--flex" styles={{ marginTop: "10px" }}>
+        <SwipeSection length={museums.length} gap="20px">
+          {museums.map((museum) => (
+            <CardMuseum
+              key={museum.id}
+              title={museum.title}
+              slug={museum.slug}
+              image={museum.image}
+            />
+          ))}
+        </SwipeSection>
+      </Container>
       <NewsSection
         type="welcome__page--news"
         title={translate.titles.news}

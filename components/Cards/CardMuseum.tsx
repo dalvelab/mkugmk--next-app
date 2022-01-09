@@ -1,50 +1,40 @@
+import { isNil, prop } from "ramda";
+
 // TYPES
 import { IImage } from "@models/main";
 
-// HOOKS
-import { useTranslate } from "hooks/useTranslate";
-
-// COMPONENETS
+// COMPONENTS
 import Link from "next/link";
-import Image from "next/image";
-import { Button } from "@components/UI";
+import { ReactImage } from "@components/UI";
 
 interface IProps {
   title: string;
   slug: string;
   image: IImage;
-  shortDescription: string;
 }
 
-export const CardMuseum: React.FC<IProps> = ({
-  title,
-  slug,
-  image,
-  shortDescription,
-}) => {
-  const translate = useTranslate();
+export const CardMuseum: React.FC<IProps> = (props) => {
+  const { title, slug, image } = props;
   return (
-    <div className="card__museum">
-      <div className="card__image">
-        <Image
-          src={`${process.env.api}${image.url}`}
-          width="700"
-          height="450"
-          alt="Museum Image"
-        />
+    <Link href={`/museums/${slug}`}>
+      <div className="card__museum">
+        <div className="card__image">
+          <ReactImage
+            src={isNil(prop("url", image)) ? undefined : image.url}
+            width="700"
+            height="450"
+            alt="Museum Image"
+          />
+        </div>
+        <div className="card__content">
+          <div className="card__controls">
+            <div className="card__button">
+              <i className="far fa-arrow-right"></i>
+            </div>
+          </div>
+          <h3 className="card__title">{title}</h3>
+        </div>
       </div>
-      <div className="card__content">
-        <h3 className="card__title">{title}</h3>
-        <span className="card__description">{shortDescription}</span>
-        <Link href={`/museums/${slug}`} passHref>
-          <a>
-            <Button
-              type="btn--x2 btn--black font--medium"
-              text={translate.buttons.buttonLearnMore}
-            ></Button>
-          </a>
-        </Link>
-      </div>
-    </div>
+    </Link>
   );
 };

@@ -13,12 +13,8 @@ import { getHoursForHeading } from "@lib/api";
 import en from "../../locales/en";
 import ru from "../../locales/ru";
 
-// GLOBAL COMPONENTS
-import Image from "next/image";
-
 // COMPONENTS
-import { Container } from "@components/UI";
-import { Button } from "@components/UI";
+import { Container, Button, ReactImage } from "@components/UI";
 
 interface IProps {
   title: string;
@@ -41,6 +37,7 @@ export const HeadingSection: React.FC<IProps> = ({
 
   const currentDayIndex = new Date().getDay();
 
+  // TO DO: put current date to redux state
   let currentDay;
 
   if (museumType === "museum") {
@@ -56,8 +53,8 @@ export const HeadingSection: React.FC<IProps> = ({
   return (
     <section className="section__header">
       <div className="header__image">
-        <Image
-          src={`${process.env.api}${image.url}`}
+        <ReactImage
+          src={image ? image.url : ""}
           width="1920"
           height="1080"
           alt="Heading Museum Image"
@@ -90,8 +87,8 @@ export const HeadingSection: React.FC<IProps> = ({
           />
         </div>
         <div className="description__wrapper">
-          <h2>{translate.headingSection.about}</h2>
-          {parse(description)}
+          <h2 className="section__heading">{translate.headingSection.about}</h2>
+          <div className="text__wrapper">{parse(description)}</div>
         </div>
       </Container>
     </section>

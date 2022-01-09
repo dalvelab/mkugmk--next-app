@@ -1,11 +1,7 @@
 .welcome__page--museums {
   .cards__wrapper {
-    grid-template-columns: 1fr 1fr;
-    justify-self: flex-start;
-    gap: 25px;
     margin-top: 15px;
-    @include screen(desktop) {
-      grid-template-columns: 1fr;
-    }
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
   }
 }

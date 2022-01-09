@@ -3,9 +3,12 @@ import { useRef } from "react";
 interface IProps {
   length: number;
   children: React.ReactNode;
+  gap?: string;
 }
 
-export const SwipeSection: React.FC<IProps> = ({ length, children }) => {
+export const SwipeSection: React.FC<IProps> = (props) => {
+  const { gap, length, children } = props;
+
   const elementRef: React.LegacyRef<HTMLDivElement> = useRef(null);
 
   const handleSwipe = (directrion: string) => {
@@ -33,7 +36,7 @@ export const SwipeSection: React.FC<IProps> = ({ length, children }) => {
   return (
     <div className="section__swiper-cards">
       <div className="content__wrapper">
-        {length > 2 ? (
+        {length > 2 && (
           <>
             <button
               onClick={() => handleSwipe("left")}
@@ -48,8 +51,8 @@ export const SwipeSection: React.FC<IProps> = ({ length, children }) => {
               <i className="far fa-chevron-right"></i>
             </button>
           </>
-        ) : null}
-        <div ref={elementRef} className="cards__wrapper wrapper--flex">
+        )}
+        <div ref={elementRef} className="cards__wrapper" style={{ gap: gap }}>
           {children}
         </div>
       </div>

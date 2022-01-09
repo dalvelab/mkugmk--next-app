@@ -11,9 +11,8 @@ import { NextPage, GetStaticProps } from "next";
 
 //  COMPONENTS
 import Head from "next/head";
-import Image from "next/image";
 import { PageHeader } from "@components/Page";
-import { Container } from "@components/UI";
+import { Container, ReactImage } from "@components/UI";
 
 interface IProps {
   gallery: IGalleryImage[];
@@ -36,8 +35,8 @@ const GalleryPage: NextPage<IProps> = ({ gallery }) => {
               {gallery ? (
                 gallery.map((image, index: number) => (
                   <div className="gallery__image" key={index}>
-                    <Image
-                      src={`${process.env.api}${image.url}`}
+                    <ReactImage
+                      src={image.url}
                       width="960"
                       height="350"
                       alt="Gallery Image"

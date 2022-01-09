@@ -6,7 +6,7 @@ import { getAllNews } from "@lib/api";
 
 // TYPES
 import { NextPage, GetStaticProps } from "next";
-import { INews } from "@models/main";
+import { CardType, INews } from "@models/main";
 
 //  COMPONENTS
 import Head from "next/head";
@@ -34,18 +34,7 @@ const NewsPage: NextPage<IProps> = ({ news }) => {
             <div className="cards__wrapper wrapper--grid">
               {news && news.length > 0 ? (
                 news.map((n) => (
-                  <CardNews
-                    key={n.id}
-                    type="card__news--medium"
-                    title={n.title}
-                    slug={n.slug}
-                    image={n.image}
-                    createdAt={n.createdAt}
-                    tag={n.tag}
-                    shortDescription={n.shortDescription}
-                    eventDate={n.eventDate}
-                    postType={n.postType}
-                  />
+                  <CardNews key={n.id} type={CardType.MEDIUM} post={n} />
                 ))
               ) : (
                 <h2>Нет новостей</h2>

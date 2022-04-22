@@ -26,8 +26,8 @@ jobs:
       - name: Build react app production version
         run: npm run build
       - name: Delete old build
-        run: rm -rf /var/www/mkugmk-web-apps/mkugmk--next-app/build
+        run: rm -rf /var/www/mkugmk-web-apps/mkugmk--next-app/.next
       - name: Move new build to production dir
-        run: mv build /var/www/mkugmk-web-apps/mkugmk--next-app
+        run: mv .next /var/www/mkugmk-web-apps/mkugmk--next-app
       - name: Restart pm2 process
         run: pm2 restart 1

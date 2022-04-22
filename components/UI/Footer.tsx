@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
                   - {translate.footer.contacts.phone_cooperation}
                 </div>
               </div>
-              <div className="footer__contacts--text">
+              {/* <div className="footer__contacts--text">
                 <div>
                   <a href="">support@mkugmk.ru</a> -{" "}
                   {translate.footer.contacts.emailSupport}
@@ -56,7 +56,7 @@ export const Footer: React.FC = () => {
                   <a href="">tickets@mkugmk.ru</a> -{" "}
                   {translate.footer.contacts.emailTickets}
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="footer__top--right">

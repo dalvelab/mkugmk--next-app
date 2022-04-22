@@ -28,13 +28,23 @@ export const Footer: React.FC = () => {
               <div className="footer__contacts--text">
                 <div>
                   <a
-                    href="tel:+79122000199"
+                    href="tel:+73436846784"
                     rel="noopener noreferrer"
-                    aria-label="Телефон книжного"
+                    aria-label="Телефон голосового помощника"
                   >
-                    +79222149178{" "}
+                    +7 (343-68) 684-67-84{" "}
                   </a>
-                  - {translate.footer.contacts.phone}
+                  - {translate.footer.contacts.phone_support}
+                </div>
+                <div>
+                  <a
+                    href="tel:+73436847217"
+                    rel="noopener noreferrer"
+                    aria-label="Телефон для сотрудничества"
+                  >
+                    +7 (343-68) 684-72-17{" "}
+                  </a>
+                  - {translate.footer.contacts.phone_cooperation}
                 </div>
               </div>
               <div className="footer__contacts--text">
@@ -54,27 +64,6 @@ export const Footer: React.FC = () => {
               <span>{translate.footer.socials.mat}</span>
               <div className="social__links">
                 <a
-                  href="https://www.instagram.com/auto_ugmk/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  aria-label="Инстаграм"
-                >
-                  Instagram
-                </a>
-              </div>
-            </div>
-            <div className="footer__social--wrapper">
-              <span>{translate.footer.socials.mvt}</span>
-              <div className="social__links">
-                <a
-                  href="https://www.instagram.com/mvt_ugmk/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  aria-label="Инстаграм"
-                >
-                  Instagram
-                </a>
-                <a
                   href="https://vk.com/museum_ummc"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -82,13 +71,18 @@ export const Footer: React.FC = () => {
                 >
                   ВКонтакте
                 </a>
+              </div>
+            </div>
+            <div className="footer__social--wrapper">
+              <span>{translate.footer.socials.mvt}</span>
+              <div className="social__links">
                 <a
-                  href="https://www.facebook.com/museum.ummc/"
+                  href="https://vk.com/museum_ummc"
                   rel="noopener noreferrer"
                   target="_blank"
-                  aria-label="Фейсбук"
+                  aria-label="Вконтакте"
                 >
-                  Facebook
+                  ВКонтакте
                 </a>
               </div>
             </div>

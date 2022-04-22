@@ -66,7 +66,8 @@ export default {
       mvt: "Military museum",
     },
     contacts: {
-      phone: `museum's phone`,
+      phone_support: "voice assistant",
+      phone_cooperation: "cooperation",
       emailSupport: "support",
       emailTickets: "tickets",
     },

@@ -66,7 +66,8 @@ export default {
       mvt: "Музей военной техники",
     },
     contacts: {
-      phone: "телефон музея",
+      phone_support: "голосовое меню",
+      phone_cooperation: "сотрудничество",
       emailSupport: "подддержка",
       emailTickets: "билеты",
     },

@@ -1,23 +1,16 @@
-import { useState, useRef } from "react";
-
-// TYPES
 import { NextPage, GetStaticProps } from "next";
-import { LegacyRef } from "react";
-import { IContact } from "@models/main";
-
-// LIB
-import { getContacts } from "@lib/api";
-
-// HOOKS
-import { useTranslate } from "hooks/useTranslate";
-
-// CONTAINERS
-import { ContactsContainer } from "@containers/Contacts";
-
-//  COMPONENTS
 import Head from "next/head";
+import { useState, useRef, LegacyRef } from "react";
+import classNames from "classnames";
+
 import { PageHeader } from "@components/Page";
-import { Container } from "@components/UI";
+import { Section } from "@components/UI";
+import { ContactsContainer } from "@containers/Contacts";
+import { getContacts } from "@lib/api";
+import { IContact } from "@models/main";
+import { useTranslate } from "@hooks/useTranslate";
+
+import styles from "./ContactsPage.module.scss";
 
 interface IContactsProps {
   contacts: IContact[];
@@ -51,94 +44,65 @@ const Contacts: NextPage<IContactsProps> = ({ contacts }) => {
         <title>Контакты | Музейный комплекс УГМК</title>
       </Head>
       <PageHeader />
-      <section className="section__contacts">
-        <Container type="container--flex">
-          <h2 className="section__heading">{translate.contactsPage.title}</h2>
-          <ContactsContainer
-            contacts={contacts}
-            title="Руководство"
-            type="management"
-          />
-          <ContactsContainer
-            contacts={contacts}
-            title="Для СМИ и медиа"
-            type="media"
-          />
-          <ContactsContainer
-            contacts={contacts}
-            title="Сотрудничество"
-            type="cooperation"
-          />
-        </Container>
-      </section>
-      <section className="section__contacts--working-hours">
-        <Container type="container--flex">
-          <h2 className="section__heading">Часы работы</h2>
-          <div className="contacts__working-hours--wrapper">
-            <div className="contacts__card--working-hours">
-              <div className="card__working-hours--title">ПН</div>
-              <span className="card__working-hours--time font--red">
-                Выходной
-              </span>
-            </div>
-            <div className="contacts__card--working-hours">
-              <div className="card__working-hours--title">ВТ</div>
-              <span className="card__working-hours--time ">10:00 - 20:00</span>
-            </div>
-            <div className="contacts__card--working-hours">
-              <div className="card__working-hours--title">СР</div>
-              <span className="card__working-hours--time ">10:00 - 20:00</span>
-            </div>
-            <div className="contacts__card--working-hours">
-              <div className="card__working-hours--title">ЧТ</div>
-              <span className="card__working-hours--time ">10:00 - 20:00</span>
-            </div>
-            <div className="contacts__card--working-hours">
-              <div className="card__working-hours--title">ПТ</div>
-              <span className="card__working-hours--time ">10:00 - 20:00</span>
-            </div>
-            <div className="contacts__card--working-hours">
-              <div className="card__working-hours--title">СБ</div>
-              <span className="card__working-hours--time ">10:00 - 20:00</span>
-            </div>
-            <div className="contacts__card--working-hours">
-              <div className="card__working-hours--title">ВС</div>
-              <span className="card__working-hours--time ">10:00 - 20:00</span>
+      <Section title={translate.contactsPage.title}>
+        <ContactsContainer
+          contacts={contacts}
+          title="Руководство"
+          type="management"
+        />
+        <ContactsContainer
+          contacts={contacts}
+          title="Для СМИ и медиа"
+          type="media"
+        />
+        <ContactsContainer
+          contacts={contacts}
+          title="Сотрудничество"
+          type="cooperation"
+        />
+      </Section>
+      <Section title="Часы работы" margin="24px 0 0 0">
+        <div className={styles.workingHoursWrapper}>
+          <div className={styles.cardWorkingHours}>
+            <div className={styles.title}>ПН</div>
+            <span className={styles.time}>Выходной</span>
+          </div>
+          <div className={styles.cardWorkingHours}>
+            <div className={styles.title}>ВТ</div>
+            <span className={styles.time}>10:00 - 19:00</span>
+          </div>
+        </div>
+      </Section>
+      <Section title="Как добраться" margin="24px 0 32px 0">
+        <div className={styles.mapWrapper}>
+          <div
+            className={classNames([
+              styles.mapOverlay,
+              {
+                [styles.overlayActive]: isActive,
+                [styles.overlayDisabled]: isDisabled,
+                [styles.overlay]: !isDisabled,
+              },
+            ])}
+            onClick={handleMapActive}
+            onMouseOver={handleMapBlur}
+            onTouchStart={handleMapBlur}
+          >
+            <div className={styles.overlayText}>
+              Нажмите на карту для работы
             </div>
           </div>
-        </Container>
-      </section>
-      <section className="section__contacts--yandex-map">
-        <Container type="container--flex">
-          <h2 className="section__heading">Как добраться</h2>
-        </Container>
-        <Container type="container--flex container--map">
-          <div className="map__wrapper">
-            <div
-              className={`${
-                isActive
-                  ? "map__overlay overlay--active"
-                  : isDisabled
-                  ? "map__overlay overlay--disabled"
-                  : "map__overlay overlay"
-              }`}
-              onClick={handleMapActive}
-              onMouseOver={handleMapBlur}
-              onTouchStart={handleMapBlur}
-            >
-              <div className="overlay__text">Нажмите на карту для работы</div>
-            </div>
-            <iframe
-              src="https://yandex.ru/map-widget/v1/?um=constructor%3A4a18c5739a078ec65fab77ebc20a509248f21534ca59e3defa8a17620f82a2de&amp;source=constructor"
-              width="100%"
-              height="650px"
-              frameBorder="0"
-              ref={map}
-              onMouseLeave={handleMapUnblur}
-            ></iframe>
-          </div>
-        </Container>
-      </section>
+          <iframe
+            src="https://yandex.ru/map-widget/v1/?um=constructor%3A4a18c5739a078ec65fab77ebc20a509248f21534ca59e3defa8a17620f82a2de&amp;source=constructor"
+            width="100%"
+            height="650px"
+            frameBorder="0"
+            className={styles.iframeMap}
+            ref={map}
+            onMouseLeave={handleMapUnblur}
+          ></iframe>
+        </div>
+      </Section>
     </>
   );
 };

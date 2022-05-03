@@ -1,0 +1,49 @@
+.swiperCards {
+  .contentWrapper {
+    position: relative;
+  }
+  .cardsWrapper {
+    width: auto;
+    display: flex;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &::-webkit-scrollbar-thumb {
+      display: none;
+    }
+  }
+  .buttonSwipeLeft,
+  .buttonSwipeRight {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: $white;
+    color: $black;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 25px;
+    transition: 0.15s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    &:hover {
+      color: $white;
+      background-color: $green;
+    }
+    i {
+      font-size: 17px;
+    }
+    @include screen(phone) {
+      display: none;
+    }
+  }
+  .buttonSwipeLeft {
+    left: 5px;
+    right: auto;
+    z-index: 2;
+  }
+}

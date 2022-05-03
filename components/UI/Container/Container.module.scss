@@ -1,0 +1,19 @@
+.containerFlex {
+  width: 1350px;
+  height: auto;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  position: relative;
+  @media screen and (max-width: 1400px) {
+    width: 95%;
+  }
+}
+
+.containerGrid {
+  width: 1350px;
+  height: auto;
+  display: grid;
+  margin: auto;
+  position: relative;
+}

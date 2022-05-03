@@ -1,0 +1,156 @@
+.footer {
+  width: 100%;
+  height: auto;
+  border-top: 1px solid $gray;
+  .footerTop {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    .footerTopLeft {
+      .footerAddress {
+        margin-top: 15px;
+        font-size: 25px;
+        font-weight: 500;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        span {
+          font-weight: 400;
+          font-size: 14px;
+          margin-left: 20px;
+          position: relative;
+          &::after {
+            content: "";
+            width: 100%;
+            height: 2px;
+            background-color: $black;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            transition: 0.5s ease-out;
+          }
+          &:hover {
+            &::after {
+              width: 0;
+              left: auto;
+              right: 0;
+            }
+          }
+        }
+      }
+      .footerContacts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        .footerContactsText {
+          margin-top: 20px;
+          div {
+            font-size: 12px;
+            margin-top: 7.5px;
+            &:first-child {
+              margin-top: 0;
+            }
+            a {
+              font-size: 15px;
+              transition: 0.25s ease-out;
+              &:hover {
+                color: $green;
+              }
+            }
+          }
+        }
+      }
+    }
+    .footerTopRight {
+      .footerSocialWrapper {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        &:first-child {
+          margin-top: 15px;
+        }
+        span {
+          font-size: 16px;
+        }
+        .socialLinks {
+          display: flex;
+          margin-top: 10px;
+          a {
+            margin-right: 10px;
+            font-size: 12px;
+            transition: 0.25s ease-out;
+            &:hover {
+              color: $green;
+            }
+          }
+        }
+      }
+    }
+    @media screen and (max-width: 800px) {
+      flex-direction: column;
+    }
+    @media screen and (max-width: 550px) {
+      .footerTopLeft {
+        .footerContacts {
+          margin-top: 15px;
+          grid-template-columns: 1fr;
+          gap: 10px;
+          .footerContactsText {
+            div {
+              font-size: 15px;
+            }
+          }
+        }
+      }
+      .footerTopRight {
+        margin-top: 15px;
+      }
+    }
+    @include screen(phone) {
+      .footerTopLeft {
+        .footerAddress {
+          flex-direction: column;
+          align-items: flex-start;
+          font-size: 30px;
+          a {
+            margin-top: 5px;
+            span {
+              margin-left: 0;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .footerBottom {
+    margin: 40px 0 5px 0;
+    display: flex;
+    justify-content: space-between;
+    color: $dimgray;
+    .footerCopyright {
+      margin-right: 20px;
+      line-height: 1.5;
+    }
+    .footerDocuments {
+      a {
+        font-size: 12px;
+        transition: 0.25s ease-out;
+        margin-right: 10px;
+        white-space: nowrap;
+        &:hover {
+          color: $green;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    @include screen(tablet-wide) {
+      flex-direction: column-reverse;
+      .footerCopyright {
+        margin-top: 15px;
+      }
+    }
+  }
+}

@@ -3,6 +3,7 @@ const path = require("path");
 module.exports = {
   reactStrictMode: true,
   sassOptions: {
+    additionalData: `@import "styles/style.scss";`,
     includePaths: [path.join(__dirname, "styles")],
   },
   images: {

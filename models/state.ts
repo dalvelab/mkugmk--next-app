@@ -1,8 +1,9 @@
 import { ITicket } from "./main";
+import { LanguageList } from "./common";
 
 export interface RootState {
   UI: {
-    language: string;
+    language: LanguageList;
     sidebar: {
       isOpen: boolean;
     };

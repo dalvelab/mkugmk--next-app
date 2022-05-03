@@ -1,5 +1,4 @@
-// TYPES
-import { FC } from "react";
+import { CardContact } from "@components/Cards";
 import { IContact } from "@models/main";
 
 interface IProps {
@@ -8,26 +7,21 @@ interface IProps {
   contacts: IContact[];
 }
 
-export const ContactsContainer: FC<IProps> = (props) => {
+import styles from "./ContactsContainer.module.scss";
+
+export const ContactsContainer: React.FC<IProps> = (props) => {
   const { contacts, title, type } = props;
 
   return (
     <>
       {contacts.filter((contact) => contact.type === type).length > 0 && (
-        <div className="contacts__row">
+        <div className={styles.contactsRow}>
           <h5>{title}</h5>
-          <div className="cards__wrapper wrapper--flex">
+          <div className={styles.cardsWrapper}>
             {contacts
               .filter((contact) => contact.type === type)
               .map((contact) => (
-                <div className="card__contact" key={contact.id}>
-                  <span className="card__job">{contact.position}</span>
-                  <span className="card__name">{contact.name}</span>
-                  <div className="card__contacts--list">
-                    <div className="contact">{contact.email}</div>
-                    <div className="contact">{contact.phone}</div>
-                  </div>
-                </div>
+                <CardContact key={contact.id} contact={contact} />
               ))}
           </div>
         </div>

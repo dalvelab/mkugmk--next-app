@@ -1,0 +1,48 @@
+.cardNews {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  border-radius: 12px;
+  .card__newsDate {
+    padding: 5px 10px;
+    background-color: $green;
+    display: flex;
+    align-self: flex-start;
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    color: $white;
+    margin-bottom: 5px;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 7.5px;
+  }
+  .cardImage {
+    height: 240px;
+    position: relative;
+    img {
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      object-fit: cover;
+    }
+  }
+  .cardContent {
+    padding: 12px 0;
+  }
+  .cardTitle {
+    font-size: 22px;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  .cardshortDescription {
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .card__createDate {
+    margin-top: 12px;
+    font-size: 14px;
+    color: $dimgray;
+  }
+}

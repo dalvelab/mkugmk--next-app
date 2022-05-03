@@ -1,19 +1,18 @@
 import { useRouter } from "next/router";
 
-// COMPONENTS
 import { Container } from "@components/UI";
 
 export const PageHeader: React.FC = () => {
   const router = useRouter();
 
-  const handleBack = () => {
+  const onPageReturn = () => {
     router.back();
   };
 
   return (
     <div className="page__header">
-      <Container type="container--flex">
-        <button className="back__button" onClick={handleBack}>
+      <Container>
+        <button className="back__button" onClick={onPageReturn}>
           <i className="far fa-arrow-left"></i>Назад
         </button>
       </Container>

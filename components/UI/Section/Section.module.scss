@@ -1,0 +1,16 @@
+.section {
+  width: 100%;
+  height: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  .sectionHeading {
+    text-transform: uppercase;
+    margin: 0 0 30px 0;
+    font-weight: 600;
+    @include screen(phone) {
+      font-size: 30px;
+      margin-bottom: 25px;
+    }
+  }
+}

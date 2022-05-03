@@ -1,20 +1,17 @@
+import { GetStaticProps } from "next";
 import { useSelector } from "react-redux";
 import parse from "html-react-parser";
+import classNames from "classnames";
 
-// TYPES
-import { GetStaticProps } from "next";
+import { Container, Button, ReactImage, Section } from "@components/UI";
 import { RootState } from "@models/state";
 import { IImage, IOpenDay, IOpenHours } from "@models/main";
-
-// LIB
 import { getHoursForHeading } from "@lib/api";
 
-// LOCALES
 import en from "../../locales/en";
 import ru from "../../locales/ru";
 
-// COMPONENTS
-import { Container, Button, ReactImage } from "@components/UI";
+import styles from "./HeadingSection.module.scss";
 
 interface IProps {
   title: string;
@@ -51,8 +48,8 @@ export const HeadingSection: React.FC<IProps> = ({
   }
 
   return (
-    <section className="section__header">
-      <div className="header__image">
+    <section className={styles.sectionHeader}>
+      <div className={styles.headerImage}>
         <ReactImage
           src={image ? image.url : ""}
           width="1920"
@@ -60,18 +57,17 @@ export const HeadingSection: React.FC<IProps> = ({
           alt="Heading Museum Image"
         />
       </div>
-      <Container type="container--flex">
-        <div className="title__wrapper">
+      <Container>
+        <div className={styles.titleWrapper}>
           <h1>{title}</h1>
-          <div className="open__status">
+          <div className={styles.openStatus}>
             <div
-              className={`status__icon ${
-                currentDay.isWeekend
-                  ? "status__icon--closed"
-                  : "status__icon--opened"
-              }`}
+              className={classNames([styles.statusIcon], {
+                [styles.statusIconOpened]: !currentDay.isWeekend,
+                [styles.statusIconClosed]: currentDay.isWeekend,
+              })}
             ></div>
-            <span className="status__text">
+            <span className={styles.statusText}>
               {currentDay.isWeekend
                 ? `${translate.headingSection.todayIsWeekend}`
                 : `${
@@ -82,15 +78,17 @@ export const HeadingSection: React.FC<IProps> = ({
             </span>
           </div>
           <Button
-            type="btn--x1 btn--black font--medium"
+            type="xl"
+            bgColor="black"
             text={translate.buttons.buttonBuyTicket}
           />
         </div>
-        <div className="description__wrapper">
-          <h2 className="section__heading">{translate.headingSection.about}</h2>
-          <div className="text__wrapper">{parse(description)}</div>
-        </div>
       </Container>
+      <Section title={translate.headingSection.about}>
+        <div className={styles.descriptionWrapper}>
+          <div className="textWrapper">{parse(description)}</div>
+        </div>
+      </Section>
     </section>
   );
 };

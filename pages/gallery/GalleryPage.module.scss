@@ -1,0 +1,16 @@
+.cardsWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  .galleryImage {
+    height: 300px;
+    background-color: $gray;
+    border-radius: 12px;
+    position: relative;
+    img {
+      height: 300px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+  }
+}

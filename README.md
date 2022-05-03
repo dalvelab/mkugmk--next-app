@@ -10,10 +10,6 @@
 - pages - файлы страниц с учётом routing
 - public - шрифты, картинки, favicon
 - redux - все связанное с redux (actions, reducers, store)
-- styles - стили проекта
-  - components - стили для components
-  - icons - иконки fontawesome
-  - pages - стили для pages
 
 ## Как добавить иконку
 

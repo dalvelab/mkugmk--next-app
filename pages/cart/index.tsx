@@ -19,7 +19,7 @@ import { CheckoutFormContainer } from "@containers/Cart";
 
 // COMPONENTS
 import Head from "next/head";
-import { Container } from "@components/UI";
+import { Section } from "@components/UI";
 import { Button } from "@components/UI";
 import { CardTicket } from "@components/Cards";
 
@@ -82,79 +82,74 @@ const CartPage: NextPage = () => {
         <title>Купить билет | Музейный комплекс УГМК</title>
       </Head>
       <section className="section__tickets">
-        <Container type="container--flex">
-          <h2 className="section__heading">{translate.cart.title}</h2>
-          <div className="tickets__flex--wrapper">
-            <div className="wrapper">
-              <div className="tickets__column tickets__table--prices">
-                <span className="column__title">
-                  {translate.cart.tableTitle}
-                </span>
-                <div className="tickets__divider"></div>
-                <button
-                  className="column__icon--dropdown"
-                  onClick={openTicketTable}
-                >
-                  {isTableOpened ? (
-                    <i className="far fa-chevron-down icon__reversed"></i>
-                  ) : (
-                    <i className="far fa-chevron-down "></i>
-                  )}
-                </button>
-                <div
-                  className={
-                    isTableOpened
-                      ? "table__content table__content--active"
-                      : "table__content"
-                  }
-                >
-                  <div className="table__row">
-                    <div>Выставочный центр (ВЦ)</div>
-                    <div>Стандарт</div>
-                    <div>Льготный / Детский</div>
-                  </div>
-                  {tickets &&
-                    compareArrays(standardTickets, preferentialTickets).map(
-                      (ticket, index) => (
-                        <div className="table__row">
-                          <div>{index + 1} ВЦ</div>
-                          <div>{standardTickets[index]}</div>
-                          <div>{preferentialTickets[index]}</div>
-                        </div>
-                      )
-                    )}
+        <h2 className="section__heading">{translate.cart.title}</h2>
+        <div className="tickets__flex--wrapper">
+          <div className="wrapper">
+            <div className="tickets__column tickets__table--prices">
+              <span className="column__title">{translate.cart.tableTitle}</span>
+              <div className="tickets__divider"></div>
+              <button
+                className="column__icon--dropdown"
+                onClick={openTicketTable}
+              >
+                {isTableOpened ? (
+                  <i className="far fa-chevron-down icon__reversed"></i>
+                ) : (
+                  <i className="far fa-chevron-down "></i>
+                )}
+              </button>
+              <div
+                className={
+                  isTableOpened
+                    ? "table__content table__content--active"
+                    : "table__content"
+                }
+              >
+                <div className="table__row">
+                  <div>Выставочный центр (ВЦ)</div>
+                  <div>Стандарт</div>
+                  <div>Льготный / Детский</div>
                 </div>
-              </div>
-              <div className="tickets__column tickets__checkout mt-2">
-                <span className="column__title">
-                  {translate.cart.formTitle}
-                </span>
-                <div className="tickets__divider"></div>
-                <CheckoutFormContainer />
+                {tickets &&
+                  compareArrays(standardTickets, preferentialTickets).map(
+                    (ticket, index) => (
+                      <div className="table__row">
+                        <div>{index + 1} ВЦ</div>
+                        <div>{standardTickets[index]}</div>
+                        <div>{preferentialTickets[index]}</div>
+                      </div>
+                    )
+                  )}
               </div>
             </div>
-            <div className="tickets__column tickets__cart">
-              <span className="column__title">{translate.cart.cartTitle}</span>
+            <div className="tickets__column tickets__checkout mt-2">
+              <span className="column__title">{translate.cart.formTitle}</span>
               <div className="tickets__divider"></div>
-              {cart.map((ticket, index: number) => (
-                <CardTicket
-                  key={index}
-                  id={ticket.id}
-                  title={ticket.title}
-                  price={ticket.price}
-                  quantity={ticket.quantity}
-                />
-              ))}
-              <span className="column__title mb-2">
-                {cart.length > 0 ? `Итого: ${cartTotal}` : null}
-              </span>
-              <Button
-                type="tickets__button btn--x1 btn--green font--medium"
-                text={translate.cart.checkoutButton}
-              />
+              <CheckoutFormContainer />
             </div>
           </div>
-        </Container>
+          <div className="tickets__column tickets__cart">
+            <span className="column__title">{translate.cart.cartTitle}</span>
+            <div className="tickets__divider"></div>
+            {cart.map((ticket, index: number) => (
+              <CardTicket
+                key={index}
+                id={ticket.id}
+                title={ticket.title}
+                price={ticket.price}
+                quantity={ticket.quantity}
+              />
+            ))}
+            <span className="column__title mb-2">
+              {cart.length > 0 ? `Итого: ${cartTotal}` : null}
+            </span>
+            <Button
+              type="xl"
+              bgColor="black"
+              text={translate.cart.checkoutButton}
+            />
+          </div>
+        </div>
       </section>
     </>
   );

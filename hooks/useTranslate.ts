@@ -1,14 +1,12 @@
 import { useSelector } from "react-redux";
 
-// TYPES
-import { RootState } from "@models/state";
+import { languageSelector } from "@selectors/common";
 
-// LOCALES
 import en from "../locales/en";
 import ru from "../locales/ru";
 
 export const useTranslate = () => {
-  const language = useSelector((state: RootState) => state.UI.language);
+  const language = useSelector(languageSelector);
 
   return language === "ru" ? ru : en;
 };

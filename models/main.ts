@@ -23,11 +23,7 @@ export enum NewsType {
   NEWS = "news",
 }
 
-export enum CardType {
-  SMALL = "card__news--small",
-  MEDIUM = "card__news--medium",
-  BIG = "card__news--big",
-}
+export type Sizes = "sm" | "md" | "xl";
 
 export interface INews {
   id: string;

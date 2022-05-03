@@ -1,26 +1,23 @@
+import { NextPage, GetStaticProps } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import parse from "html-react-parser";
 
-// TYPES
-import { NextPage, GetStaticProps } from "next";
 import { INews } from "@models/main";
-
-// COMPONENTS
-import Head from "next/head";
-import { Container, Loader, ReactImage } from "@components/UI";
+import { Section, ReactImage, Loader } from "@components/UI";
 import { PageHeader } from "@components/Page";
-
-// LIB
 import { getAllNewsWithSlug, getSingleNews } from "@lib/api";
+import { getRusMonthDative } from "@helpers/dateHelper";
 
-// HELPERS
-import { getRusMonthDative } from "../../helpers/dateHelper";
+import styles from "./NewsPage.module.scss";
 
 interface IProps {
   news: INews;
 }
 
-const NewsSinglePage: NextPage<IProps> = ({ news }) => {
+const NewsSinglePage: NextPage<IProps> = (props) => {
+  const { news } = props;
+
   const router = useRouter();
 
   return (
@@ -32,47 +29,41 @@ const NewsSinglePage: NextPage<IProps> = ({ news }) => {
           content="Музей автомобильной и гражданской техники"
         />
       </Head>
-      <section className="section__news--single">
-        {router.isFallback ? (
-          <Loader />
-        ) : (
-          <>
-            <PageHeader />
-            <Container type="container--flex">
-              <div className="news__content--wrapper">
-                <div className="news__image">
-                  <ReactImage
-                    src={news.image.url}
-                    width="600"
-                    height="400"
-                    alt="News Image"
-                  />
-                </div>
-                <div className="news__text--content">
-                  <div className="news__date">
-                    <span>
-                      {news.createdAt.slice(8, 10)}{" "}
-                      {getRusMonthDative(Number(news.createdAt.slice(5, 7)))}
-                      {", "}
-                      {news.createdAt.slice(0, 4)}
-                    </span>
-                  </div>
-                  <h2 className="news__title">{news.title}</h2>
-                </div>
+      <PageHeader />
+      {router.isFallback ? (
+        <Loader />
+      ) : (
+        <Section>
+          <div className={styles.newsContentWrapper}>
+            <div className={styles.newsImage}>
+              <ReactImage
+                src={news.image.url}
+                width="600"
+                height="400"
+                alt="News Image"
+              />
+            </div>
+            <div className={styles.newsTextContent}>
+              <div className={styles.date}>
+                <span>
+                  {news.createdAt.slice(8, 10)}{" "}
+                  {getRusMonthDative(Number(news.createdAt.slice(5, 7)))}
+                  {", "}
+                  {news.createdAt.slice(0, 4)}
+                </span>
               </div>
-              <div className="news__description">{parse(news.description)}</div>
-            </Container>
-          </>
-        )}
-      </section>
+              <h2 className={styles.title}>{news.title}</h2>
+            </div>
+          </div>
+          <div className={styles.description}>{parse(news.description)}</div>
+        </Section>
+      )}
     </>
   );
 };
 
-export default NewsSinglePage;
-
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const data = (await getSingleNews(params!.slug, locale)) || null;
+  const data = await getSingleNews(params!.slug, locale);
   return {
     props: {
       news: {
@@ -89,3 +80,5 @@ export async function getStaticPaths() {
     fallback: true,
   };
 }
+
+export default NewsSinglePage;

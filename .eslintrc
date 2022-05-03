@@ -1,5 +1,0 @@
-{
-  "extends": ["airbnb-typescript", "airbnb-typescript-prettier"],
-  "plugins": ["@typescript-eslint", "simple-import-sort"],
-  "parser": "@typescript-eslint/parser"
-}

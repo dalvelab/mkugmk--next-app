@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import store from "../redux/store";
 
 // TYPES
-import type { AppProps } from "next/app";
+import { AppProps } from "next/app";
 import { NextPage } from "next";
 import { ReactElement, ReactNode } from "react";
 
@@ -12,8 +12,7 @@ import { ReactElement, ReactNode } from "react";
 import "@styles/index.scss";
 
 // LANG DETECTOR
-import LangDetector from "@components/LangDetector";
-import Layout from "@components/Layout";
+import { Layout } from "templates/LayoutTemplate";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode[];
@@ -26,7 +25,6 @@ type AppPropsWithLayout = AppProps & {
 const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   return (
     <Provider store={store}>
-      <LangDetector />
       <Layout>
         <main className="navbar--offset">
           <Component {...pageProps} />

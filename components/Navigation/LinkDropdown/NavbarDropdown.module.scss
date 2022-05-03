@@ -1,0 +1,91 @@
+.link--dropdown {
+  padding: 10px 0 10px 0;
+  .navbar__dropdown--big {
+    width: auto;
+    height: auto;
+    min-height: 250px;
+    background-color: $white;
+    box-shadow: 0px 10px 70px rgb(0 0 0 / 15%);
+    position: absolute;
+    top: 40px;
+    left: 0;
+    display: none;
+    border-radius: 12px;
+    .dropdown__items--wrapper {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      padding: 12.5px 20px 12.5px 20px;
+      list-style-type: none;
+    }
+    .dropdown__item {
+      color: $black;
+      white-space: nowrap;
+      padding: 15px;
+      border-radius: 12px;
+      cursor: pointer;
+      position: relative;
+      i {
+        font-size: 14px;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: 0.25s ease-in-out;
+      }
+      &:hover {
+        background-color: rgba($color: $green, $alpha: 0.05);
+        color: $green;
+        i {
+          right: 20px;
+          opacity: 1;
+        }
+      }
+      span {
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+    .dropdown__item--active {
+      background-color: rgba($color: $green, $alpha: 0.05);
+      color: $green;
+    }
+    .dropdown__secondary-items--wrapper {
+      width: 250px;
+      background-color: #f3f3f4;
+      margin-left: 20px;
+      border-bottom-right-radius: 12px;
+      border-top-right-radius: 12px;
+      padding: 27.5px 20px 12.5px 20px;
+      .dropdown__title {
+        font-size: 16px;
+        font-weight: 500;
+        color: $black;
+        cursor: auto;
+      }
+      .links__wrapper {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        transition: 0.15s ease-in;
+        .dropdown__secondary-item {
+          margin-top: 15px;
+          font-size: 14px;
+          color: $dimgray;
+          &:hover {
+            color: $black;
+          }
+        }
+      }
+      .links__wrapper--active {
+        display: flex;
+      }
+    }
+  }
+  &:hover {
+    .navbar__dropdown--big {
+      display: flex;
+    }
+  }
+}

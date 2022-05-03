@@ -1,0 +1,69 @@
+.cardsWrapperAllNews {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  @include screen(desktop) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media screen and (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.newsContentWrapper {
+  width: 100%;
+  min-height: 300px;
+  height: auto;
+  display: grid;
+  grid-template-columns: 600px 1fr;
+  align-items: center;
+  gap: 20px;
+  .newsImage {
+    width: 100%;
+    img {
+      height: 450px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+  }
+  .newsTextContent {
+    .title {
+      font-size: 25px;
+    }
+    .date {
+      margin: 12.5px 0 12.5px 0;
+      span {
+        font-size: 16px;
+        color: $dimgray;
+      }
+    }
+  }
+  @include screen(tablet) {
+    width: 100%;
+  }
+}
+.description {
+  margin-top: 20px;
+  line-height: 1.8;
+  font-size: 18px;
+}
+@include screen(desktop) {
+  .newsContentWrapper {
+    grid-template-columns: 550px 1fr;
+  }
+}
+@include screen(tablet-wide) {
+  .newsContentWrapper {
+    margin-top: 10px;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .description {
+    margin-top: 7.5px;
+  }
+}
+@include screen(phone) {
+  .description {
+    font-size: 16px;
+  }
+}

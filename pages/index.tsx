@@ -22,15 +22,12 @@ import {
 } from "@lib/api";
 
 // CONTAINERS
-import { NewsSection } from "@containers/News";
+import { MuseumsContainer, NewsContainer } from "@containers/WelcomeContainers";
 import { GallerySection } from "@containers/Gallery";
 import { HeadingSection } from "@containers/Heading";
 
 // COMPONENTS
 import Head from "next/head";
-import { Container } from "@components/UI";
-import { CardMuseum } from "@components/Cards";
-import { SwipeSection } from "@components/SwipeSection";
 
 interface IProps {
   pageInfo: {
@@ -70,24 +67,9 @@ const WelcomePage: NextPage<IProps> = ({
         hours={hours}
         description={pageInfo.description}
       />
-      <Container type="container--flex" styles={{ marginTop: "10px" }}>
-        <SwipeSection length={museums.length} gap="20px">
-          {museums.map((museum) => (
-            <CardMuseum
-              key={museum.id}
-              title={museum.title}
-              slug={museum.slug}
-              image={museum.image}
-            />
-          ))}
-        </SwipeSection>
-      </Container>
-      <NewsSection
-        type="welcome__page--news"
-        title={translate.titles.news}
-        news={news}
-      />
-      <GallerySection gallery={gallery} type="welcome__page--gallery" />
+      <MuseumsContainer museums={museums} />
+      <NewsContainer title={translate.titles.news} news={news} />
+      <GallerySection gallery={gallery} />
     </>
   );
 };

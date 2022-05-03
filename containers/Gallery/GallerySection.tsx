@@ -1,41 +1,29 @@
-// TYPES
+import { Section, ReactImage } from "@components/UI";
+import { SwipeSection } from "@components/UI/Swipe";
+import { useTranslate } from "@hooks/useTranslate";
 import { IImage } from "@models/main";
 
-// HOOKS
-import { useTranslate } from "hooks/useTranslate";
-
-// COMPONENTS
-import { Container, ReactImage } from "@components/UI";
-import { SwipeSection } from "@components/SwipeSection";
+import styles from "./GalleryContainer.module.scss";
 
 interface IProps {
-  type: string;
   gallery: IImage[];
 }
 
-export const GallerySection: React.FC<IProps> = ({ gallery, type }) => {
+export const GallerySection: React.FC<IProps> = (props) => {
+  const { gallery } = props;
+
   const translate = useTranslate();
   return (
-    <>
+    <Section title={translate.titles.gallery} margin="24px 0 32px 0">
       {gallery && gallery.length > 0 && (
-        <section className={`${type} section__gallery`}>
-          <Container type="container--flex">
-            <h2 className="section__heading">{translate.titles.gallery}</h2>
-            <SwipeSection length={gallery.length}>
-              {gallery.map((image, index: number) => (
-                <div className="gallery__image" key={index}>
-                  <ReactImage
-                    src={image.url}
-                    width="960"
-                    height="350"
-                    alt="Gallery Image"
-                  />
-                </div>
-              ))}
-            </SwipeSection>
-          </Container>
-        </section>
+        <SwipeSection length={gallery.length}>
+          {gallery.map((image, index: number) => (
+            <div className={styles.galleryImage} key={index}>
+              <ReactImage src={image.url} layout="fill" alt="Gallery Image" />
+            </div>
+          ))}
+        </SwipeSection>
       )}
-    </>
+    </Section>
   );
 };

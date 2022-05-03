@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // TYPES
@@ -90,9 +90,10 @@ export const CheckoutFormContainer: FC = () => {
       />
       <div className="input__wrapper">
         <Button
-          type="tickets__button btn--x1 btn--black font--medium"
+          type="xl"
+          bgColor="black"
           text={translate.cart.addTicketButton}
-          action={handleTicketAdd}
+          onClick={handleTicketAdd}
         />
       </div>
     </div>

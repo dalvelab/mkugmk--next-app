@@ -19,9 +19,13 @@
       "@containers/*": ["containers/*"],
       "@pages/*": ["pages/*"],
       "@styles/*": ["styles/*"],
+      "@selectors/*": ["selectors/*"],
       "@lib/*": ["lib/*"],
       "@helpers/*": ["helpers/*"],
-      "@models/*": ["models/*"]
+      "@hooks/*": ["hooks/*"],
+      "@redux/*": ["redux/*"],
+      "@models/*": ["models/*"],
+      "@templates/*": ["templates/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/api.js"],

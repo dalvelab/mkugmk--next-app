@@ -96,7 +96,7 @@ export async function getWelcomePageInfo(locale) {
 export async function getAllMuseumsForHome(locale) {
   const data = await fetchAPI(
     `
-    query Museums($locale: String) {
+    query AllMuseums($locale: String) {
         museums(locale: $locale, sort: "createdAt:desc") {  
           id
           title,

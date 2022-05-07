@@ -1,21 +1,17 @@
 import { Provider } from "react-redux";
-
-// STORE
-import store from "../redux/store";
-
-// TYPES
 import { AppProps } from "next/app";
 import { NextPage } from "next";
-import { ReactElement, ReactNode } from "react";
 
-// STYLES
 import "@styles/index.scss";
 
-// LANG DETECTOR
-import { Layout } from "templates/LayoutTemplate";
+import store from "../redux/store";
+import { Layout } from "../templates/LayoutTemplate";
+
+// MOCKS
+import("../mocks").then(({ setup }) => setup());
 
 type NextPageWithLayout = NextPage & {
-  getLayout?: (page: ReactElement) => ReactNode[];
+  getLayout?: (page: React.ReactElement) => React.ReactNode[];
 };
 
 type AppPropsWithLayout = AppProps & {

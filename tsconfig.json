@@ -13,7 +13,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
       "@components/*": ["components/*"],
       "@containers/*": ["containers/*"],
@@ -28,6 +28,12 @@
       "@templates/*": ["templates/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/api.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "lib/api.js",
+    "mocks/index.js"
+  ],
   "exclude": ["node_modules"]
 }

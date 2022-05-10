@@ -8,7 +8,9 @@ import store from "../redux/store";
 import { Layout } from "../templates/LayoutTemplate";
 
 // MOCKS
-import("../mocks").then(({ setup }) => setup());
+if (process.env.NODE_ENV === "development") {
+  import("../mocks").then(({ setup }) => setup());
+}
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: React.ReactElement) => React.ReactNode[];

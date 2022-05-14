@@ -1,15 +1,11 @@
 import { GetStaticProps } from "next";
-import { useSelector } from "react-redux";
 import parse from "html-react-parser";
 import classNames from "classnames";
 
 import { Container, Button, ReactImage, Section } from "@components/UI";
-import { RootState } from "@models/state";
-import { IImage, IOpenDay, IOpenHours } from "@models/main";
+import { IImage, IOpenHours } from "@models/main";
 import { getHoursForHeading } from "@lib/api";
-
-import en from "../../locales/en";
-import ru from "../../locales/ru";
+import { useTranslate } from "@hooks/useTranslate";
 
 import styles from "./HeadingSection.module.scss";
 
@@ -28,9 +24,7 @@ export const HeadingSection: React.FC<IProps> = ({
   hours,
   description,
 }) => {
-  const language = useSelector((state: RootState) => state.UI.language);
-
-  const translate = language === "ru" ? ru : en;
+  const translate = useTranslate();
 
   const currentDayIndex = new Date().getDay();
 
@@ -39,11 +33,11 @@ export const HeadingSection: React.FC<IProps> = ({
 
   if (museumType === "museum") {
     currentDay = hours.museum.filter(
-      (day: IOpenDay, index: number) => index === currentDayIndex
+      (__, index: number) => index === currentDayIndex
     )[0];
   } else {
     currentDay = hours.openspace.filter(
-      (day: IOpenDay, index: number) => index === currentDayIndex
+      (__, index: number) => index === currentDayIndex
     )[0];
   }
 

@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  .sidebar__button--back {
+  .sidebarButtonBack {
     margin-left: 50px;
     i {
       font-size: 13px;
@@ -21,7 +21,7 @@
       font-size: 16px;
     }
   }
-  .sidebar__links--wrapper {
+  .sidebarLinksWrapper {
     width: 100%;
     display: none;
     flex-direction: column;
@@ -51,11 +51,11 @@
       }
     }
   }
-  .sidebar__links--active {
+  .sidebarLinksActive {
     display: flex;
   }
 }
 
-.sidebar--open {
+.sidebarOpen {
   display: flex;
 }

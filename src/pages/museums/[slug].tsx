@@ -5,12 +5,8 @@ import { NextPage, GetStaticProps } from "next";
 import { IMuseum, IOpenHours, IGalleryImage } from "@models/main";
 
 // LIB
-import {
-  getSingleMuseum,
-  getHoursForHeading,
-  getAllMuseumsWithSlug,
-  getSingleMuseumGallery,
-} from "@lib/api";
+import { getHoursForHeading, getAllMuseumsWithSlug } from "@lib/api";
+import { getSingleMuseum, getSingleMuseumGallery } from "@lib/museums";
 
 // CONTAINERS
 import { GallerySection } from "@containers/Gallery";
@@ -52,10 +48,12 @@ const MuseumSinglePage: NextPage<IProps> = ({ museum, hours, gallery }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const data = (await getSingleMuseum(params!.slug, locale)) || null;
-  const hours = (await getHoursForHeading()) || null;
-  const gallery = (await getSingleMuseumGallery(params!.slug, locale)) || null;
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { locale } = context;
+  const data = (await getSingleMuseum(context.params!.slug, locale)) || {};
+  const hours = (await getHoursForHeading()) || [];
+  const gallery =
+    (await getSingleMuseumGallery(context.params!.slug, locale)) || [];
   return {
     props: {
       hours,

@@ -15,11 +15,11 @@ import {
 // LIB
 import {
   getWelcomePageInfo,
-  getAllMuseumsForHome,
   getGalleryForHome,
   getNewsForHome,
   getHoursForHeading,
 } from "@lib/api";
+import { getAllMuseumsForHome } from "@lib/museums";
 
 // CONTAINERS
 import { MuseumsContainer, NewsContainer } from "@containers/WelcomeContainers";
@@ -74,12 +74,14 @@ const WelcomePage: NextPage<IProps> = ({
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const pageInfo = (await getWelcomePageInfo(locale)) || null;
-  const museums = (await getAllMuseumsForHome(locale)) || null;
-  const news = (await getNewsForHome(locale)) || null;
-  const museumGalleries = (await getGalleryForHome()) || null;
-  const hours = (await getHoursForHeading()) || null;
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { locale } = context;
+
+  const pageInfo = (await getWelcomePageInfo(locale)) || {};
+  const museums = (await getAllMuseumsForHome(locale)) || [];
+  const news = (await getNewsForHome(locale)) || [];
+  const museumGalleries = (await getGalleryForHome()) || [];
+  const hours = (await getHoursForHeading()) || [];
   return {
     props: {
       pageInfo,

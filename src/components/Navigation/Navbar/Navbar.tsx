@@ -1,26 +1,20 @@
-import { useSelector } from "react-redux";
+import { useContext } from "react";
 import Link from "next/link";
 
 import { Container, Button } from "@components/UI";
 import { useTranslate } from "@hooks/useTranslate";
-import { languageSelector } from "@selectors/common";
 import { LanguageList } from "@models/common";
 
 import { NavbarLanguageSelect } from "../LanguageSelect";
 import { NavbarLink } from "../Link";
+import { LanguageContext } from "@templates/LayoutTemplate";
 
 import styles from "./Navbar.module.scss";
 
-interface IProps {
-  onLanguageChange: (locale: LanguageList) => void;
-}
-
-export const Navbar: React.FC<IProps> = (props) => {
-  const { onLanguageChange } = props;
+export const Navbar: React.FC = () => {
+  const { language, handleLanguageChange } = useContext(LanguageContext);
 
   const translate = useTranslate();
-
-  const language = useSelector(languageSelector);
 
   return (
     <nav className={styles.navTop}>
@@ -42,7 +36,7 @@ export const Navbar: React.FC<IProps> = (props) => {
               </a>
             </Link>
             <NavbarLanguageSelect
-              onClick={onLanguageChange}
+              onClick={handleLanguageChange}
               language={language}
             />
           </div>

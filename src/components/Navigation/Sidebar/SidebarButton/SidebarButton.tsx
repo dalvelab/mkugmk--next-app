@@ -3,17 +3,17 @@ import classNames from "classnames";
 import styles from "./ButtonSidebar.module.scss";
 
 interface IProps {
-  isOpen: boolean;
+  isOpened: boolean;
   onClick: () => void;
 }
 
-export const ButtonSidebar: React.FC<IProps> = (props) => {
-  const { isOpen, onClick } = props;
+export const SidebarButton: React.FC<IProps> = (props) => {
+  const { isOpened, onClick } = props;
 
   return (
     <button
       className={classNames([styles.buttonSidebarOpen], {
-        [styles.buttonSidebarActive]: isOpen,
+        [styles.buttonSidebarActive]: isOpened,
       })}
       onClick={onClick}
     >

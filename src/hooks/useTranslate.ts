@@ -1,12 +1,12 @@
-import { useSelector } from "react-redux";
+import { useContext } from "react";
 
-import { languageSelector } from "@selectors/common";
+import { LanguageContext } from "@templates/LayoutTemplate";
 
 import en from "../locales/en";
 import ru from "../locales/ru";
 
 export const useTranslate = () => {
-  const language = useSelector(languageSelector);
+  const { language } = useContext(LanguageContext);
 
   return language === "ru" ? ru : en;
 };

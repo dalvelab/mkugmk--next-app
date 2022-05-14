@@ -1,6 +1,6 @@
-import { API_URL } from "./constants";
+const API_URL = "http://mkugmk-admin.vmff.ru";
 
-async function fetchAPI(query, { variables } = {}) {
+export async function fetchAPI(query, { variables } = {}) {
   const res = await fetch(`${API_URL}/graphql`, {
     method: "POST",
     headers: {
@@ -48,27 +48,6 @@ export async function getAllNewsWithSlug() {
 }
 
 // NAVIGATION REQUEST
-
-export async function getMuseumLinks(locale) {
-  const data = await fetchAPI(
-    `
-    query Museums($locale: String) {
-        museums(locale: $locale) {  
-          id
-          title
-          slug
-        }
-      }
-  `,
-    {
-      variables: {
-        locale,
-      },
-    }
-  );
-  return data?.museums;
-}
-
 // WELCOME PAGE REQUESTS
 
 export async function getWelcomePageInfo(locale) {
@@ -91,29 +70,6 @@ export async function getWelcomePageInfo(locale) {
     }
   );
   return data?.welcomePage;
-}
-
-export async function getAllMuseumsForHome(locale) {
-  const data = await fetchAPI(
-    `
-    query AllMuseums($locale: String) {
-        museums(locale: $locale, sort: "createdAt:desc") {  
-          id
-          title,
-          slug,
-          image {
-            url
-          }
-        }
-      }
-  `,
-    {
-      variables: {
-        locale,
-      },
-    }
-  );
-  return data?.museums;
 }
 
 export async function getNewsForHome(locale) {
@@ -186,56 +142,6 @@ export async function getHoursForHeading() {
   `
   );
   return data?.hour;
-}
-
-// SINGLE MUSEUMS PAGE REQUESTS
-export async function getSingleMuseum(slug, locale) {
-  const data = await fetchAPI(
-    `
-    query Museums($where: JSON, $locale: String) {
-        museums(where: $where, locale: $locale) {  
-          title,
-          slug,
-          image {
-            url
-          },
-          headerImage {
-            url
-          },
-          description,
-          museumType
-        }
-      }
-  `,
-    {
-      variables: {
-        where: { slug },
-        locale,
-      },
-    }
-  );
-  return data;
-}
-
-export async function getSingleMuseumGallery(slug, locale) {
-  const data = await fetchAPI(
-    `
-    query Museums($where: JSON, $locale: String) {
-        museums(where: $where, locale: $locale) {  
-          gallery {
-            url
-          }
-        }
-      }
-  `,
-    {
-      variables: {
-        where: { slug },
-        locale,
-      },
-    }
-  );
-  return data.museums[0].gallery;
 }
 
 // NAVIGATION REQUESTS

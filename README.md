@@ -9,7 +9,6 @@
 - models - файлы с typescript типами (для компонентов, секций, state)
 - pages - файлы страниц с учётом routing
 - public - шрифты, картинки, favicon
-- redux - все связанное с redux (actions, reducers, store)
 
 ## Как добавить иконку
 

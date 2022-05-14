@@ -19,11 +19,9 @@
       "@containers/*": ["containers/*"],
       "@pages/*": ["pages/*"],
       "@styles/*": ["styles/*"],
-      "@selectors/*": ["selectors/*"],
       "@lib/*": ["lib/*"],
       "@helpers/*": ["helpers/*"],
       "@hooks/*": ["hooks/*"],
-      "@redux/*": ["redux/*"],
       "@models/*": ["models/*"],
       "@templates/*": ["templates/*"]
     }

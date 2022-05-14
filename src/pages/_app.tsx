@@ -1,10 +1,8 @@
-import { Provider } from "react-redux";
 import { AppProps } from "next/app";
 import { NextPage } from "next";
 
 import "@styles/index.scss";
 
-import store from "../redux/store";
 import { Layout } from "../templates/LayoutTemplate";
 
 // MOCKS
@@ -22,13 +20,11 @@ type AppPropsWithLayout = AppProps & {
 
 const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   return (
-    <Provider store={store}>
-      <Layout>
-        <main className="navbar--offset">
-          <Component {...pageProps} />
-        </main>
-      </Layout>
-    </Provider>
+    <Layout>
+      <main className="navbar--offset">
+        <Component {...pageProps} />
+      </main>
+    </Layout>
   );
 };
 

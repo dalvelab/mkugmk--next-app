@@ -110,7 +110,7 @@ const Contacts: NextPage<IContactsProps> = ({ contacts }) => {
 export default Contacts;
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const contacts = (await getContacts()) || null;
+  const contacts = (await getContacts()) || [];
   return {
     props: {
       contacts,

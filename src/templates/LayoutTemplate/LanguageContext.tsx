@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 
 import { LanguageList } from "@models/common";
@@ -8,7 +8,9 @@ interface IContextProps {
   handleLanguageChange: (language: LanguageList) => void;
 }
 
-export const LanguageContext = React.createContext({} as IContextProps);
+const LanguageContext = React.createContext<IContextProps | undefined>(
+  undefined
+);
 
 export const LanguageProvider: React.FC = (props) => {
   const { children } = props;
@@ -37,4 +39,14 @@ export const LanguageProvider: React.FC = (props) => {
       {children}
     </LanguageContext.Provider>
   );
+};
+
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+
+  if (!context) {
+    throw new Error("useLanguage must be used with LanguageProvider");
+  }
+
+  return context;
 };

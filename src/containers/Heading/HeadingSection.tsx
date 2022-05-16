@@ -1,45 +1,24 @@
 import { GetStaticProps } from "next";
-import parse from "html-react-parser";
 import classNames from "classnames";
 
 import { Container, Button, ReactImage, Section } from "@components/UI";
-import { IImage, IOpenHours } from "@models/main";
-import { getHoursForHeading } from "@lib/api";
+import { IImage } from "@models/main";
 import { useTranslate } from "@hooks/useTranslate";
 
 import styles from "./HeadingSection.module.scss";
 
 interface IProps {
   title: string;
-  museumType: string;
   image: IImage;
-  hours: IOpenHours;
   description: string;
 }
 
 export const HeadingSection: React.FC<IProps> = ({
   title,
-  museumType,
   image,
-  hours,
   description,
 }) => {
   const translate = useTranslate();
-
-  const currentDayIndex = new Date().getDay();
-
-  // TO DO: put current date to redux state
-  let currentDay;
-
-  if (museumType === "museum") {
-    currentDay = hours.museum.filter(
-      (__, index: number) => index === currentDayIndex
-    )[0];
-  } else {
-    currentDay = hours.openspace.filter(
-      (__, index: number) => index === currentDayIndex
-    )[0];
-  }
 
   return (
     <section className={styles.sectionHeader}>
@@ -54,7 +33,7 @@ export const HeadingSection: React.FC<IProps> = ({
       <Container>
         <div className={styles.titleWrapper}>
           <h1>{title}</h1>
-          <div className={styles.openStatus}>
+          {/* <div className={styles.openStatus}>
             <div
               className={classNames([styles.statusIcon], {
                 [styles.statusIconOpened]: !currentDay.isWeekend,
@@ -70,7 +49,7 @@ export const HeadingSection: React.FC<IProps> = ({
                     translate.headingSection.openTo
                   } ${currentDay.timeClose.slice(0, 5)}`}
             </span>
-          </div>
+          </div> */}
           <Button
             type="xl"
             bgColor="black"
@@ -80,7 +59,7 @@ export const HeadingSection: React.FC<IProps> = ({
       </Container>
       <Section title={translate.headingSection.about}>
         <div className={styles.descriptionWrapper}>
-          <div className="textWrapper">{parse(description)}</div>
+          <div className="textWrapper">{description}</div>
         </div>
       </Section>
     </section>
@@ -88,8 +67,8 @@ export const HeadingSection: React.FC<IProps> = ({
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const hours = (await getHoursForHeading()) || null;
+  // const hours = (await getHoursForHeading()) || null;
   return {
-    props: { hours },
+    props: {},
   };
 };

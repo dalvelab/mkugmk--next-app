@@ -1,54 +1,25 @@
-// HOOKS
-import { useTranslate } from "hooks/useTranslate";
-
-// TYPES
 import { NextPage, GetStaticProps } from "next";
-import {
-  IImage,
-  IEvent,
-  IOpenHours,
-  INews,
-  IMuseum,
-  IGalleryImage,
-} from "@models/main";
+import Head from "next/head";
 
-// LIB
-import {
-  getWelcomePageInfo,
-  getGalleryForHome,
-  getNewsForHome,
-  getHoursForHeading,
-} from "@lib/api";
-import { getAllMuseumsForHome } from "@lib/museums";
-
-// CONTAINERS
 import { MuseumsContainer, NewsContainer } from "@containers/WelcomeContainers";
 import { GallerySection } from "@containers/Gallery";
 import { HeadingSection } from "@containers/Heading";
-
-// COMPONENTS
-import Head from "next/head";
+import { getWelcomePageInfo } from "@lib/pages";
+import { useTranslate } from "@hooks/useTranslate";
+import { IImage, INews, IMuseum } from "@models/main";
 
 interface IProps {
-  pageInfo: {
+  museums: IMuseum[];
+  welcome: {
     title: string;
     description: string;
     image: IImage;
   };
-  museums: IMuseum[];
-  events: IEvent[];
-  news: INews[];
-  gallery: IGalleryImage[];
-  hours: IOpenHours;
 }
 
-const WelcomePage: NextPage<IProps> = ({
-  pageInfo,
-  museums,
-  news,
-  gallery,
-  hours,
-}) => {
+const WelcomePage: NextPage<IProps> = (props) => {
+  const { museums, welcome } = props;
+
   const translate = useTranslate();
 
   return (
@@ -61,15 +32,13 @@ const WelcomePage: NextPage<IProps> = ({
         />
       </Head>
       <HeadingSection
-        title={pageInfo.title}
-        image={pageInfo.image}
-        museumType="museum"
-        hours={hours}
-        description={pageInfo.description}
+        title={welcome.title}
+        image={welcome.image}
+        description={welcome.description}
       />
       <MuseumsContainer museums={museums} />
-      <NewsContainer title={translate.titles.news} news={news} />
-      <GallerySection gallery={gallery} />
+      {/* <NewsContainer title={translate.titles.news} news={news} />
+      <GallerySection gallery={gallery} /> */}
     </>
   );
 };
@@ -77,23 +46,10 @@ const WelcomePage: NextPage<IProps> = ({
 export const getStaticProps: GetStaticProps = async (context) => {
   const { locale } = context;
 
-  const pageInfo = (await getWelcomePageInfo(locale)) || {};
-  const museums = (await getAllMuseumsForHome(locale)) || [];
-  const news = (await getNewsForHome(locale)) || [];
-  const museumGalleries = (await getGalleryForHome()) || [];
-  const hours = (await getHoursForHeading()) || [];
+  const data = (await getWelcomePageInfo(locale)) || {};
+
   return {
-    props: {
-      pageInfo,
-      museums,
-      news,
-      gallery: [
-        ...museumGalleries.map(
-          (museumGallery: any) => museumGallery.gallery[0]
-        ),
-      ],
-      hours,
-    },
+    props: data,
     revalidate: 1,
   };
 };

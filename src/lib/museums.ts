@@ -20,28 +20,6 @@ export async function getMuseumLinks(locale?: string) {
   return data?.museums;
 }
 
-export async function getAllMuseumsForHome(locale?: string) {
-  const data = await fetchAPI(
-    `query AllMuseums($locale: String) {
-        museums(locale: $locale, sort: "createdAt:desc") {  
-          id
-          title,
-          slug,
-          image {
-            url
-          }
-        }
-      }
-    `,
-    {
-      variables: {
-        locale,
-      },
-    }
-  );
-  return data?.museums;
-}
-
 export async function getSingleMuseum(
   slug?: string | string[],
   locale?: string
@@ -79,7 +57,7 @@ export async function getSingleMuseumGallery(
 ) {
   const data = await fetchAPI(
     `
-    query Museums($where: JSON, $locale: String) {
+    query SingleMuseumGallery($where: JSON, $locale: String) {
         museums(where: $where, locale: $locale) {  
           gallery {
             url

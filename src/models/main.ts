@@ -2,10 +2,8 @@ export interface IMuseum {
   id: string;
   title: string;
   slug: string;
-  museumType: string;
   description: string;
-  image: IImage;
-  headerImage: IImage;
+  cardImage: IImage;
 }
 
 export interface IEvent {
@@ -23,8 +21,6 @@ export enum NewsType {
   NEWS = "news",
 }
 
-export type Sizes = "sm" | "md" | "xl";
-
 export interface INews {
   id: string;
   postType: NewsType;
@@ -41,19 +37,10 @@ export interface INews {
   description: string;
 }
 
-export interface ITicket {
-  id: string;
-  title: string;
-  price: number;
-  quantity: number;
-  type?: string;
-}
-
 export interface IImage {
   url: string;
   width?: string;
   height?: string;
-  blurDataURL?: string;
 }
 
 export interface IGalleryImage {

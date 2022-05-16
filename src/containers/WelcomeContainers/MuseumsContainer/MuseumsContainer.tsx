@@ -1,5 +1,5 @@
 import { CardMuseum } from "@components/Cards";
-import { Container, Section } from "@components/UI";
+import { Section } from "@components/UI";
 import { IMuseum } from "@models/main";
 
 import styles from "./MuseumsContainer.module.scss";
@@ -19,7 +19,7 @@ export const MuseumsContainer: React.FC<IProps> = (props) => {
             key={museum.id}
             title={museum.title}
             slug={museum.slug}
-            image={museum.image}
+            image={museum.cardImage}
           />
         ))}
       </div>

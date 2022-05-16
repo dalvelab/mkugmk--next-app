@@ -47,103 +47,6 @@ export async function getAllNewsWithSlug() {
   return data?.allPosts;
 }
 
-// NAVIGATION REQUEST
-// WELCOME PAGE REQUESTS
-
-export async function getWelcomePageInfo(locale) {
-  const data = await fetchAPI(
-    `
-    query WelcomePage($locale: String) {
-        welcomePage(locale: $locale) {
-          title
-          description
-          image {
-            url
-          }
-        }
-      }
-  `,
-    {
-      variables: {
-        locale,
-      },
-    }
-  );
-  return data?.welcomePage;
-}
-
-export async function getNewsForHome(locale) {
-  const data = await fetchAPI(
-    `
-    query News($locale: String) {
-      posts(locale: $locale, limit: 5, sort: "createdAt:desc") {
-        id
-        postType
-        title
-        slug
-        image {
-          url
-        }
-        eventDate
-        createdAt
-        shortDescription,
-        tag {
-          title
-        }
-      }
-    }
-  `,
-    {
-      variables: {
-        locale,
-      },
-    }
-  );
-  return data?.posts;
-}
-
-export async function getGalleryForHome() {
-  const data = await fetchAPI(
-    `
-    {
-      museums {
-        gallery {
-          url
-        }
-      }
-    }
-  `
-  );
-  return data?.museums;
-}
-
-// HEADING SECTION REQUESTS
-export async function getHoursForHeading() {
-  const data = await fetchAPI(
-    `
-    query {
-    	hour {
-        openspace {
-          id
-          isWeekend
-          timeOpen
-          timeClose
-          day
-        }
-        museum {
-					id
-          isWeekend
-          timeOpen
-          timeClose
-          day
-        }
-      }  
-    }
-  `
-  );
-  return data?.hour;
-}
-
 // NAVIGATION REQUESTS
 export async function getMuseumLinksForNavigation() {
   const data = await fetchAPI(
@@ -239,28 +142,6 @@ export async function getAllMuseumGalleries() {
   data.museums.map((museum) => gallery.push(...museum.gallery));
 
   return gallery;
-}
-
-// TICKETS PRICES
-export async function getTicketPrices(locale) {
-  const data = await fetchAPI(
-    `
-    query Tickets($locale: String) {
-        tickets(locale: $locale) {  
-          id,
-          title,
-          price,
-          type
-        }
-      }
-  `,
-    {
-      variables: {
-        locale,
-      },
-    }
-  );
-  return data?.tickets;
 }
 
 // ALL CONTACTS

@@ -1,1 +1,1 @@
-export * from "./NewsContainer";
+export * from "./PostsContainer";

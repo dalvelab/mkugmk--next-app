@@ -1,5 +1,4 @@
-import { museumHandlers } from "./museum";
 import { pagesHandlers } from "./pages";
-import { newsHandlers } from "./news";
+import { pathsHandlers } from "./paths";
 
-export const handlers = [...pagesHandlers];
+export const handlers = [...pagesHandlers, ...pathsHandlers];

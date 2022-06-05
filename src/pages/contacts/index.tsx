@@ -1,97 +1,75 @@
 import { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
-import { useState, useRef, LegacyRef } from "react";
-import classNames from "classnames";
+import { useState, useCallback, useRef, Ref } from "react";
 
-import { PageHeader } from "@components/Page";
 import { Section } from "@components/UI";
-import { ContactsContainer } from "@containers/Contacts";
-import { getContacts } from "@lib/api";
-import { IContact } from "@models/main";
+import { TableContacts } from "@components/Tables";
+import { ContactsContainer } from "@containers/ContactsContainers";
 import { useTranslate } from "@hooks/useTranslate";
+import { getContactsPageInfo } from "@lib/pages";
+import { IContact, IOpeningHours } from "@models/main";
 
 import styles from "./ContactsPage.module.scss";
 
 interface IContactsProps {
   contacts: IContact[];
+  museums: {
+    id: string;
+    title: string;
+    openingHours: IOpeningHours[];
+  }[];
 }
 
-const Contacts: NextPage<IContactsProps> = ({ contacts }) => {
+const Contacts: NextPage<IContactsProps> = (props) => {
+  const { contacts, museums } = props;
+
   const translate = useTranslate();
 
-  const [isActive, setIsActive] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isOverlayDisabled, setIsOverlayDisabled] = useState(false);
 
-  const map: LegacyRef<HTMLIFrameElement> = useRef(null);
+  const map: Ref<HTMLIFrameElement> = useRef(null);
 
-  const handleMapBlur = () => {
-    setIsActive(true);
-  };
+  const handleMapBlur = useCallback(() => {
+    setIsHovered(true);
+    setIsOverlayDisabled(false);
+  }, []);
 
-  const handleMapUnblur = () => {
-    setIsActive(false);
-    setIsDisabled(false);
-  };
+  const onMapUnblur = useCallback(() => {
+    setIsOverlayDisabled(false);
+    setIsHovered(false);
+  }, []);
 
-  const handleMapActive = () => {
-    setIsDisabled(true);
-    setIsActive(false);
-  };
+  const onOverlayClick = useCallback(() => {
+    setIsHovered(false);
+    setIsOverlayDisabled(true);
+  }, []);
 
   return (
     <>
       <Head>
         <title>Контакты | Музейный комплекс УГМК</title>
       </Head>
-      <PageHeader />
-      <Section title={translate.contactsPage.title}>
-        <ContactsContainer
-          contacts={contacts}
-          title="Руководство"
-          type="management"
-        />
-        <ContactsContainer
-          contacts={contacts}
-          title="Для СМИ и медиа"
-          type="media"
-        />
-        <ContactsContainer
-          contacts={contacts}
-          title="Сотрудничество"
-          type="cooperation"
-        />
+      <Section title={translate.contactsPage.title} isBackLink>
+        <ContactsContainer contacts={contacts} />
       </Section>
+
       <Section title="Часы работы" margin="24px 0 0 0">
-        <div className={styles.workingHoursWrapper}>
-          <div className={styles.cardWorkingHours}>
-            <div className={styles.title}>ПН</div>
-            <span className={styles.time}>Выходной</span>
-          </div>
-          <div className={styles.cardWorkingHours}>
-            <div className={styles.title}>ВТ</div>
-            <span className={styles.time}>10:00 - 19:00</span>
-          </div>
-        </div>
+        <TableContacts openingHours={museums} />
       </Section>
       <Section title="Как добраться" margin="24px 0 32px 0">
         <div className={styles.mapWrapper}>
-          <div
-            className={classNames([
-              styles.mapOverlay,
-              {
-                [styles.overlayActive]: isActive,
-                [styles.overlayDisabled]: isDisabled,
-                [styles.overlay]: !isDisabled,
-              },
-            ])}
-            onClick={handleMapActive}
-            onMouseOver={handleMapBlur}
-            onTouchStart={handleMapBlur}
-          >
-            <div className={styles.overlayText}>
-              Нажмите на карту для работы
+          {isHovered && !isOverlayDisabled && (
+            <div
+              className={styles.mapOverlay}
+              onClick={onOverlayClick}
+              onMouseLeave={onMapUnblur}
+            >
+              <div className={styles.overlayText}>
+                Нажмите на карту для работы
+              </div>
             </div>
-          </div>
+          )}
           <iframe
             src="https://yandex.ru/map-widget/v1/?um=constructor%3A4a18c5739a078ec65fab77ebc20a509248f21534ca59e3defa8a17620f82a2de&amp;source=constructor"
             width="100%"
@@ -99,7 +77,7 @@ const Contacts: NextPage<IContactsProps> = ({ contacts }) => {
             frameBorder="0"
             className={styles.iframeMap}
             ref={map}
-            onMouseLeave={handleMapUnblur}
+            onMouseEnter={handleMapBlur}
           ></iframe>
         </div>
       </Section>
@@ -109,11 +87,12 @@ const Contacts: NextPage<IContactsProps> = ({ contacts }) => {
 
 export default Contacts;
 
-export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const contacts = (await getContacts()) || [];
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const { contacts, museums } = (await getContactsPageInfo(locale)) || [];
   return {
     props: {
       contacts,
+      museums,
     },
   };
 };

@@ -81,6 +81,7 @@ export default {
   titles: {
     events: "События",
     news: "Новости и События",
+    nearestEvents: "Ближайшие события",
     gallery: "Галерея",
   },
   welcomePage: {

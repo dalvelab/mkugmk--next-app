@@ -14,7 +14,7 @@ import styles from "./Image.module.scss";
 export const ReactImage: React.FC<IProps> = (props) => {
   const { src, width, height, alt, layout } = props;
 
-  const imagePath = process.env.api;
+  const imagePath = process.env.NEXT_PUBLIC_API_URL;
 
   return (
     <>

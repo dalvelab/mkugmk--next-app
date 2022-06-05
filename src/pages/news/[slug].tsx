@@ -1,22 +1,23 @@
 import { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import parse from "html-react-parser";
+import ReactMarkdown from "react-markdown";
+import { equals } from "ramda";
 
-import { INews } from "@models/main";
+import { IPost, PostType } from "@models/main";
 import { Section, ReactImage, Loader } from "@components/UI";
-import { PageHeader } from "@components/Page";
-import { getAllNewsWithSlug, getSingleNews } from "@lib/api";
+import { getSinglePostPage } from "@lib/api";
+import { getPostsStaticPaths } from "@lib/paths";
 import { getRusMonthDative } from "@helpers/dateHelper";
 
 import styles from "./NewsPage.module.scss";
 
 interface IProps {
-  news: INews;
+  post: IPost;
 }
 
 const NewsSinglePage: NextPage<IProps> = (props) => {
-  const { news } = props;
+  const { post } = props;
 
   const router = useRouter();
 
@@ -29,54 +30,57 @@ const NewsSinglePage: NextPage<IProps> = (props) => {
           content="Музей автомобильной и гражданской техники"
         />
       </Head>
-      <PageHeader />
       {router.isFallback ? (
         <Loader />
       ) : (
-        <Section>
-          <div className={styles.newsContentWrapper}>
-            <div className={styles.newsImage}>
-              <ReactImage
-                src={news.image.url}
-                width="600"
-                height="400"
-                alt="News Image"
-              />
+        <Section isBackLink>
+          <div className={styles.singlePostWrapper}>
+            <div className={styles.image}>
+              <ReactImage src={post.image.url} layout="fill" alt="News Image" />
             </div>
-            <div className={styles.newsTextContent}>
+            <div className={styles.content}>
+              {equals(post.postType, PostType.EVENT) && (
+                <div className={styles.eventDate}>
+                  {`${post.eventDate.slice(8, 10)} ${getRusMonthDative(
+                    Number(post.eventDate.slice(5, 7))
+                  )}`}
+                  {" в "}
+                  {post.eventDate.slice(11, 16)}
+                </div>
+              )}
+              <h2 className={styles.title}>{post.title}</h2>
+              <div className={styles.description}>
+                <ReactMarkdown>{post.description}</ReactMarkdown>
+              </div>
               <div className={styles.date}>
                 <span>
-                  {news.createdAt.slice(8, 10)}{" "}
-                  {getRusMonthDative(Number(news.createdAt.slice(5, 7)))}
+                  {post.createdAt.slice(8, 10)}{" "}
+                  {getRusMonthDative(Number(post.createdAt.slice(5, 7)))}
                   {", "}
-                  {news.createdAt.slice(0, 4)}
+                  {post.createdAt.slice(0, 4)}
                 </span>
               </div>
-              <h2 className={styles.title}>{news.title}</h2>
             </div>
           </div>
-          <div className={styles.description}>{parse(news.description)}</div>
         </Section>
       )}
     </>
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const data = await getSingleNews(params!.slug, locale);
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { post } = (await getSinglePostPage(context.params?.slug)) || {};
   return {
     props: {
-      news: {
-        ...data.posts[0],
-      },
+      post,
     },
   };
 };
 
 export async function getStaticPaths() {
-  const allPosts = await getAllNewsWithSlug();
+  const { data } = await getPostsStaticPaths();
   return {
-    paths: allPosts?.map((post: INews) => `/news/${post.slug}`) || [],
+    paths: data.map((post) => `/news/${post.attributes.slug}`) || [],
     fallback: true,
   };
 }

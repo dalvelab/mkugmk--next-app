@@ -1,75 +1,47 @@
-import { useRouter } from "next/router";
-
-// TYPES
 import { NextPage, GetStaticProps } from "next";
-import { IMuseum, IOpenHours, IGalleryImage } from "@models/main";
-
-// LIB
-import { getHoursForHeading, getAllMuseumsWithSlug } from "@lib/api";
-import { getSingleMuseum, getSingleMuseumGallery } from "@lib/museums";
-
-// CONTAINERS
-import { GallerySection } from "@containers/Gallery";
-import { HeadingSection } from "@containers/Heading";
-
-// COMPONENTS
 import Head from "next/head";
-import { Loader } from "@components/UI";
+
+import { HeadingSection } from "@containers/Heading";
+import { GallerySection } from "@containers/Gallery";
+import { getSingleMuseumPage } from "@lib/pages";
+import { getMuseumsStaticPaths } from "@lib/paths";
+import { IMuseum } from "@models/main";
 
 interface IProps {
   museum: IMuseum;
-  hours: IOpenHours;
-  gallery: IGalleryImage[];
 }
 
-const MuseumSinglePage: NextPage<IProps> = ({ museum, hours, gallery }) => {
-  const router = useRouter();
+const MuseumSinglePage: NextPage<IProps> = (props) => {
+  const { museum } = props;
 
   return (
     <>
       <Head>
         <title>Музейный комплекс УГМК</title>
       </Head>
-      {router.isFallback ? (
-        <Loader />
-      ) : (
-        <>
-          <HeadingSection
-            title={museum.title}
-            image={museum.headerImage}
-            museumType={museum.museumType}
-            hours={hours}
-            description={museum.description}
-          />
-          <GallerySection gallery={gallery} />
-        </>
-      )}
+      <HeadingSection
+        title={museum.title}
+        image={museum.headerImage}
+        description={museum.description}
+      />
+      <GallerySection gallery={museum.gallery} />
     </>
   );
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { locale } = context;
-  const data = (await getSingleMuseum(context.params!.slug, locale)) || {};
-  const hours = (await getHoursForHeading()) || [];
-  const gallery =
-    (await getSingleMuseumGallery(context.params!.slug, locale)) || [];
+  const { museum } = (await getSingleMuseumPage(context.params?.slug)) || {};
   return {
     props: {
-      hours,
-      museum: {
-        ...data.museums[0],
-      },
-      gallery,
+      museum,
     },
   };
 };
 
 export async function getStaticPaths() {
-  const allMuseums = await getAllMuseumsWithSlug();
+  const { data } = (await getMuseumsStaticPaths()) || [];
   return {
-    paths:
-      allMuseums?.map((museum: IMuseum) => `/museums/${museum.slug}`) || [],
+    paths: data.map((museum) => `/museums/${museum.attributes.slug}`),
     fallback: true,
   };
 }

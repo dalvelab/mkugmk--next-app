@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { equals } from "ramda";
 
 import styles from "./SwipeSection.module.scss";
 
@@ -8,18 +9,27 @@ interface IProps {
   gap?: string;
 }
 
+enum SwipeDirection {
+  LEFT = "left",
+  RIGHT = "right",
+}
+
 export const SwipeSection: React.FC<IProps> = (props) => {
-  const { gap, length, children } = props;
+  const { gap = "12px", length, children } = props;
 
-  const elementRef: React.LegacyRef<HTMLDivElement> = useRef(null);
+  const elementRef: React.Ref<HTMLDivElement> = useRef(null);
 
-  const handleSwipe = (directrion: string) => {
-    const swipeElement = elementRef.current!;
+  const handleSwipe = (directrion: SwipeDirection) => {
+    if (!elementRef.current) {
+      return;
+    }
+
+    const swipeElement = elementRef.current;
 
     if (
       swipeElement.scrollLeft + swipeElement.offsetWidth <
         swipeElement.scrollWidth &&
-      directrion === "right"
+      equals(directrion, SwipeDirection.RIGHT)
     ) {
       swipeElement.scrollBy({
         left: swipeElement.clientWidth,
@@ -27,7 +37,10 @@ export const SwipeSection: React.FC<IProps> = (props) => {
       });
     }
 
-    if (swipeElement.scrollLeft > 0 && directrion === "left") {
+    if (
+      swipeElement.scrollLeft > 0 &&
+      equals(directrion, SwipeDirection.LEFT)
+    ) {
       swipeElement.scrollBy({
         left: -swipeElement.clientWidth,
         behavior: "smooth",
@@ -41,13 +54,13 @@ export const SwipeSection: React.FC<IProps> = (props) => {
         {length > 2 && (
           <>
             <button
-              onClick={() => handleSwipe("left")}
+              onClick={() => handleSwipe(SwipeDirection.LEFT)}
               className={styles.buttonSwipeLeft}
             >
               <i className="far fa-chevron-left"></i>
             </button>
             <button
-              onClick={() => handleSwipe("right")}
+              onClick={() => handleSwipe(SwipeDirection.RIGHT)}
               className={styles.buttonSwipeRight}
             >
               <i className="far fa-chevron-right"></i>

@@ -1,3 +1,3 @@
 export * from "./CardMusem";
-export * from "./CardNews";
+export * from "./CardPost";
 export * from "./CardContact";

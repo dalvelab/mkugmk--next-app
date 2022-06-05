@@ -81,6 +81,7 @@ export default {
   titles: {
     events: "Events",
     news: "News and Events",
+    nearestEvents: "Nearest Event",
     gallery: "Gallery",
   },
   welcomePage: {

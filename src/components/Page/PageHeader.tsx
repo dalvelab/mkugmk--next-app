@@ -11,11 +11,9 @@ export const PageHeader: React.FC = () => {
 
   return (
     <div className="page__header">
-      <Container>
-        <button className="back__button" onClick={onPageReturn}>
-          <i className="far fa-arrow-left"></i>Назад
-        </button>
-      </Container>
+      <button className="back__button" onClick={onPageReturn}>
+        <i className="far fa-arrow-left"></i>Назад
+      </button>
     </div>
   );
 };

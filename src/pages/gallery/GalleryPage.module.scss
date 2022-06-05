@@ -1,3 +1,8 @@
+.museumsWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .cardsWrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

@@ -1,4 +1,4 @@
-import { Navbar, Sidebar } from "@components/Navigation";
+import { Navbar, Sidebar } from "../Navigation";
 import { Footer } from "@components/UI";
 import { LanguageProvider } from "./LanguageContext";
 

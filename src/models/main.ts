@@ -1,43 +1,45 @@
+import { WeekDaysShort } from "./common";
+
 export interface IMuseum {
   id: string;
   title: string;
   slug: string;
   description: string;
   cardImage: IImage;
+  headerImage: IImage;
+  tags: string;
+  openingHours: IOpeningHours[];
+  gallery: IImage[];
 }
 
-export interface IEvent {
+export interface IPost {
   id: string;
   title: string;
   slug: string;
   image: IImage;
-  date: string;
-  shortDescription: string;
   description: string;
+  shortDescription: string;
+  eventDate: string;
+  postType: PostType;
+  createdAt: string;
 }
 
-export enum NewsType {
+export enum PostType {
   EVENT = "event",
   NEWS = "news",
 }
 
-export interface INews {
+export interface IOpeningHours {
   id: string;
-  postType: NewsType;
-  type: string;
-  title: string;
-  slug: string;
-  image: IImage;
-  eventDate: string;
-  createdAt: string;
-  shortDescription: string;
-  tag: {
-    title: string;
-  };
-  description: string;
+  dayIndex: number;
+  weekDay: WeekDaysShort;
+  isClosed: boolean;
+  timeOpen: string;
+  timeClose: string;
 }
 
 export interface IImage {
+  id: string;
   url: string;
   width?: string;
   height?: string;
@@ -47,23 +49,10 @@ export interface IGalleryImage {
   url: string;
 }
 
-export interface IOpenDay {
-  day: string;
-  timeOpen: string;
-  timeClose: string;
-  isWeekend: boolean;
-}
-
-export interface IOpenHours {
-  museum: Array<IOpenDay>;
-  openspace: Array<IOpenDay>;
-}
-
 export interface IContact {
   id: string;
+  segment: string;
   name: string;
   email: string;
-  type: string;
   phone: string;
-  position: string;
 }

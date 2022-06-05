@@ -1,0 +1,66 @@
+.cardNews {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: 0.2s ease-in;
+  background-color: $white;
+  padding: 12px;
+  .badgesWrapper {
+    display: flex;
+    gap: 8px;
+  }
+  .date {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    color: $white;
+    font-size: 15px;
+    background-color: $black;
+    padding: 5px 10px;
+    border-radius: 12px;
+  }
+  .cardImage {
+    height: 210px;
+    position: relative;
+    img {
+      border-radius: 12px;
+      object-fit: cover;
+    }
+  }
+  .content {
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+  .title {
+    margin-top: 8px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    font-family: "Rubik";
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .shortDescription {
+    margin-top: 12px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .createDate {
+    margin: auto 12px 0 auto;
+    font-size: 13px;
+    color: $dimgray;
+  }
+  &:hover {
+    transform: translateY(-3px);
+    transition: 0.15s ease-out;
+  }
+}

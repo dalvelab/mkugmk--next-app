@@ -1,37 +1,62 @@
-import { isNil, prop } from "ramda";
 import Link from "next/link";
+import classNames from "classnames";
+
+import { equals } from "ramda";
 
 import { ReactImage } from "@components/UI";
-import { IImage } from "@models/main";
+import { IMuseum } from "@models/main";
 
 import styles from "./CardMuseum.module.scss";
 
 interface IProps {
-  title: string;
-  slug: string;
-  image: IImage;
+  museum: IMuseum;
 }
 
 export const CardMuseum: React.FC<IProps> = (props) => {
-  const { title, slug, image } = props;
+  const { museum } = props;
+
+  const { title, slug, cardImage, tags, openingHours } = museum;
+
+  const activeDay = openingHours
+    .filter((day) => equals(day.dayIndex, new Date().getDay()))
+    .shift();
 
   return (
     <Link href={`/museums/${slug}`}>
       <div className={styles.cardMuseum}>
-        <div className={styles.card__image}>
-          <ReactImage
-            src={isNil(prop("url", image)) ? undefined : image.url}
-            layout="fill"
-            alt="Museum Image"
-          />
+        <div className={styles.cardImage}>
+          <ReactImage src={cardImage.url} layout="fill" alt="Museum Image" />
         </div>
+        <div className={styles.overlay} />
         <div className={styles.card__content}>
-          <div className={styles.card__controls}>
-            <div className={styles.card__button}>
-              <i className="far fa-arrow-right"></i>
+          {activeDay && (
+            <div className={styles.openStatus}>
+              <div
+                className={classNames([styles.statusIcon], {
+                  [styles.statusIconClosed]: activeDay.isClosed,
+                  [styles.statusIconOpened]: !activeDay.isClosed,
+                })}
+              ></div>
+              <span className={styles.statusText}>
+                {activeDay.isClosed && "Закрыто"}
+                {!activeDay.isClosed &&
+                  `Открыто с ${activeDay.timeOpen.slice(0, 5)} до
+                  ${activeDay.timeClose.slice(0, 5)}`}
+              </span>
             </div>
-          </div>
+          )}
           <h3 className={styles.card__title}>{title}</h3>
+          <div className={styles.tagsWrapper}>
+            {tags.split(",").map((tag, index) => {
+              if (index < 3) {
+                return (
+                  <div key={index} className={styles.tag}>
+                    #{tag}
+                  </div>
+                );
+              }
+            })}
+          </div>
         </div>
       </div>
     </Link>

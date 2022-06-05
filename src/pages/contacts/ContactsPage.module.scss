@@ -30,7 +30,7 @@
 .mapOverlay {
   width: 100%;
   height: 650px;
-  background-color: #000;
+  background-color: rgba($color: #000, $alpha: 0.5);
   position: absolute;
   left: 0;
   top: 0;
@@ -39,8 +39,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  opacity: 0;
-  visibility: visible;
+  display: flex;
   border-radius: 12px;
   .overlayText {
     font-size: 30px;
@@ -48,13 +47,6 @@
     text-align: center;
     z-index: 4;
   }
-}
-.overlayActive {
-  opacity: 0.4;
-}
-.overlayDisabled {
-  visibility: hidden;
-  z-index: -1;
 }
 .iframeMap {
   position: relative;

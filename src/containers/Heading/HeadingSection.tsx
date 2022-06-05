@@ -1,7 +1,7 @@
-import { GetStaticProps } from "next";
-import classNames from "classnames";
+import ReactMarkdown from "react-markdown";
+import { takeLast, isNil } from "ramda";
 
-import { Container, Button, ReactImage, Section } from "@components/UI";
+import { Container, Button, Section, ReactImage } from "@components/UI";
 import { IImage } from "@models/main";
 import { useTranslate } from "@hooks/useTranslate";
 
@@ -20,36 +20,31 @@ export const HeadingSection: React.FC<IProps> = ({
 }) => {
   const translate = useTranslate();
 
+  const mediaPath = process.env.NEXT_PUBLIC_API_URL;
+
+  const getMediaType = (url: string) => {
+    if (isNil(url)) {
+      return;
+    }
+    const format = takeLast(1, url.split("."))[0];
+    const regImgFormats = /(jpg|gif|png|jpeg|tiff|gif|webp)/g;
+    if (regImgFormats.test(format)) {
+      return <ReactImage src={image.url} layout="fill" />;
+    } else {
+      return (
+        <video autoPlay loop muted playsInline>
+          <source src={`${mediaPath}${image.url}`} />
+        </video>
+      );
+    }
+  };
+
   return (
     <section className={styles.sectionHeader}>
-      <div className={styles.headerImage}>
-        <ReactImage
-          src={image ? image.url : ""}
-          width="1920"
-          height="1080"
-          alt="Heading Museum Image"
-        />
-      </div>
+      <div className={styles.headerImage}>{getMediaType(image.url)}</div>
       <Container>
         <div className={styles.titleWrapper}>
           <h1>{title}</h1>
-          {/* <div className={styles.openStatus}>
-            <div
-              className={classNames([styles.statusIcon], {
-                [styles.statusIconOpened]: !currentDay.isWeekend,
-                [styles.statusIconClosed]: currentDay.isWeekend,
-              })}
-            ></div>
-            <span className={styles.statusText}>
-              {currentDay.isWeekend
-                ? `${translate.headingSection.todayIsWeekend}`
-                : `${
-                    translate.headingSection.openFrom
-                  } ${currentDay.timeOpen.slice(0, 5)} ${
-                    translate.headingSection.openTo
-                  } ${currentDay.timeClose.slice(0, 5)}`}
-            </span>
-          </div> */}
           <Button
             type="xl"
             bgColor="black"
@@ -59,16 +54,11 @@ export const HeadingSection: React.FC<IProps> = ({
       </Container>
       <Section title={translate.headingSection.about}>
         <div className={styles.descriptionWrapper}>
-          <div className="textWrapper">{description}</div>
+          <div className={styles.textWrapper}>
+            <ReactMarkdown>{description}</ReactMarkdown>
+          </div>
         </div>
       </Section>
     </section>
   );
-};
-
-export const getStaticProps: GetStaticProps = async () => {
-  // const hours = (await getHoursForHeading()) || null;
-  return {
-    props: {},
-  };
 };

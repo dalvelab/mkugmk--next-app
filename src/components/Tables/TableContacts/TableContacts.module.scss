@@ -1,0 +1,79 @@
+.tableContacts {
+  height: auto;
+  border: 1px solid $gray;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  .tableRow {
+    display: grid;
+    grid-template-columns: auto 120px 200px;
+    border-bottom: 1px solid $gray;
+    &:last-child {
+      border-bottom: none;
+    }
+    .column {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 12px;
+      height: auto;
+      border-right: 1px solid $gray;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    .colTitle {
+      font-size: 20px;
+      font-weight: 500;
+    }
+    .badge {
+      display: flex;
+      align-self: flex-start;
+      justify-content: center;
+      align-items: center;
+      padding: 6px 8px;
+      color: $red;
+      background-color: rgba($color: $red, $alpha: 0.2);
+      font-size: $white;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    .badgeGreen {
+      color: $green;
+      background-color: rgba($color: $green, $alpha: 0.2);
+    }
+    .badgeRed {
+      color: $red;
+      background-color: rgba($color: $red, $alpha: 0.2);
+    }
+    .timeRow {
+      margin-top: 4px;
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      &:first-child {
+        margin-top: 0;
+      }
+      .day {
+        width: 25px;
+      }
+      .fontRed {
+        color: $red;
+      }
+    }
+    @media screen and (max-width: 540px) {
+      grid-template-columns: auto 200px;
+      .tdTitle {
+        &:nth-child(2) {
+          display: none;
+        }
+      }
+      .tdBadge {
+        display: none;
+      }
+      .colBadge {
+        display: none;
+      }
+    }
+  }
+}

@@ -4,14 +4,9 @@
   height: 350px;
   position: relative;
   background-color: $gray;
-  margin-right: 10px;
-  &:last-child {
-    margin-right: 0;
-  }
+  border-radius: 12px;
+  overflow: hidden;
   img {
-    width: 500px;
-    height: 350px;
-    border-radius: 12px;
     object-fit: cover;
   }
 }

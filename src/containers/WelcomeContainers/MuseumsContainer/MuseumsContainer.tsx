@@ -15,12 +15,7 @@ export const MuseumsContainer: React.FC<IProps> = (props) => {
     <Section margin="10px 0 0 0">
       <div className={styles.cardsWrapper}>
         {museums.map((museum) => (
-          <CardMuseum
-            key={museum.id}
-            title={museum.title}
-            slug={museum.slug}
-            image={museum.cardImage}
-          />
+          <CardMuseum key={museum.id} museum={museum} />
         ))}
       </div>
     </Section>

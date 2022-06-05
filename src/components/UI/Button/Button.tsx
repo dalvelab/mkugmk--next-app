@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react";
 import classNames from "classnames";
 import { equals } from "ramda";
 
-import { Sizes } from "@models/main";
+import { Sizes } from "@models/common";
 
 import styles from "./Button.module.scss";
 

@@ -8,7 +8,7 @@ import { weekDaysShortEn } from "@models/common";
 export async function getWelcomePageInfo(locale?: string) {
   const { data }: IWelcomePageInfoResponse = await fetchAPI(
     `
-    query GetWelcomePageInfo($locale: String) {
+    query GetWelcomePageInfo($locale: I18NLocaleCode) {
       museums(locale: $locale, sort: "createdAt:desc") {  
         data {
           id
@@ -49,12 +49,12 @@ export async function getWelcomePageInfo(locale?: string) {
           }
         }
       }
-      welcome {
+      welcome(locale: $locale) {
         data {
           id,
           attributes {
             title
-            image {
+            media {
               data {
                 attributes {
                   url
@@ -65,7 +65,7 @@ export async function getWelcomePageInfo(locale?: string) {
           }
         }
       }
-      posts (sort: "createdAt:desc", pagination: {limit: 6}) {
+      posts (locale: $locale, sort: "createdAt:desc", pagination: {limit: 6}) {
         data {
           id
           attributes {
@@ -97,11 +97,11 @@ export async function getWelcomePageInfo(locale?: string) {
 
   const transformedResponse = {
     welcome: {
-      title: data.welcome.data.attributes.title,
-      description: data.welcome.data.attributes.description,
-      image: data.welcome.data.attributes.media.data.attributes,
+      title: data?.welcome.data.attributes.title,
+      description: data?.welcome.data.attributes.description,
+      image: data?.welcome.data.attributes.media.data.attributes,
     },
-    museums: data.museums.data.map((museum) => {
+    museums: data?.museums?.data.map((museum) => {
       return {
         id: museum.id,
         title: museum.attributes.title,
@@ -116,7 +116,7 @@ export async function getWelcomePageInfo(locale?: string) {
         tags: museum.attributes.tags,
       };
     }),
-    posts: data.posts.data.map((post) => {
+    posts: data?.posts?.data.map((post) => {
       return {
         id: post.id,
         title: post.attributes.title,

@@ -6,6 +6,7 @@ export interface IMuseumStrapi {
     title: string;
     slug: string;
     description: string;
+    isTickets: boolean;
     cardImage: {
       data: {
         attributes: IImage;
@@ -75,6 +76,33 @@ export interface IWelcomePageInfoResponse {
     };
     posts: {
       data: IPostStrapi[];
+    };
+  };
+}
+
+export interface ICartPageResponse {
+  data: {
+    museums: {
+      data: IMuseumStrapi[];
+    };
+    ticket: {
+      data: {
+        attributes: {
+          ticket: {
+            id: string;
+            title: string;
+            link: string;
+            museum: {
+              data: {
+                id: string;
+                attributes: {
+                  title: string;
+                };
+              }[];
+            };
+          }[];
+        };
+      };
     };
   };
 }

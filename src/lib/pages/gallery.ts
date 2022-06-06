@@ -10,11 +10,11 @@ interface IGalleryPageInfoResponse {
   };
 }
 
-export async function getGalleryPage() {
+export async function getGalleryPage(locale?: string) {
   const { data }: IGalleryPageInfoResponse = await fetchAPI(
     `
-    query GetGalleryPage {
-      museums {
+    query GetGalleryPage($locale: I18NLocaleCode) {
+      museums(locale: $locale) {
         data {
           id
           attributes {
@@ -32,7 +32,12 @@ export async function getGalleryPage() {
         }
       }
     }
-  `
+  `,
+    {
+      variables: {
+        locale,
+      },
+    }
   );
 
   const transformedResponse = {
@@ -49,8 +54,6 @@ export async function getGalleryPage() {
       };
     }),
   };
-
-  console.log(transformedResponse);
 
   return transformedResponse;
 }

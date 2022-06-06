@@ -25,3 +25,19 @@ export const weekDaysShortEn: WeekDaysShort[] = [
 ];
 
 export const weekDaysShortRu = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
+
+export enum TicketTypes {
+  MV = "МВТ",
+  MA = "МАТ",
+  PR = "ПР",
+  KP = "КП",
+  MVMA = "МВТ, МАТ",
+  MVKP = "МВТ, КП",
+  MVPR = "МВТ, ПР",
+  MAKP = "МАТ, КП",
+  MAPR = "МАТ, ПР",
+  MAKPPR = "МАТ, КП, ПР",
+  MAMVKP = "МАТ, МВТ, КП",
+  MVKPPR = "МВТ, КП, ПР",
+  ALL = "МАТ, МВТ, КП, ПР",
+}

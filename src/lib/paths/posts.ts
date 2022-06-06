@@ -29,5 +29,5 @@ export async function getPostsStaticPaths() {
     }
   `);
 
-  return data.posts;
+  return data?.posts;
 }

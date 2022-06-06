@@ -1,4 +1,4 @@
-import { NextPage, GetStaticProps } from "next";
+import { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 import { isEmpty } from "ramda";
 
@@ -40,10 +40,9 @@ const GalleryPage: NextPage<IProps> = (props) => {
 
 export default GalleryPage;
 
-export const getStaticProps: GetStaticProps = async () => {
-  const { museums } = (await getGalleryPage()) || [];
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  const { museums } = (await getGalleryPage(locale)) || [];
   return {
     props: { museums },
-    revalidate: 1,
   };
 };

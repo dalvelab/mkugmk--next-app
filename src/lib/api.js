@@ -24,17 +24,17 @@ export async function fetchAPI(query, { variables } = {}) {
 }
 
 // NAVIGATION REQUESTS
-export async function getMuseumLinksForNavigation() {
-  const data = await fetchAPI(
-    `
-    {
-      museums {
-        id
-        title
-        slug
-      }
-    }
-  `
-  );
-  return data?.museums;
-}
+// export async function getMuseumLinksForNavigation() {
+//   const data = await fetchAPI(
+//     `
+//     {
+//       museums {
+//         id
+//         title
+//         slug
+//       }
+//     }
+//   `
+//   );
+//   return data?.museums;
+// }

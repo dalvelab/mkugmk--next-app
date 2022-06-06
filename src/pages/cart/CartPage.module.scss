@@ -1,0 +1,161 @@
+.ticketGenerator {
+  min-height: 100vh;
+  padding-bottom: 24px;
+  .ticketText {
+    font-size: 20px;
+    color: $dimgray;
+  }
+  .wrapper {
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    justify-content: space-between;
+    @include screen(desktop) {
+      flex-direction: column;
+    }
+  }
+  .tickets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-direction: column;
+    gap: 16px;
+    @media screen and (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+    .cardTicket {
+      padding: 12px;
+      display: flex;
+      background-color: $white;
+      color: $black;
+      display: grid;
+      grid-template-columns: 150px minmax(150px, 300px);
+      align-items: center;
+      gap: 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      @include screen(tablet) {
+        grid-template-columns: 100px minmax(150px, 300px);
+      }
+      @media screen and (max-width: 640px) {
+        grid-template-columns: 200px auto;
+      }
+      .image {
+        height: 150px;
+        background-color: $gray;
+        border-radius: 8px;
+        position: relative;
+        @include screen(tablet) {
+          height: 100px;
+        }
+        @media screen and (max-width: 640px) {
+          height: 170px;
+        }
+        img {
+          object-fit: cover;
+          border-radius: 8px;
+        }
+      }
+      .text {
+        font-size: 20px;
+        font-weight: 500;
+        @include screen(tablet) {
+          font-size: 17px;
+        }
+      }
+    }
+    .cardTicketActive {
+      background-color: $green;
+      color: $white;
+    }
+  }
+  .customTicket {
+    width: 400px;
+    min-height: 250px;
+    height: auto;
+    @include screen(desktop) {
+      width: 100%;
+    }
+    .ticketWrapper {
+      width: 100%;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      background-color: $white;
+      border-radius: 12px;
+      .title {
+        font-size: 28px;
+      }
+      .list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 20px;
+        @include screen(desktop) {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        @include screen(tablet) {
+          grid-template-columns: 1fr;
+        }
+        .item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          background-color: #f6f7fb;
+          padding: 12px;
+          position: relative;
+          border-radius: 12px;
+          .image {
+            min-width: 60px;
+            height: 60px;
+            background-color: $white;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i {
+              font-size: 28px;
+            }
+          }
+          .title {
+            font-size: 18px;
+            padding-right: 12px;
+          }
+          .close {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            i {
+              color: $black;
+              font-size: 18px;
+            }
+          }
+        }
+      }
+      .toCheckoutWrapper {
+        display: flex;
+        flex-direction: column;
+        margin-top: 12px;
+        .secondary {
+          font-size: 14px;
+          color: $dimgray;
+        }
+        button {
+          margin-top: 8px;
+          width: 100%;
+          @include screen(desktop) {
+            width: 50%;
+          }
+          @include screen(tablet) {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

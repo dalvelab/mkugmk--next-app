@@ -4,6 +4,7 @@ export interface IMuseum {
   id: string;
   title: string;
   slug: string;
+  isTickets: boolean;
   description: string;
   cardImage: IImage;
   headerImage: IImage;

@@ -29,5 +29,5 @@ export async function getMuseumsStaticPaths() {
     }
   `);
 
-  return data.museums;
+  return data?.museums;
 }

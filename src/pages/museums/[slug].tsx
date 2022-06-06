@@ -1,4 +1,4 @@
-import { NextPage, GetStaticProps } from "next";
+import { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 
 import { HeadingSection } from "@containers/Heading";
@@ -29,21 +29,13 @@ const MuseumSinglePage: NextPage<IProps> = (props) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { museum } = (await getSingleMuseumPage(context.params?.slug)) || {};
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const { museum } = (await getSingleMuseumPage(params?.slug)) || {};
   return {
     props: {
       museum,
     },
   };
 };
-
-export async function getStaticPaths() {
-  const { data } = (await getMuseumsStaticPaths()) || [];
-  return {
-    paths: data.map((museum) => `/museums/${museum.attributes.slug}`),
-    fallback: true,
-  };
-}
 
 export default MuseumSinglePage;

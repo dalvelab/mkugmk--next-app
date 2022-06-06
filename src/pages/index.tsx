@@ -1,4 +1,4 @@
-import { NextPage, GetStaticProps } from "next";
+import { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 
 import {
@@ -45,14 +45,11 @@ const WelcomePage: NextPage<IProps> = (props) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { locale } = context;
-
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const data = (await getWelcomePageInfo(locale)) || {};
 
   return {
     props: data,
-    revalidate: 1,
   };
 };
 

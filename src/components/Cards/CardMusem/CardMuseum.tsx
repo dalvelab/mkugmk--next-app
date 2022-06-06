@@ -38,7 +38,7 @@ export const CardMuseum: React.FC<IProps> = (props) => {
                 })}
               ></div>
               <span className={styles.statusText}>
-                {activeDay.isClosed && "Закрыто"}
+                {activeDay.isClosed && "Сегодня выходной"}
                 {!activeDay.isClosed &&
                   `Открыто с ${activeDay.timeOpen.slice(0, 5)} до
                   ${activeDay.timeClose.slice(0, 5)}`}

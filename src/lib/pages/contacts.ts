@@ -19,8 +19,8 @@ interface IContactsPageInfoResponse {
 export async function getContactsPageInfo(locale?: string) {
   const { data }: IContactsPageInfoResponse = await fetchAPI(
     `
-    query GetContactsPageInfo {
-      contact {
+    query GetContactsPageInfo($locale: I18NLocaleCode) {
+      contact(locale: $locale) {
         data {
           attributes {
             contact {
@@ -33,7 +33,7 @@ export async function getContactsPageInfo(locale?: string) {
           }
         }
       }
-      museums {
+      museums(locale: $locale) {
         data {
           attributes {
             title

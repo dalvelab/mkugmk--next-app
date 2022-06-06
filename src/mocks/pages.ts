@@ -5,6 +5,7 @@ import {
   getSingleMuseumPage,
   getGalleryPage,
   getSinglePostPage,
+  getCartPage,
 } from "./pages/index";
 
 export const pagesHandlers = [
@@ -14,4 +15,5 @@ export const pagesHandlers = [
   getSingleMuseumPage,
   getGalleryPage,
   getSinglePostPage,
+  getCartPage,
 ];

@@ -1,3 +1,5 @@
+import { isNil } from "ramda";
+
 import { fetchAPI } from "../api";
 
 import { IPostStrapi } from "@models/api";
@@ -13,7 +15,7 @@ interface IPostsPageInfoResponse {
 export async function getNewsPageInfo(locale?: string) {
   const { data }: IPostsPageInfoResponse = await fetchAPI(
     `
-    query GetNewsPageInfo {
+    query GetNewsPageInfo($locale: I18NLocaleCode) {
       posts(locale: $locale) {
         data {
           id
@@ -46,7 +48,7 @@ export async function getNewsPageInfo(locale?: string) {
   );
 
   const transformedResponse = {
-    posts: data.posts.data.map((post) => {
+    posts: data?.posts?.data.map((post) => {
       return {
         id: post.id,
         title: post.attributes.title,
@@ -71,7 +73,7 @@ interface IPostSinglePageInfoResponse {
 export async function getSinglePostPage(slug?: string | string[]) {
   const { data }: IPostSinglePageInfoResponse = await fetchAPI(
     `
-    query GetSinglePostPage {
+    query GetSinglePostPage($locale: I18NLocaleCode) {
       post(filters: { slug: { eq: $slug }}) {
         data {
           id
@@ -102,6 +104,8 @@ export async function getSinglePostPage(slug?: string | string[]) {
       },
     }
   );
+
+  if (isNil(data)) return;
 
   const transformedResponse = {
     post: {

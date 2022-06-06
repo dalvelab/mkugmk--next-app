@@ -1,8 +1,8 @@
-import { NextPage, GetStaticProps } from "next";
+import { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
-import { equals } from "ramda";
+import { equals, isNil } from "ramda";
 
 import { IPost, PostType } from "@models/main";
 import { Section, ReactImage, Loader } from "@components/UI";
@@ -68,21 +68,13 @@ const NewsSinglePage: NextPage<IProps> = (props) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { post } = (await getSinglePostPage(context.params?.slug)) || {};
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const { post } = (await getSinglePostPage(params?.slug)) || {};
   return {
     props: {
       post,
     },
   };
 };
-
-export async function getStaticPaths() {
-  const { data } = await getPostsStaticPaths();
-  return {
-    paths: data.map((post) => `/news/${post.attributes.slug}`) || [],
-    fallback: true,
-  };
-}
 
 export default NewsSinglePage;

@@ -1,4 +1,4 @@
-import { NextPage, GetStaticProps } from "next";
+import { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 import { useState, useCallback, useRef, Ref } from "react";
 
@@ -87,7 +87,7 @@ const Contacts: NextPage<IContactsProps> = (props) => {
 
 export default Contacts;
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const { contacts, museums } = (await getContactsPageInfo(locale)) || [];
   return {
     props: {

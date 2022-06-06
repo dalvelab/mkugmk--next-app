@@ -1,4 +1,4 @@
-import { NextPage, GetStaticProps } from "next";
+import { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 
 import { Section } from "@components/UI";
@@ -44,10 +44,9 @@ const NewsPage: NextPage<IProps> = (props) => {
 
 export default NewsPage;
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const { posts } = (await getNewsPageInfo(locale)) || [];
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  const { posts } = (await getNewsPageInfo(locale)) || null;
   return {
     props: { posts },
-    revalidate: 1,
   };
 };

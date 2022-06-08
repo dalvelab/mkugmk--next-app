@@ -10,6 +10,7 @@ interface IProps {
   padding?: string;
   bgColor?: string;
   isBackLink?: boolean;
+  isFullPageHeight?: boolean;
 }
 
 export const Section: React.FC<IProps> = (props) => {
@@ -21,6 +22,7 @@ export const Section: React.FC<IProps> = (props) => {
     padding,
     bgColor = "#ffffff",
     isBackLink = false,
+    isFullPageHeight = false,
   } = props;
 
   return (

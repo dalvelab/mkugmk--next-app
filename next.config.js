@@ -13,7 +13,4 @@ module.exports = {
     locales: ["ru", "en"],
     defaultLocale: "ru",
   },
-  env: {
-    API_URL: process.env.NEXT_PUBLIC_API_URL,
-  },
 };

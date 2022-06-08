@@ -11,7 +11,7 @@ const IS_BROWSER = typeof window !== "undefined";
 export const setup = async () => {
   if (IS_BROWSER) {
     const { worker } = await import("./browser");
-    worker.start();
+    worker.stop();
   } else {
     const { server } = await import("./server");
     server.listen();

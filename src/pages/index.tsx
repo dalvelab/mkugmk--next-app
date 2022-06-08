@@ -46,7 +46,7 @@ const WelcomePage: NextPage<IProps> = (props) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  const data = (await getWelcomePageInfo(locale)) || {};
+  const data = (await getWelcomePageInfo(locale)) || null;
 
   return {
     props: data,

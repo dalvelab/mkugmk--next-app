@@ -24,6 +24,7 @@
   .cardImage {
     height: 210px;
     position: relative;
+    overflow: hidden;
     img {
       border-radius: 12px;
       object-fit: cover;

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import classNames from "classnames";
 
-import { equals } from "ramda";
+import { equals, isNil } from "ramda";
 
 import { ReactImage } from "@components/UI";
 import { IMuseum } from "@models/main";
@@ -47,15 +47,19 @@ export const CardMuseum: React.FC<IProps> = (props) => {
           )}
           <h3 className={styles.card__title}>{title}</h3>
           <div className={styles.tagsWrapper}>
-            {tags.split(",").map((tag, index) => {
-              if (index < 3) {
-                return (
-                  <div key={index} className={styles.tag}>
-                    #{tag}
-                  </div>
-                );
-              }
-            })}
+            {!isNil(tags) && (
+              <>
+                {tags.split(",").map((tag, index) => {
+                  if (index < 3) {
+                    return (
+                      <div key={index} className={styles.tag}>
+                        #{tag}
+                      </div>
+                    );
+                  }
+                })}
+              </>
+            )}
           </div>
         </div>
       </div>

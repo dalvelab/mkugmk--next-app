@@ -3,7 +3,7 @@ import { fetchAPI } from "../api";
 import { ICartPageResponse } from "@models/api";
 
 export async function getCartPage(locale?: string) {
-  const { data }: ICartPageResponse = await fetchAPI(
+  const { museums, ticket }: ICartPageResponse = await fetchAPI(
     `
     query GetCartPage($locale: I18NLocaleCode) {
       museums(locale: $locale, sort: "createdAt:desc") {  
@@ -51,7 +51,7 @@ export async function getCartPage(locale?: string) {
   );
 
   const transformedResponse = {
-    museums: data.museums.data.map((museum) => {
+    museums: museums.data.map((museum) => {
       return {
         id: museum.id,
         title: museum.attributes.title,
@@ -59,7 +59,7 @@ export async function getCartPage(locale?: string) {
         cardImage: museum.attributes.cardImage.data.attributes,
       };
     }),
-    tickets: data.ticket.data.attributes.ticket.map((ticket) => {
+    tickets: ticket.data.attributes.ticket.map((ticket) => {
       return {
         id: ticket.id,
         link: ticket.link,

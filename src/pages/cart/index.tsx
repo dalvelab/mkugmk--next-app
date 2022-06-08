@@ -37,7 +37,11 @@ const CartPage: NextPage<IProps> = (props) => {
 
   const handleCheckout = () => {
     const generatedTicket = head(
-      tickets.filter((ticket) => equals(ticket.ticketId, selected))
+      tickets.filter(
+        (ticket) =>
+          ticket.ticketId.every((el) => selected.includes(el)) &&
+          selected.length === ticket.ticketId.length
+      )
     );
 
     if (!isNil(generatedTicket)) {

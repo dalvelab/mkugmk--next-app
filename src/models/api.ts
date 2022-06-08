@@ -55,53 +55,49 @@ export interface IContactStrapi {
 }
 
 export interface IWelcomePageInfoResponse {
-  data: {
-    museums: {
-      data: IMuseumStrapi[];
-    };
-    welcome: {
-      data: {
-        attributes: {
-          title: string;
-          description: string;
-          media: {
-            data: {
-              attributes: {
-                url: string;
-              };
+  museums: {
+    data: IMuseumStrapi[];
+  };
+  welcome: {
+    data: {
+      attributes: {
+        title: string;
+        description: string;
+        media: {
+          data: {
+            attributes: {
+              url: string;
             };
           };
         };
       };
     };
-    posts: {
-      data: IPostStrapi[];
-    };
+  };
+  posts: {
+    data: IPostStrapi[];
   };
 }
 
 export interface ICartPageResponse {
-  data: {
-    museums: {
-      data: IMuseumStrapi[];
-    };
-    ticket: {
-      data: {
-        attributes: {
-          ticket: {
-            id: string;
-            title: string;
-            link: string;
-            museum: {
-              data: {
-                id: string;
-                attributes: {
-                  title: string;
-                };
-              }[];
-            };
-          }[];
-        };
+  museums: {
+    data: IMuseumStrapi[];
+  };
+  ticket: {
+    data: {
+      attributes: {
+        ticket: {
+          id: string;
+          title: string;
+          link: string;
+          museum: {
+            data: {
+              id: string;
+              attributes: {
+                title: string;
+              };
+            }[];
+          };
+        }[];
       };
     };
   };

@@ -1,9 +1,7 @@
 export * from "./pages";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export async function fetchAPI(query, { variables } = {}) {
-  const res = await fetch(`${API_URL}/graphql`, {
+  const res = await fetch(`http://mkugmk-admin.vmff.ru/graphql`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

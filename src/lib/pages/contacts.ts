@@ -4,20 +4,20 @@ import { IMuseumStrapi, IContactStrapi } from "@models/api";
 import { weekDaysShortEn } from "@models/common";
 
 interface IContactsPageInfoResponse {
-  data: {
-    contact: {
+  contact: {
+    data: {
       attributes: {
         contact: IContactStrapi[];
       };
     };
-    museums: {
-      data: IMuseumStrapi[];
-    };
+  };
+  museums: {
+    data: IMuseumStrapi[];
   };
 }
 
 export async function getContactsPageInfo(locale?: string) {
-  const { data }: IContactsPageInfoResponse = await fetchAPI(
+  const { contact, museums }: IContactsPageInfoResponse = await fetchAPI(
     `
     query GetContactsPageInfo($locale: I18NLocaleCode) {
       contact(locale: $locale) {
@@ -35,6 +35,7 @@ export async function getContactsPageInfo(locale?: string) {
       }
       museums(locale: $locale) {
         data {
+          id
           attributes {
             title
             openingHours {
@@ -57,7 +58,8 @@ export async function getContactsPageInfo(locale?: string) {
   );
 
   const transformedResponse = {
-    contacts: data.contact.attributes.contact.map((contact) => {
+    contacts: contact.data.attributes.contact.map((contact) => {
+      console.log(contact);
       return {
         id: contact.id,
         name: contact.name,
@@ -66,7 +68,8 @@ export async function getContactsPageInfo(locale?: string) {
         phone: contact.phone,
       };
     }),
-    museums: data.museums.data.map((museum) => {
+    museums: museums.data.map((museum) => {
+      console.log(museum);
       return {
         id: museum.id,
         title: museum.attributes.title,

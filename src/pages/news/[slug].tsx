@@ -2,12 +2,11 @@ import { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
-import { equals, isNil } from "ramda";
+import { equals } from "ramda";
 
 import { IPost, PostType } from "@models/main";
 import { Section, ReactImage, Loader } from "@components/UI";
 import { getSinglePostPage } from "@lib/api";
-import { getPostsStaticPaths } from "@lib/paths";
 import { getRusMonthDative } from "@helpers/dateHelper";
 
 import styles from "./NewsPage.module.scss";

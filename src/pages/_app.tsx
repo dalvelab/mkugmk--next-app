@@ -6,9 +6,9 @@ import "@styles/index.scss";
 import { Layout } from "../templates/LayoutTemplate";
 
 // MOCKS
-if (process.env.NODE_ENV === "development") {
-  import("../mocks").then(({ setup }) => setup());
-}
+// if (process.env.NODE_ENV === "development") {
+//   import("../mocks").then(({ setup }) => setup());
+// }
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: React.ReactElement) => React.ReactNode[];

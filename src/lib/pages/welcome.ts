@@ -6,7 +6,7 @@ import { IWelcomePageInfoResponse } from "@models/api";
 import { weekDaysShortEn } from "@models/common";
 
 export async function getWelcomePageInfo(locale?: string) {
-  const { data }: IWelcomePageInfoResponse = await fetchAPI(
+  const data: IWelcomePageInfoResponse = await fetchAPI(
     `
     query GetWelcomePageInfo($locale: I18NLocaleCode) {
       museums(locale: $locale, sort: "createdAt:desc") {  
@@ -97,11 +97,11 @@ export async function getWelcomePageInfo(locale?: string) {
 
   const transformedResponse = {
     welcome: {
-      title: data?.welcome.data.attributes.title,
-      description: data?.welcome.data.attributes.description,
-      image: data?.welcome.data.attributes.media.data.attributes,
+      title: data.welcome.data.attributes.title,
+      description: data.welcome.data.attributes.description,
+      image: data.welcome.data.attributes.media.data.attributes,
     },
-    museums: data?.museums?.data.map((museum) => {
+    museums: data.museums.data.map((museum) => {
       return {
         id: museum.id,
         title: museum.attributes.title,
@@ -116,7 +116,7 @@ export async function getWelcomePageInfo(locale?: string) {
         tags: museum.attributes.tags,
       };
     }),
-    posts: data?.posts?.data.map((post) => {
+    posts: data.posts.data.map((post) => {
       return {
         id: post.id,
         title: post.attributes.title,

@@ -1,19 +1,17 @@
-import { isNil } from "ramda";
+import { head, isNil } from "ramda";
 
 import { fetchAPI } from "../api";
 
 import { IPostStrapi } from "@models/api";
 
 interface IPostsPageInfoResponse {
-  data: {
-    posts: {
-      data: IPostStrapi[];
-    };
+  posts: {
+    data: IPostStrapi[];
   };
 }
 
 export async function getNewsPageInfo(locale?: string) {
-  const { data }: IPostsPageInfoResponse = await fetchAPI(
+  const { posts }: IPostsPageInfoResponse = await fetchAPI(
     `
     query GetNewsPageInfo($locale: I18NLocaleCode) {
       posts(locale: $locale) {
@@ -48,7 +46,7 @@ export async function getNewsPageInfo(locale?: string) {
   );
 
   const transformedResponse = {
-    posts: data?.posts?.data.map((post) => {
+    posts: posts.data.map((post) => {
       return {
         id: post.id,
         title: post.attributes.title,
@@ -67,14 +65,16 @@ export async function getNewsPageInfo(locale?: string) {
 }
 
 interface IPostSinglePageInfoResponse {
-  data: IPostStrapi;
+  posts: {
+    data: IPostStrapi[];
+  };
 }
 
 export async function getSinglePostPage(slug?: string | string[]) {
-  const { data }: IPostSinglePageInfoResponse = await fetchAPI(
+  const { posts }: IPostSinglePageInfoResponse = await fetchAPI(
     `
-    query GetSinglePostPage($locale: I18NLocaleCode) {
-      post(filters: { slug: { eq: $slug }}) {
+    query GetSinglePostPage($slug: String) {
+      posts(filters: { slug: { eq: $slug }}) {
         data {
           id
           attributes {
@@ -105,18 +105,24 @@ export async function getSinglePostPage(slug?: string | string[]) {
     }
   );
 
-  if (isNil(data)) return;
+  console.log(posts);
+
+  const post = head(posts.data);
+
+  if (isNil(post)) {
+    return null;
+  }
 
   const transformedResponse = {
     post: {
-      id: data.id,
-      title: data.attributes.title,
-      slug: data.attributes.slug,
-      image: data.attributes.image.data.attributes,
-      description: data.attributes.description,
-      createdAt: data.attributes.createdAt,
-      eventDate: data.attributes.eventDate,
-      postType: data.attributes.postType,
+      id: post.id,
+      title: post.attributes.title,
+      slug: post.attributes.slug,
+      image: post.attributes.image.data.attributes,
+      description: post.attributes.description,
+      createdAt: post.attributes.createdAt,
+      eventDate: post.attributes.eventDate,
+      postType: post.attributes.postType,
     },
   };
 

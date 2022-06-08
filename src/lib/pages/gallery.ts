@@ -3,15 +3,13 @@ import { fetchAPI } from "../api";
 import { IMuseumStrapi } from "@models/api";
 
 interface IGalleryPageInfoResponse {
-  data: {
-    museums: {
-      data: IMuseumStrapi[];
-    };
+  museums: {
+    data: IMuseumStrapi[];
   };
 }
 
 export async function getGalleryPage(locale?: string) {
-  const { data }: IGalleryPageInfoResponse = await fetchAPI(
+  const data: IGalleryPageInfoResponse = await fetchAPI(
     `
     query GetGalleryPage($locale: I18NLocaleCode) {
       museums(locale: $locale) {

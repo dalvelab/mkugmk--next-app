@@ -27,15 +27,17 @@ const NewsPage: NextPage<IProps> = (props) => {
       <Section
         title={translate.titles.news}
         padding="16px 0 32px 0"
-        isBackLink
         bgColor="#f6f7fb"
+        isBackLink
       >
-        <div className={styles.cardsWrapperAllNews}>
-          {!isEmpty(posts) ? (
-            posts.map((post) => <CardPost key={post.id} post={post} />)
-          ) : (
-            <h2>Нет новостей</h2>
-          )}
+        <div className={styles.wrapper}>
+          <div className={styles.cardsWrapperAllNews}>
+            {!isEmpty(posts) ? (
+              posts.map((post) => <CardPost key={post.id} post={post} />)
+            ) : (
+              <h2>Нет новостей</h2>
+            )}
+          </div>
         </div>
       </Section>
     </>
